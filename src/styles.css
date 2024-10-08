@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'FFXIV';
+  font-weight: 200;
+  src: local('FFXIV'), url('assets/font/ffxiv.woff') format('woff');
+}

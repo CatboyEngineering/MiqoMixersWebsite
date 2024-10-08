@@ -1,6 +1,7 @@
 export interface AccountAuthenticatedResponse {
   authToken: string;
   accountID: string;
-  displayName: string;
-  isAdmin?: boolean;
+  characterName: string;
+  characterServer: string;
+  userAvatarURL: string;
 }

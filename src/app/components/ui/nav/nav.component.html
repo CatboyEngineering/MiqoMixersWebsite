@@ -1,10 +1,11 @@
-<nav class="w-full p-3 md:px-5 bg-ksPinot text-gray-100 font-semibold shadow-md">
+<nav class="w-full p-3 md:px-5 bg-mmRust dark:bg-mmDarkRust text-mmSand font-semibold shadow-md">
   <div class="flex flex-wrap">
     <div class="flex-initial self-center">
-      <img src="../../../../assets/img/KSLogoSmall.png" class="inline-block align-middle max-w-10" />
-      <h1 class="inline-block align-middle text-2xl md:text-3xl hover:cursor-pointer font-lilitaOne" [routerLink]="['/']" (click)="expanded = false">
-        KinkShell
-      </h1>
+      <img
+        src="../../../../assets/img/site_header.png"
+        class="inline-block align-middle max-w-64 md:max-w-96 hover:cursor-pointer"
+        [routerLink]="['/']"
+        (click)="expanded = false" />
     </div>
     <div class="md:hidden flex-auto"></div>
     <div class="{{ expanded ? 'rotate-90' : 'rotate-0' }} transition-all block self-center md:hidden" (click)="this.toggleExpanded()">
@@ -15,69 +16,35 @@
         expanded ? 'flex' : 'hidden md:flex'
       }} basis-full md:basis-auto border-t md:border-none mt-3 md:mt-0 flex-auto self-center flex-wrap">
       <div class="flex-auto"></div>
-      <div class="flex-initial self-center text-center">
-        <ul class="py-2 md:py-0">
-          <a
-            class="md:inline-block mx-2 py-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy"
-            href="https://github.com/CatboyEngineering/KinkShellClient/wiki"
-            target="_blank">
-            <i class="fa-solid fa-book mx-2"></i>
-            Guide
-          </a>
-          <a
-            class="md:inline-block mx-2 py-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy"
-            href="https://github.com/CatboyEngineering/KinkShellClient"
-            target="_blank">
-            <i class="fa-solid fa-code-pull-request mx-2"></i>
-            Contribute
-          </a>
-          <a
-            class="md:inline-block mx-2 py-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy"
-            href="https://github.com/CatboyEngineering/KinkShellClient/issues"
-            target="_blank">
-            <i class="fa-regular fa-circle-question mx-2"></i>
-            Help
-          </a>
-        </ul>
-      </div>
-      <div class="flex-auto"></div>
       <div class="basis-full md:basis-auto flex-initial self-center">
         <ul class="text-center md:text-inherit border-t md:border-none py-2 md:py-0">
           <ng-container *ngIf="isLoggedIn$ | async; else guestUser">
             <li
-              *ngIf="isAdmin$ | async"
-              class="inline-block mx-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy"
-              [routerLink]="['/admin']"
-              (click)="expanded = false">
-              <i class="fa-solid fa-toolbox mx-2"></i>
-              Admin
-            </li>
-            <li
-              class="inline-block mx-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy"
+              class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
               [routerLink]="['/user']"
               (click)="expanded = false">
-              <i class="fa-solid fa-user mx-2"></i>
-              Account
+              <i class="fa-solid fa-user mx-1.5"></i>
+              <p class="inline-block">Account</p>
             </li>
-            <li class="inline-block mx-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy" (click)="logOut()" (click)="expanded = false">
-              <i class="fa-solid fa-arrow-right-from-bracket mx-2"></i>
-              Log Out
+            <li class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue" (click)="logOut()" (click)="expanded = false">
+              <i class="fa-solid fa-arrow-right-from-bracket mx-1.5"></i>
+              <p class="inline-block">Log Out</p>
             </li>
           </ng-container>
           <ng-template #guestUser>
             <li
-              class="inline-block mx-2 py-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy"
+              class="inline-block mx-2 py-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
               [routerLink]="['/register']"
               (click)="expanded = false">
-              <i class="fa-solid fa-plus mx-2"></i>
-              Register
+              <i class="fa-solid fa-plus mx-1.5"></i>
+              <p class="inline-block">Register</p>
             </li>
             <li
-              class="inline-block mx-2 py-2 hover:text-ksSandy hover:cursor-pointer active:text-ksNavy"
+              class="inline-block mx-2 py-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
               [routerLink]="['/login']"
               (click)="expanded = false">
-              <i class="fa-solid fa-arrow-right-to-bracket mx-2"></i>
-              Log In
+              <i class="fa-solid fa-arrow-right-to-bracket mx-1.5"></i>
+              <p class="inline-block">Log In</p>
             </li>
           </ng-template>
         </ul>

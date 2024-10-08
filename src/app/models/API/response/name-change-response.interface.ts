@@ -1,5 +1,4 @@
 export interface NameChangeResponse {
-    accountID: string;
-    displayName: string;
-    maxAllowedShells: number;
+  characterName: string;
+  characterServer: string;
 }

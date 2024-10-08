@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, take } from 'rxjs';
-import { AuthStateActions } from './auth-state.actions';
+import { Observable } from 'rxjs';
 import { AccountCreateRequest } from '../../models/API/request/account-create-request.interface';
 import { AccountLoginRequest } from '../../models/API/request/account-login-request.interface';
-import { selectAccounts, selectAuthToken, selectDisplayName, selectIsAdmin, selectUserID } from './auth-state.selectors';
 import { NameChangeRequest } from '../../models/API/request/name-change-request.interface';
-import { ChangePasswordRequest } from '../../models/API/request/change-password-request.interface';
-import { FormValidationError } from '../../models/form-validation-error.interface';
-import { Account } from '../../models/account.interface';
-import { UpdateMaxShellsRequest } from '../../models/API/request/update-max-shells-request.interface';
+import { AuthStateActions } from './auth-state.actions';
+import { selectAuthToken, selectAvatarURL, selectCharacterName, selectCharacterServer, selectUserID } from './auth-state.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +13,9 @@ import { UpdateMaxShellsRequest } from '../../models/API/request/update-max-shel
 export class AuthStateService {
   authToken$: Observable<string> = this.store.select(selectAuthToken);
   userID$: Observable<string> = this.store.select(selectUserID);
-  displayName$: Observable<string> = this.store.select(selectDisplayName);
-  isAdmin$: Observable<boolean> = this.store.select(selectIsAdmin);
-  accountList$: Observable<Account[]> = this.store.select(selectAccounts);
+  characterName$: Observable<string> = this.store.select(selectCharacterName);
+  characterServer$: Observable<string> = this.store.select(selectCharacterServer);
+  avatarURL$: Observable<string> = this.store.select(selectAvatarURL);
 
   constructor(private store: Store) {}
 
@@ -33,18 +29,6 @@ export class AuthStateService {
 
   onNameChangeRequest(request: NameChangeRequest): void {
     this.store.dispatch(AuthStateActions.nameChangeAttempt({ request }));
-  }
-
-  onChangePasswordRequest(request: ChangePasswordRequest): void {
-    this.store.dispatch(AuthStateActions.changePasswordAttempt({ request }));
-  }
-
-  onRequestGetUserList(): void {
-    this.store.dispatch(AuthStateActions.userListRequested());
-  }
-
-  onRequestAdjustUserShells(request: UpdateMaxShellsRequest): void {
-    this.store.dispatch(AuthStateActions.userChangeShellsRequested({ request }));
   }
 
   onDeleteAccountRequest(): void {
