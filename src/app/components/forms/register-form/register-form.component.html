@@ -1,0 +1,81 @@
+<form [formGroup]="registerForm" #form="ngForm" (ngSubmit)="submit()" class="my-5 py-4 border border-ksNavy dark:border-ksSandy rounded-md">
+  <ui-form-error [formName]="FormName.REGISTER_ACCOUNT"></ui-form-error>
+
+  <div class="my-4">
+    <ui-form-field-error [form]="form" [errorFor]="'username'" [errorType]="'required'">This field is required</ui-form-field-error>
+    <ui-form-field-error [form]="form" [errorFor]="'username'" [errorType]="'minlength'">Usernames must be at least 6 characters</ui-form-field-error>
+    <ui-form-field-error [form]="form" [errorFor]="'username'" [errorType]="'pattern'">
+      Usernames can only include letters and numbers
+    </ui-form-field-error>
+    <div>
+      <i class="inline-block mx-2 text-3xl align-middle fa-regular fa-id-badge w-8"></i>
+      <input
+        type="text"
+        placeholder="Username"
+        formControlName="username"
+        class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+  </div>
+  <div class="my-4">
+    <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'required'">This field is required</ui-form-field-error>
+    <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'minlength'">Passwords must be at least 8 characters</ui-form-field-error>
+    <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'pattern'">
+      Passwords must include an uppercase letter, lowercase letter, and a number
+    </ui-form-field-error>
+    <div>
+      <i class="inline-block mx-2 text-3xl align-middle fa-solid fa-key w-8"></i>
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+  </div>
+  <div class="my-4">
+    <ui-form-field-error [form]="form" [errorFor]="'confirmPassword'" [errorType]="'required'">This field is required</ui-form-field-error>
+    <div>
+      <i class="inline-block mx-2 text-3xl align-middle fa-solid fa-repeat w-8"></i>
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        formControlName="confirmPassword"
+        class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+  </div>
+  <div class="my-4">
+    <ui-form-field-error [form]="form" [errorFor]="'displayName'" [errorType]="'required'">This field is required</ui-form-field-error>
+    <ui-form-field-error [form]="form" [errorFor]="'displayName'" [errorType]="'minlength'">
+      Display names must be at least 8 characters
+    </ui-form-field-error>
+    <ui-form-field-error [form]="form" [errorFor]="'displayName'" [errorType]="'maxlength'">
+      Display names cannot exceed 32 characters
+    </ui-form-field-error>
+    <ui-form-field-error [form]="form" [errorFor]="'displayName'" [errorType]="'pattern'">
+      Display names can only include letters, numbers, _, -, and '
+    </ui-form-field-error>
+    <div>
+      <i class="inline-block mx-2 text-3xl align-middle fa-solid fa-quote-right w-8"></i>
+      <input
+        type="text"
+        placeholder="Display Name"
+        formControlName="displayName"
+        class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+  </div>
+
+  <button
+    [disabled]="isLoading$ | async"
+    class="bg-ksNavy font-bold text-gray-100 rounded-md px-3 py-2 my-3 hover:bg-indigo-900 active:bg-indigo-950 disabled:bg-slate-500"
+    type="submit">
+    Create Account
+  </button>
+
+  <div>
+    <p class="text-xs">
+      By creating an account, you agree to the
+      <a class="underline hover:text-ksNavy" [routerLink]="['/terms']">Terms</a>
+      and
+      <a class="underline hover:text-ksNavy" [routerLink]="['/privacy-policy']">Privacy Policy</a>
+    </p>
+  </div>
+</form>

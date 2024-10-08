@@ -1,0 +1,24 @@
+<form [formGroup]="changeMaxShellsForm" #form="ngForm" (ngSubmit)="submit()" class="border border-ksNavy dark:border-ksPinot rounded-md p-3">
+  <h2 class="text-xl font-lilitaOne">Update Max Shells</h2>
+
+  <ui-form-error [formName]="FormName.UPDATE_SHELLS"></ui-form-error>
+
+  <div>
+    <div class="my-2">
+      <ui-form-field-error [form]="form" [errorFor]="'userID'" [errorType]="'required'">This field is required</ui-form-field-error>
+      <input type="text" placeholder="User ID (Optional)" formControlName="userID" class="px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+    <div class="my-2">
+      <label for="updateAll">Update all accounts:</label>
+      <input type="checkbox" formControlName="updateAll" class="mx-2 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+    <div class="my-2">
+      <ui-form-field-error [form]="form" [errorFor]="'maxShells'" [errorType]="'required'">This field is required</ui-form-field-error>
+      <input type="number" placeholder="User ID" formControlName="maxShells" class="px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+  </div>
+
+  <button class="bg-ksNavy font-bold text-gray-100 rounded-md px-3 py-2 mx-1 mb-2 hover:bg-indigo-900 active:bg-indigo-950" type="submit">
+    Update Max Shells
+  </button>
+</form>

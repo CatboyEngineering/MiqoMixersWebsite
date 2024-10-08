@@ -1,0 +1,8 @@
+<div *ngIf="hasError$ | async" class="bg-red-600 dark:bg-red-900 text-white font-semibold rounded-md w-fit mx-auto px-2 my-1">
+  <div class="flex p-1">
+    <i class="flex-initial fa-solid fa-triangle-exclamation inline-block pl-1 pr-2 text-lg self-center"></i>
+    <p class="flex-auto text-sm inline-block self-center">
+      <ng-content></ng-content>
+    </p>
+  </div>
+</div>

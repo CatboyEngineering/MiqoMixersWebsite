@@ -1,0 +1,24 @@
+<form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="submit()" class="my-5 py-4 border border-ksNavy dark:border-ksSandy rounded-md">
+  <ui-form-error [formName]="FormName.LOG_IN"></ui-form-error>
+
+  <div class="my-4">
+    <ui-form-field-error [form]="form" [errorFor]="'username'" [errorType]="'required'">
+      This field is required
+    </ui-form-field-error>
+    <div>
+      <i class="inline-block mx-2 text-3xl align-middle fa-regular fa-id-badge w-8"></i>
+      <input type="text" placeholder="Username" formControlName="username" class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+  </div>
+  <div class="my-4">
+    <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'required'">
+      This field is required
+    </ui-form-field-error>
+    <div>
+      <i class="inline-block mx-2 text-3xl align-middle fa-solid fa-key w-8"></i>
+      <input type="password" placeholder="Password" formControlName="password" class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
+    </div>
+  </div>
+
+  <button [disabled]="isLoading$ | async" class="bg-ksNavy font-bold text-gray-100 rounded-md px-3 py-2 mx-1 hover:bg-indigo-900 active:bg-indigo-950 disabled:bg-slate-500" type="submit">Log In</button>
+</form>
