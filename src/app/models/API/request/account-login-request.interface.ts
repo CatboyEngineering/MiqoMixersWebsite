@@ -1,6 +1,4 @@
-
 export interface AccountLoginRequest {
-    username: string;
-    password: string;
-    clientVersionString: string;
+  email: string;
+  password: string;
 }

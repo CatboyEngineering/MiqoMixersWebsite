@@ -1,5 +1,6 @@
 export interface AccountCreateRequest {
-  username: string;
+  email: string;
   password: string;
-  displayName: string;
+  characterName: string;
+  characterServer: string;
 }

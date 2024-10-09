@@ -1,24 +1,33 @@
-<form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="submit()" class="my-5 py-4 border border-ksNavy dark:border-ksSandy rounded-md">
+<form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="submit()" class="p-3">
   <ui-form-error [formName]="FormName.LOG_IN"></ui-form-error>
 
-  <div class="my-4">
-    <ui-form-field-error [form]="form" [errorFor]="'username'" [errorType]="'required'">
-      This field is required
-    </ui-form-field-error>
-    <div>
-      <i class="inline-block mx-2 text-3xl align-middle fa-regular fa-id-badge w-8"></i>
-      <input type="text" placeholder="Username" formControlName="username" class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
-    </div>
-  </div>
-  <div class="my-4">
-    <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'required'">
-      This field is required
-    </ui-form-field-error>
-    <div>
-      <i class="inline-block mx-2 text-3xl align-middle fa-solid fa-key w-8"></i>
-      <input type="password" placeholder="Password" formControlName="password" class="inline-block align-middle px-3 py-1 rounded-md shadow-md dark:bg-gray-600" />
-    </div>
+  <ui-form-field-error [form]="form" [errorFor]="'email'" [errorType]="'required'">Email is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'required'">Password is required</ui-form-field-error>
+
+  <div class="inline-block mx-2 my-2">
+    <i class="inline-block mx-1 text-2xl align-middle fa-regular fa-envelope w-8 text-mmRust"></i>
+    <input
+      type="text"
+      placeholder="wol@scions.org"
+      formControlName="email"
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
   </div>
 
-  <button [disabled]="isLoading$ | async" class="bg-ksNavy font-bold text-gray-100 rounded-md px-3 py-2 mx-1 hover:bg-indigo-900 active:bg-indigo-950 disabled:bg-slate-500" type="submit">Log In</button>
+  <div class="inline-block mx-2 my-2">
+    <i class="inline-block mx-1 text-2xl align-middle fa-solid fa-key w-8 text-mmRust"></i>
+    <input
+      type="password"
+      placeholder="Password"
+      formControlName="password"
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+  </div>
+
+  <br />
+
+  <button
+    [disabled]="isLoading$ | async"
+    class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 my-3 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
+    type="submit">
+    Log In
+  </button>
 </form>

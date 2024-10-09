@@ -7,8 +7,13 @@
   <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'pattern'">
     Passwords must include an uppercase letter, lowercase letter, and a number
   </ui-form-field-error>
-  <ui-form-field-error [form]="form" [errorFor]="'confirmPassword'" [errorType]="'required'">Confirm Password is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'characterName'" [errorType]="'required'">Character Name is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'characterName'" [errorType]="'pattern'">
+    Character Name contains invalid characters
+  </ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'characterName'" [errorType]="'maxlength'">
+    Character names must be shorter than 20 characters
+  </ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'characterServer'" [errorType]="'required'">Server is required</ui-form-field-error>
 
   <div class="inline-block mx-2 my-2">
@@ -17,7 +22,7 @@
       type="text"
       placeholder="wol@scions.org"
       formControlName="email"
-      class="border-b border-gray-800 inline-block align-middle px-2 py-1 bg-mmDarkSand shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <div class="inline-block mx-2 my-2">
@@ -26,7 +31,7 @@
       type="password"
       placeholder="Password"
       formControlName="password"
-      class="border-b border-gray-800 inline-block align-middle px-3 py-1 bg-mmDarkSand shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <br />
@@ -37,7 +42,7 @@
       type="password"
       placeholder="Confirm Password"
       formControlName="confirmPassword"
-      class="border-b border-gray-800 inline-block align-middle px-3 py-1 bg-mmDarkSand shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <div class="inline-block mx-2 my-2">
@@ -46,7 +51,7 @@
       type="text"
       placeholder="Character Name"
       formControlName="characterName"
-      class="border-b border-gray-800 inline-block align-middle px-2 py-1 bg-mmDarkSand shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <br />
@@ -56,7 +61,7 @@
 
     <select
       formControlName="characterServer"
-      class="border-b border-gray-800 inline-block align-middle px-2 py-1 bg-mmDarkSand shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
       <optgroup label="Aether">
         <option>Adamantoise</option>
         <option>Cactuar</option>
