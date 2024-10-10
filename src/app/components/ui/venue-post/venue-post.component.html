@@ -1,4 +1,4 @@
-<div *ngIf="venue" class="my-5">
+<div class="my-5">
   <div
     class="p-3 rounded-tl-md rounded-tr-md {{ !expanded ? 'rounded-md' : '' }} bg-gray-50 dark:bg-gray-600 hover:cursor-pointer flex"
     (click)="toggleExpand()">
@@ -75,6 +75,6 @@
       </div>
     </div>
 
-    <p class="text-xs italic">Posted on {{ venue.venue.dateCreated | date }}</p>
+    <p class="text-xs italic mt-3 md:mt-0">Posted on {{ venue.venue.dateCreated | date }}</p>
   </div>
 </div>

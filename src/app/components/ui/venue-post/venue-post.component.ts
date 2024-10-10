@@ -12,7 +12,7 @@ import { ChipComponent } from '../chip/chip.component';
   styleUrl: './venue-post.component.css'
 })
 export class VenuePostComponent {
-  @Input() venue?: Venue;
+  @Input() venue: Venue;
 
   expanded: boolean = false;
 
