@@ -2,14 +2,13 @@
   <div
     class="p-3 border border-white rounded-tl-md rounded-tr-md {{
       !expanded ? 'rounded-md' : 'border-b-0'
-    }} bg-gray-50 dark:bg-mmRust hover:cursor-pointer flex"
+    }} bg-gray-50 dark:bg-gray-600 hover:cursor-pointer flex"
     (click)="toggleExpand()">
     <!-- Venue info -->
     <div>
       <p class="text-lg font-bold">{{ venue.venue.venueName }}</p>
-      <p class="text-sm my-3">{{ venue.venue.about }}</p>
 
-      <div>
+      <div class="mt-4">
         <app-chip *ngFor="let tag of venue.venue.tags" [chip]="tag"></app-chip>
       </div>
     </div>
@@ -29,41 +28,55 @@
   </div>
 
   <!-- Collapsed details -->
-  <div class="p-3 border border-white border-t-0 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-mmDarkRust block md:flex" *ngIf="expanded">
-    <div *ngIf="venue.venue.website" class="flex-initial self-center">
-      <i class="fa-solid fa-up-right-from-square inline-block self-center"></i>
-      <a href="{{ venue.venue.website }}" target="_blank" class="self-center mx-2 text-xs md:text-sm underline hover:text-mmOrange">Visit website</a>
+  <div class="p-3 border border-white border-t-0 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-gray-700" *ngIf="expanded">
+    <div class="flex text-center w-fit mx-auto">
+      <i class="fa-solid fa-quote-left mx-1 md:mx-2"></i>
+      <p class="text-sm my-3 inline-block">{{ venue.venue.about }}</p>
+      <i class="fa-solid fa-quote-right mx-1 md:mx-2"></i>
     </div>
 
-    <div class="flex-auto"></div>
+    <hr class="border border-black opacity-30 my-4" />
 
-    <div class="flex-initial self-center text-center my-4 md:my-0 bg-mmRust text-mmSand dark:bg-mmDarkBlue px-3 py-2 rounded-md">
-      <i class="fa-solid fa-map-location-dot inline-block self-center text-xl"></i>
-      <p class="inline-block self-center mx-2 text-xs md:text-sm">
-        {{ venue.venue.datacenter }}, {{ venue.venue.world }}: {{ venue.venue.district }}, Ward {{ venue.venue.ward }}, Plot {{ venue.venue.plot }}
-      </p>
-    </div>
+    <div class="block md:flex">
+      <div *ngIf="venue.venue.website" class="flex-initial self-center">
+        <i class="fa-solid fa-up-right-from-square inline-block self-center"></i>
+        <a href="{{ venue.venue.website }}" target="_blank" class="self-center mx-2 text-xs md:text-sm underline hover:text-mmOrange">
+          Visit website
+        </a>
+      </div>
 
-    <div class="flex-auto"></div>
+      <div class="flex-auto"></div>
 
-    <div class="flex-initial flex self-center">
-      <i class="fa-regular fa-clock self-center text-xl"></i>
-      <div class="mx-2 text-xs md:text-sm">
-        <div class="self-center my-1" *ngFor="let time of venue.venue.hours">
-          <div *ngIf="time.day; else variable">
-            <p>
-              <strong>{{ time.day! }}:</strong>
-              {{ time.open! | time : false }} - {{ time.close! | time : true }}
-            </p>
+      <div class="flex-initial self-center text-center my-4 md:my-0 bg-mmRust text-mmSand dark:bg-mmDarkBlue px-3 py-2 rounded-md">
+        <i class="fa-solid fa-map-location-dot inline-block self-center text-xl"></i>
+        <p class="inline-block self-center mx-2 text-xs md:text-sm">
+          {{ venue.venue.datacenter }}, {{ venue.venue.world }}: {{ venue.venue.district }}, Ward {{ venue.venue.ward }}, Plot {{ venue.venue.plot }}
+        </p>
+      </div>
+
+      <div class="flex-auto"></div>
+
+      <div class="flex-initial flex self-center">
+        <i class="fa-regular fa-clock self-center text-xl"></i>
+        <div class="mx-2 text-xs md:text-sm">
+          <div class="self-center my-1" *ngFor="let time of venue.venue.hours">
+            <div *ngIf="time.day; else variable">
+              <p>
+                <strong>{{ time.day! }}:</strong>
+                {{ time.open! | time : false }} - {{ time.close! | time : true }}
+              </p>
+            </div>
+            <ng-template #variable>
+              <p>
+                <strong>{{ time.variableDay }}:</strong>
+                {{ time.variableTimes }}
+              </p>
+            </ng-template>
           </div>
-          <ng-template #variable>
-            <p>
-              <strong>{{ time.variableDay }}:</strong>
-              {{ time.variableTimes }}
-            </p>
-          </ng-template>
         </div>
       </div>
     </div>
+
+    <p class="text-xs italic">Posted on {{ venue.venue.dateCreated | date }}</p>
   </div>
 </div>

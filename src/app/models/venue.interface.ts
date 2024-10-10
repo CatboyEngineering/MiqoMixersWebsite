@@ -18,7 +18,7 @@ export interface Venue {
     }[];
     website: string;
     tags: string[];
-    dateCreated: Date;
+    dateCreated: string;
   };
   user: {
     characterName: string;
