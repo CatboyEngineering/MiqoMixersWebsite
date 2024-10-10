@@ -10,10 +10,13 @@ export const authStateReducer = createReducer(
     (state, action): AuthState => ({
       ...state,
       authToken: action.response.authToken,
+      characterAvatarUrl: action.response.characterAvatarUrl,
       accountID: action.response.accountID,
+      characterID: action.response.characterID,
       characterName: action.response.characterName,
       characterServer: action.response.characterServer,
-      userAvatarUrl: action.response.userAvatarURL
+      characterVerified: action.response.characterVerified,
+      characterVerificationCode: action.response.characterVerificationCode
     })
   ),
   on(
@@ -21,10 +24,24 @@ export const authStateReducer = createReducer(
     (state, action): AuthState => ({
       ...state,
       authToken: action.response.authToken,
+      characterAvatarUrl: action.response.characterAvatarUrl,
       accountID: action.response.accountID,
+      characterID: action.response.characterID,
       characterName: action.response.characterName,
       characterServer: action.response.characterServer,
-      userAvatarUrl: action.response.userAvatarURL
+      characterVerified: action.response.characterVerified,
+      characterVerificationCode: action.response.characterVerificationCode
+    })
+  ),
+  on(
+    AuthStateActions.verifySuccess,
+    (state, action): AuthState => ({
+      ...state,
+      characterAvatarUrl: action.response.characterAvatarUrl,
+      characterID: action.response.characterID,
+      characterName: action.response.characterName,
+      characterServer: action.response.characterServer,
+      characterVerified: true
     })
   ),
   on(

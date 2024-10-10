@@ -5,17 +5,29 @@ import { AccountCreateRequest } from '../../models/API/request/account-create-re
 import { AccountLoginRequest } from '../../models/API/request/account-login-request.interface';
 import { NameChangeRequest } from '../../models/API/request/name-change-request.interface';
 import { AuthStateActions } from './auth-state.actions';
-import { selectAuthToken, selectAvatarURL, selectCharacterName, selectCharacterServer, selectUserID } from './auth-state.selectors';
+import {
+  selectAccountID,
+  selectAuthToken,
+  selectAvatarURL,
+  selectCharacterID,
+  selectCharacterName,
+  selectCharacterServer,
+  selectCharacterVerificationCode,
+  selectCharacterVerified
+} from './auth-state.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthStateService {
   authToken$: Observable<string> = this.store.select(selectAuthToken);
-  userID$: Observable<string> = this.store.select(selectUserID);
+  accountID$: Observable<string> = this.store.select(selectAccountID);
+  characterID$: Observable<string> = this.store.select(selectCharacterID);
   characterName$: Observable<string> = this.store.select(selectCharacterName);
   characterServer$: Observable<string> = this.store.select(selectCharacterServer);
   avatarURL$: Observable<string> = this.store.select(selectAvatarURL);
+  isCharacterVerified$: Observable<boolean> = this.store.select(selectCharacterVerified);
+  characterVerificationCode$: Observable<string | undefined> = this.store.select(selectCharacterVerificationCode);
 
   constructor(private store: Store) {}
 
@@ -25,6 +37,10 @@ export class AuthStateService {
 
   onLoginRequest(request: AccountLoginRequest): void {
     this.store.dispatch(AuthStateActions.loginAttempt({ request }));
+  }
+
+  onVerifyCharacterRequest(): void {
+    this.store.dispatch(AuthStateActions.verifyAttempt());
   }
 
   onNameChangeRequest(request: NameChangeRequest): void {

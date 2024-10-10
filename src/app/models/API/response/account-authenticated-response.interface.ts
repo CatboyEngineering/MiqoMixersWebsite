@@ -1,7 +1,10 @@
 export interface AccountAuthenticatedResponse {
   authToken: string;
   accountID: string;
+  characterAvatarUrl: string;
+  characterID: string;
   characterName: string;
   characterServer: string;
-  userAvatarURL: string;
+  characterVerified: boolean;
+  characterVerificationCode?: string;
 }

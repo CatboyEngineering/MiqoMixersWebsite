@@ -1,3 +1,4 @@
 export interface NameChangeRequest {
-    displayName: string;
+  characterName: string;
+  characterServer: string;
 }

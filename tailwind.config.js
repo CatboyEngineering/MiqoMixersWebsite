@@ -9,6 +9,7 @@ module.exports = {
         mmDarkerBlue: '#194c56',
         mmSand: '#F2E5BF',
         mmDarkSand: '#d6caa9',
+        mmDarkerSand: '#c1b699',
         mmOrange: '#FD8B51',
         mmRust: '#CB6040',
         mmDarkRust: '#a04e35'

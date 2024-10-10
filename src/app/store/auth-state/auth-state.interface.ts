@@ -1,7 +1,10 @@
 export interface AuthState {
   authToken: string;
   accountID: string;
-  userAvatarUrl: string;
+  characterAvatarUrl: string;
+  characterID: string;
   characterName: string;
   characterServer: string;
+  characterVerified: boolean;
+  characterVerificationCode?: string;
 }

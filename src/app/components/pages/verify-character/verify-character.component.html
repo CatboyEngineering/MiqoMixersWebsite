@@ -1,0 +1,70 @@
+<div class="text-center">
+  <img src="../../../../assets/svg/undraw_authentication_re_svpt.svg" class="max-w-60 mx-auto my-2" />
+  <h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase">Verify your Character</h1>
+  <p class="text-sm my-1">We need to run a one-time check.</p>
+
+  <div class="p-3 mt-5 rounded-md border border-mmDarkRust dark:border-mmDarkBlue">
+    <div class="inline-block m-1">
+      <i class="inline-block mx-1 text-2xl align-middle fa-solid fa-user-large w-8 text-mmRust"></i>
+      <p class="inline-block align-middle font-bold text-mmDarkBlue dark:text-gray-200">{{ characterName$ | async }}</p>
+    </div>
+    <div class="inline-block m-1">
+      <i class="inline-block mx-1 text-2xl align-middle fa-solid fa-globe w-8 text-mmRust"></i>
+      <p class="inline-block align-middle font-bold text-mmDarkBlue dark:text-gray-200">{{ characterServer$ | async }}</p>
+    </div>
+  </div>
+
+  <p class="my-5">
+    In order to publish venues on MiqoMixers, we need to verify your Final Fantasy: XIV character. Simply follow the steps below, and once you're
+    ready, click "Verify me".
+  </p>
+
+  <div class="mx-auto my-5 max-w-fit">
+    <div class="flex my-2">
+      <p class="flex-initial w-3 self-center font-FFXIV text-3xl text-mmRust">I</p>
+      <p class="flex-auto self-center max-w-72 text-sm px-2">
+        Visit your
+        <a
+          class="font-bold text-mmRust hover:underline hover:text-mmDarkRust active:text-mmDarkerBlue"
+          href="https://na.finalfantasyxiv.com/lodestone/character/{{ characterID$ | async }}"
+          target="_blank">
+          Lodestone Profile
+        </a>
+        and log in using your Square Enix account
+      </p>
+    </div>
+    <div class="flex my-2">
+      <p class="flex-initial w-3 self-center font-FFXIV text-3xl text-mmRust">II</p>
+      <p class="flex-auto self-center max-w-72 text-sm px-2">
+        Add the following code to your
+        <a
+          class="font-bold text-mmRust hover:underline hover:text-mmDarkRust active:text-mmDarkerBlue"
+          href="https://na.finalfantasyxiv.com/lodestone/my/setting/profile/"
+          target="_blank">
+          Bio:
+        </a>
+        <span class="text-mmDarkBlue font-bold">{{ verificationCode$ | async }}</span>
+      </p>
+    </div>
+    <div class="flex my-2">
+      <p class="flex-initial w-3 self-center font-FFXIV text-3xl text-mmRust">III</p>
+      <p class="flex-auto self-center max-w-72 text-sm px-2">Come back here and click the button below</p>
+    </div>
+  </div>
+
+  <button
+    [disabled]="isLoading$ | async"
+    class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 my-3 mx-2 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
+    type="submit"
+    (click)="onSubmit()">
+    Verify Me
+  </button>
+
+  <button
+    [disabled]="isLoading$ | async"
+    class="bg-mmDarkSand font-bold text-mmDarkBlue rounded-md px-3 py-2 my-3 mx-2 hover:bg-mmDarkerSand active:bg-mmDarkRust disabled:bg-slate-500"
+    type="button"
+    [routerLink]="['/']">
+    Skip
+  </button>
+</div>

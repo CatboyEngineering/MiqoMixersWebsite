@@ -6,6 +6,11 @@ import { NotFoundComponent } from './components/pages/not-found/not-found.compon
 import { PrivacyComponent } from './components/pages/privacy/privacy.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { TermsComponent } from './components/pages/terms/terms.component';
+import { VerifyCharacterSuccessComponent } from './components/pages/verify-character-success/verify-character-success.component';
+import { VerifyCharacterComponent } from './components/pages/verify-character/verify-character.component';
+import { canActivateAuthenticated } from './guards/auth-guard/can-activate-authenticated';
+import { canActivateCharacterUnverified } from './guards/unverified-guard/can-activate-character-unverified';
+import { canActivateCharacterVerified } from './guards/verified-guard/can-activate-character-verified';
 
 export const routes: Routes = [
   {
@@ -20,6 +25,16 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'verify-character',
+    component: VerifyCharacterComponent,
+    canActivate: [canActivateAuthenticated(), canActivateCharacterUnverified()]
+  },
+  {
+    path: 'verify-character-success',
+    component: VerifyCharacterSuccessComponent,
+    canActivate: [canActivateAuthenticated(), canActivateCharacterVerified()]
   },
   {
     path: 'privacy-policy',

@@ -19,13 +19,6 @@
       <div class="basis-full md:basis-auto flex-initial self-center">
         <ul class="text-center md:text-inherit border-t md:border-none py-2 md:py-0">
           <ng-container *ngIf="isLoggedIn$ | async; else guestUser">
-            <li
-              class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
-              [routerLink]="['/user']"
-              (click)="expanded = false">
-              <i class="fa-solid fa-user mx-1.5"></i>
-              <p class="inline-block">Account</p>
-            </li>
             <li class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue" (click)="logOut()" (click)="expanded = false">
               <i class="fa-solid fa-arrow-right-from-bracket mx-1.5"></i>
               <p class="inline-block">Log Out</p>
