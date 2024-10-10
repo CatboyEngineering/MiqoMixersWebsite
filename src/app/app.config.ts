@@ -1,17 +1,18 @@
-import { ApplicationConfig, isDevMode } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
 import { MetaReducer, provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { RECAPTCHA_V3_SITE_KEY, ReCaptchaV3Service, RecaptchaLoaderService } from 'ng-recaptcha';
+import { environment } from '../environments/environment.dev';
+import { routes } from './app.routes';
+import { AppDetailsStateEffects } from './store/app-details-state/app-details-state.effects';
+import { AuthStateEffects } from './store/auth-state/auth-state.effects';
 import { localstorageMetaReducer } from './store/localstorage-meta.reducer';
 import { rootReducer } from './store/store';
-import { provideEffects } from '@ngrx/effects';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { AuthStateEffects } from './store/auth-state/auth-state.effects';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { AppDetailsStateEffects } from './store/app-details-state/app-details-state.effects';
-import { RECAPTCHA_V3_SITE_KEY, ReCaptchaV3Service, RecaptchaLoaderService, RecaptchaSettings } from 'ng-recaptcha';
-import { environment } from '../environments/environment.dev';
+import { VenueStateEffects } from './store/venue-state/venue-state.effects';
 
 export const metaReducers: MetaReducer[] = [localstorageMetaReducer];
 
@@ -19,7 +20,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideStore(rootReducer, { metaReducers: metaReducers }),
-    provideEffects([AuthStateEffects, AppDetailsStateEffects]),
+    provideEffects([AuthStateEffects, AppDetailsStateEffects, VenueStateEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !environment.production }),
     provideHttpClient(withFetch()),
     {

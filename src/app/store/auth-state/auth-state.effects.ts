@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -7,7 +6,7 @@ import { AccountAuthenticatedResponse } from '../../models/API/response/account-
 import { CharacterVerifiedResponse } from '../../models/API/response/character-verified-response.interface';
 import { NameChangeResponse } from '../../models/API/response/name-change-response.interface';
 import { FormName } from '../../models/enum/form-name.enum';
-import { FormValidationError } from '../../models/form-validation-error.interface';
+import { FormErrorService } from '../../services/form-error-service/form-error.service';
 import { HTTPService } from '../../services/http-service/http.service';
 import { AppDetailsStateActions } from '../app-details-state/app-details-state.actions';
 import { AuthStateActions } from './auth-state.actions';
@@ -15,7 +14,13 @@ import { AuthStateService } from './auth-state.service';
 
 @Injectable()
 export class AuthStateEffects {
-  constructor(private actions$: Actions, private httpService: HTTPService, private authStateService: AuthStateService, private router: Router) {}
+  constructor(
+    private actions$: Actions,
+    private httpService: HTTPService,
+    private authStateService: AuthStateService,
+    private router: Router,
+    private formErrorService: FormErrorService
+  ) {}
 
   registerAttempt$ = createEffect(() =>
     this.actions$.pipe(
@@ -67,7 +72,7 @@ export class AuthStateEffects {
         withLatestFrom(this.authStateService.isCharacterVerified$),
         tap(([_, isVerified]) => {
           if (isVerified) {
-            this.router.navigate(['/user']);
+            this.router.navigate(['/']);
           } else {
             this.router.navigate(['/verify-character']);
           }
@@ -182,34 +187,7 @@ export class AuthStateEffects {
   authFailure$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthStateActions.authFailure),
-      map(payload => AppDetailsStateActions.formError({ error: this.mapAuthFailure(payload.form, payload.error) }))
+      map(payload => AppDetailsStateActions.formError({ error: this.formErrorService.mapFormAPIError(payload.form, payload.error) }))
     )
   );
-
-  private mapAuthFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
-    switch (error.status) {
-      case 400:
-        return {
-          form,
-          error: 'There was an error processing your request. Please check your data and try again.'
-        };
-      case 401: {
-        return {
-          form,
-          error: 'Your email or password was incorrect.'
-        };
-      }
-      case 409: {
-        return {
-          form,
-          error: 'An account with that email address already exists.'
-        };
-      }
-      default:
-        return {
-          form,
-          error: 'There was an error with your request. Please try again.'
-        };
-    }
-  }
 }

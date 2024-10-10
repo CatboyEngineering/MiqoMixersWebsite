@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { HTTPService } from '../../services/http-service/http.service';
-import { AuthStateService } from '../auth-state/auth-state.service';
 import { Router } from '@angular/router';
-import { catchError, map, mergeMap, of, tap, withLatestFrom } from 'rxjs';
-import { AppDetailsStateActions } from './app-details-state.actions';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { mergeMap, tap, withLatestFrom } from 'rxjs';
+import { HTTPService } from '../../services/http-service/http.service';
 import { AuthStateActions } from '../auth-state/auth-state.actions';
+import { VenueStateActions } from '../venue-state/venue-state.actions';
+import { AppDetailsStateActions } from './app-details-state.actions';
 import { AppDetailsStateService } from './app-details-state.service';
-import { Account } from '../../models/account.interface';
 
 @Injectable()
 export class AppDetailsStateEffects {
@@ -55,7 +54,7 @@ export class AppDetailsStateEffects {
   stateCleared$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AppDetailsStateActions.clearFullState),
-      mergeMap(() => [AuthStateActions.authDataCleared()])
+      mergeMap(() => [AuthStateActions.authDataCleared(), VenueStateActions.clearVenues()])
     )
   );
 }

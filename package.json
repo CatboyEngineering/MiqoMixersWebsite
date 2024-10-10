@@ -21,6 +21,7 @@
     "@ngrx/effects": "^17.1.1",
     "@ngrx/store": "^17.1.1",
     "@ngrx/store-devtools": "^17.1.1",
+    "moment-timezone": "^0.5.46",
     "ng-recaptcha": "^13.2.1",
     "ngx-clipboard": "^16.0.0",
     "rxjs": "~7.8.0",
