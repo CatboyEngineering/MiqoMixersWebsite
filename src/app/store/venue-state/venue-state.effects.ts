@@ -45,6 +45,29 @@ export class VenueStateEffects {
     { dispatch: false }
   );
 
+  venueDeleteRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(VenueStateActions.requestDeleteVenue),
+      mergeMap(action =>
+        this.httpService.DELETE<any>('venue/' + action.venue.venue.venueID, 'DELETE_VENUE').pipe(
+          map(response => {
+            return VenueStateActions.receiveDeleteVenue({ venue: action.venue });
+          }),
+          catchError(error => {
+            return of(VenueStateActions.retrievalError({ form: FormName.DELETE_VENUE, error: error }));
+          })
+        )
+      )
+    )
+  );
+
+  venueDeleteReceived$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(VenueStateActions.receiveDeleteVenue),
+      map(() => VenueStateActions.requestVenues())
+    )
+  );
+
   stateCleared$ = createEffect(
     () =>
       this.actions$.pipe(

@@ -1,0 +1,8 @@
+<div class="text-center">
+  <h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase">My Venues</h1>
+  <p class="text-sm my-1">These are the venues you've posted on MiqoMixers.</p>
+</div>
+
+<div *ngFor="let venue of myVenues$ | async">
+  <app-venue-post [venue]="venue" [isEditing]="true"></app-venue-post>
+</div>

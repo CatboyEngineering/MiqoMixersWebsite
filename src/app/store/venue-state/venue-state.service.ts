@@ -19,6 +19,10 @@ export class VenueStateService {
     this.store.dispatch(VenueStateActions.requestVenues());
   }
 
+  onDeleteVenue(venue: Venue): void {
+    this.store.dispatch(VenueStateActions.requestDeleteVenue({ venue }));
+  }
+
   onClearVenues() {
     this.store.dispatch(VenueStateActions.clearVenues());
   }

@@ -19,6 +19,22 @@
       <div class="basis-full md:basis-auto flex-initial self-center">
         <ul class="text-center md:text-inherit border-t md:border-none py-2 md:py-0">
           <ng-container *ngIf="isLoggedIn$ | async; else guestUser">
+            <li
+              class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              [routerLink]="['/add-venue']"
+              (click)="expanded = false">
+              <i class="fa-solid fa-circle-plus mx-1.5"></i>
+              <p class="inline-block">Add Venue</p>
+            </li>
+
+            <li
+              class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              [routerLink]="['/my-venues']"
+              (click)="expanded = false">
+              <i class="fa-solid fa-list-ul mx-1.5"></i>
+              <p class="inline-block">My Venues</p>
+            </li>
+
             <li class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue" (click)="logOut()" (click)="expanded = false">
               <i class="fa-solid fa-arrow-right-from-bracket mx-1.5"></i>
               <p class="inline-block">Log Out</p>

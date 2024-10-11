@@ -1,7 +1,10 @@
 import { Routes } from '@angular/router';
+import { AddVenueComponent } from './components/pages/add-venue/add-venue.component';
+import { EditVenueComponent } from './components/pages/edit-venue/edit-venue.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { MyVenuesComponent } from './components/pages/my-venues/my-venues.component';
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { PrivacyComponent } from './components/pages/privacy/privacy.component';
 import { RegisterComponent } from './components/pages/register/register.component';
@@ -35,6 +38,21 @@ export const routes: Routes = [
     path: 'verify-character-success',
     component: VerifyCharacterSuccessComponent,
     canActivate: [canActivateAuthenticated(), canActivateCharacterVerified()]
+  },
+  {
+    path: 'add-venue',
+    component: AddVenueComponent,
+    canActivate: [canActivateAuthenticated()]
+  },
+  {
+    path: 'edit-venue',
+    component: EditVenueComponent,
+    canActivate: [canActivateAuthenticated()]
+  },
+  {
+    path: 'my-venues',
+    component: MyVenuesComponent,
+    canActivate: [canActivateAuthenticated()]
   },
   {
     path: 'privacy-policy',
