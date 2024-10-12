@@ -7,4 +7,5 @@ export interface AccountAuthenticatedResponse {
   characterServer: string;
   characterVerified: boolean;
   characterVerificationCode?: string;
+  isAdmin?: boolean;
 }

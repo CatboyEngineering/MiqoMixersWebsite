@@ -13,7 +13,8 @@ import {
   selectCharacterName,
   selectCharacterServer,
   selectCharacterVerificationCode,
-  selectCharacterVerified
+  selectCharacterVerified,
+  selectIsAdmin
 } from './auth-state.selectors';
 
 @Injectable({
@@ -28,6 +29,7 @@ export class AuthStateService {
   avatarURL$: Observable<string> = this.store.select(selectAvatarURL);
   isCharacterVerified$: Observable<boolean> = this.store.select(selectCharacterVerified);
   characterVerificationCode$: Observable<string | undefined> = this.store.select(selectCharacterVerificationCode);
+  isAdmin$: Observable<boolean | undefined> = this.store.select(selectIsAdmin);
 
   constructor(private store: Store) {}
 

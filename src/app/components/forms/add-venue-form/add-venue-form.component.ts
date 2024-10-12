@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Venue } from '../../../models/venue.interface';
 
 @Component({
   selector: 'app-add-venue-form',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './add-venue-form.component.css'
 })
 export class AddVenueFormComponent {
-
+  @Input() venue: Venue;
 }

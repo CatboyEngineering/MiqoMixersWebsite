@@ -7,4 +7,5 @@ export interface AuthState {
   characterServer: string;
   characterVerified: boolean;
   characterVerificationCode?: string;
+  isAdmin?: boolean;
 }

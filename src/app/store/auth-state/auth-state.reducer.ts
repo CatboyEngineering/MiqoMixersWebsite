@@ -30,7 +30,8 @@ export const authStateReducer = createReducer(
       characterName: action.response.characterName,
       characterServer: action.response.characterServer,
       characterVerified: action.response.characterVerified,
-      characterVerificationCode: action.response.characterVerificationCode
+      characterVerificationCode: action.response.characterVerificationCode,
+      isAdmin: action.response.isAdmin
     })
   ),
   on(

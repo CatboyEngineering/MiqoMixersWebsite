@@ -12,6 +12,7 @@ import { TermsComponent } from './components/pages/terms/terms.component';
 import { VerifyCharacterSuccessComponent } from './components/pages/verify-character-success/verify-character-success.component';
 import { VerifyCharacterComponent } from './components/pages/verify-character/verify-character.component';
 import { canActivateAuthenticated } from './guards/auth-guard/can-activate-authenticated';
+import { canActivateEditVenue } from './guards/can-activate-edit-venue-guard/can-activate-edit-venue';
 import { canActivateCharacterUnverified } from './guards/unverified-guard/can-activate-character-unverified';
 import { canActivateCharacterVerified } from './guards/verified-guard/can-activate-character-verified';
 
@@ -47,7 +48,7 @@ export const routes: Routes = [
   {
     path: 'edit-venue',
     component: EditVenueComponent,
-    canActivate: [canActivateAuthenticated()]
+    canActivate: [canActivateAuthenticated(), canActivateEditVenue]
   },
   {
     path: 'my-venues',

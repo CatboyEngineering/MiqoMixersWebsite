@@ -64,6 +64,11 @@ export class FormErrorService {
           form,
           error: 'There was an error processing your request. Please check your data and try again.'
         };
+      case 401:
+        return {
+          form,
+          error: 'Your email address or password is incorrect.'
+        };
       case 404:
         return {
           form,

@@ -10,3 +10,4 @@ export const selectCharacterServer = createSelector(selectAuthState, (state: Aut
 export const selectAvatarURL = createSelector(selectAuthState, (state: AuthState) => state.characterAvatarUrl);
 export const selectCharacterVerified = createSelector(selectAuthState, (state: AuthState) => state.characterVerified);
 export const selectCharacterVerificationCode = createSelector(selectAuthState, (state: AuthState) => state.characterVerificationCode);
+export const selectIsAdmin = createSelector(selectAuthState, (state: AuthState) => state.isAdmin);

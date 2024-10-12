@@ -1,1 +1,4 @@
 <p>edit-venue works!</p>
+<div *ngIf="venue$ | async as venue">
+  <app-add-venue-form [venue]="venue"></app-add-venue-form>
+</div>
