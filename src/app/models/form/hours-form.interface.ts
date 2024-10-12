@@ -1,10 +1,11 @@
 import { FormControl } from '@angular/forms';
 
 export interface HoursForm {
-  day?: FormControl<string>;
-  open?: FormControl<string>;
-  close?: FormControl<string>;
-  timezoneID?: FormControl<string>;
-  variableDay?: FormControl<string>;
-  variableTimes?: FormControl<string>;
+  isConstant: FormControl<boolean>;
+  day?: FormControl<string | null>;
+  open?: FormControl<string | null>;
+  close?: FormControl<string | null>;
+  timezoneID?: FormControl<string | null>;
+  variableDay?: FormControl<string | null>;
+  variableTimes?: FormControl<string | null>;
 }

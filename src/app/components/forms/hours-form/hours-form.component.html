@@ -1,14 +1,72 @@
 <form [formGroup]="hoursForm" #form="ngForm" (ngSubmit)="submit()">
-  <!-- TODO: toggle types of hours, add remaining fields -->
-  <input
-    type="string"
-    placeholder="Days"
-    formControlName="variableDay"
-    class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
-  <input
-    type="string"
-    placeholder="Times"
-    formControlName="variableTimes"
-    class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+  <div class="inline-block">
+    <input
+      type="radio"
+      id="radioconstant"
+      formControlName="isConstant"
+      [value]="true"
+      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none" />
+    <label for="radioconstant" class="inline-block">Constant</label>
+  </div>
+  <div class="inline-block">
+    <input
+      type="radio"
+      id="radiovariable"
+      formControlName="isConstant"
+      [value]="false"
+      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none" />
+    <label for="radiovariable" class="inline-block">Variable</label>
+  </div>
+  <ng-container *ngIf="hoursForm.controls.isConstant.value; else isVariable">
+    <div>
+      <div class="flex">
+        <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust"></i>
+        <select
+          formControlName="day"
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          <option>Sunday</option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+        </select>
+      </div>
+
+      <ui-form-field-error [form]="form" [errorFor]="'open'" [errorType]="'pattern'">Plot is required</ui-form-field-error>
+      <div class="flex">
+        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
+        <input
+          type="string"
+          placeholder="Open"
+          formControlName="open"
+          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      </div>
+
+      <div class="flex">
+        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
+        <input
+          type="string"
+          placeholder="Close"
+          formControlName="close"
+          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #isVariable>
+    <div>
+      <input
+        type="string"
+        placeholder="Days"
+        formControlName="variableDay"
+        class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      <input
+        type="string"
+        placeholder="Times"
+        formControlName="variableTimes"
+        class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+    </div>
+  </ng-template>
   <button>Save</button>
 </form>
