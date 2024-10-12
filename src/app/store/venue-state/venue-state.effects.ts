@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { FormName } from '../../models/enum/form-name.enum';
@@ -15,7 +16,8 @@ export class VenueStateEffects {
     private actions$: Actions,
     private venueStateService: VenueStateService,
     private httpService: HTTPService,
-    private formErrorService: FormErrorService
+    private formErrorService: FormErrorService,
+    private router: Router
   ) {}
 
   venuesRequest$ = createEffect(() =>
@@ -64,6 +66,54 @@ export class VenueStateEffects {
   venueDeleteReceived$ = createEffect(() =>
     this.actions$.pipe(
       ofType(VenueStateActions.receiveDeleteVenue),
+      map(() => VenueStateActions.requestVenues())
+    )
+  );
+
+  venueAddRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(VenueStateActions.requestAddVenue),
+      mergeMap(action =>
+        this.httpService.PUT<any>('venue', action.request, 'ADD_VENUE').pipe(
+          map(response => {
+            return VenueStateActions.receiveAddVenue();
+          }),
+          catchError(error => {
+            return of(VenueStateActions.retrievalError({ form: FormName.UPSERT_VENUE, error: error }));
+          })
+        )
+      )
+    )
+  );
+
+  venueAddReceived$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(VenueStateActions.receiveAddVenue),
+      tap(() => this.router.navigate(['/my-venues'])),
+      map(() => VenueStateActions.requestVenues())
+    )
+  );
+
+  venueUpdateRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(VenueStateActions.requestUpdateVenue),
+      mergeMap(action =>
+        this.httpService.PUT<any>('venue/' + action.venueID, action.request, 'UPDATE_VENUE').pipe(
+          map(response => {
+            return VenueStateActions.receiveUpdateVenue();
+          }),
+          catchError(error => {
+            return of(VenueStateActions.retrievalError({ form: FormName.UPSERT_VENUE, error: error }));
+          })
+        )
+      )
+    )
+  );
+
+  venueUpdateReceived$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(VenueStateActions.receiveUpdateVenue),
+      tap(() => this.router.navigate(['/my-venues'])),
       map(() => VenueStateActions.requestVenues())
     )
   );

@@ -5,12 +5,12 @@ import { filter, map, Observable, withLatestFrom } from 'rxjs';
 import { Venue } from '../../../models/venue.interface';
 import { AuthStateService } from '../../../store/auth-state/auth-state.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
-import { AddVenueFormComponent } from '../../forms/add-venue-form/add-venue-form.component';
+import { VenueInfoFormComponent } from '../../forms/venue-info-form/venue-info-form.component';
 
 @Component({
   selector: 'app-edit-venue',
   standalone: true,
-  imports: [AddVenueFormComponent, CommonModule],
+  imports: [VenueInfoFormComponent, CommonModule],
   templateUrl: './edit-venue.component.html',
   styleUrl: './edit-venue.component.css'
 })

@@ -1,4 +1,7 @@
-<p>edit-venue works!</p>
+<div class="text-center">
+  <h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase">Edit Venue</h1>
+  <p class="text-sm my-1">You are editing your venue listing.</p>
+</div>
 <div *ngIf="venue$ | async as venue">
-  <app-add-venue-form [venue]="venue"></app-add-venue-form>
+  <app-venue-info-form [venue]="venue"></app-venue-info-form>
 </div>

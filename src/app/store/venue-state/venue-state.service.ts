@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
+import { VenueChangeRequest } from '../../models/API/request/venue-change-request.interface';
 import { Venue } from '../../models/venue.interface';
 import { VenueStateActions } from './venue-state.actions';
 
@@ -17,6 +18,14 @@ export class VenueStateService {
 
   onGetVenues(): void {
     this.store.dispatch(VenueStateActions.requestVenues());
+  }
+
+  onAddVenue(request: VenueChangeRequest): void {
+    this.store.dispatch(VenueStateActions.requestAddVenue({ request }));
+  }
+
+  onUpdateVenue(request: VenueChangeRequest, venueID: string): void {
+    this.store.dispatch(VenueStateActions.requestUpdateVenue({ request, venueID }));
   }
 
   onDeleteVenue(venue: Venue): void {

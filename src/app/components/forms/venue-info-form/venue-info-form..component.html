@@ -1,0 +1,197 @@
+<form [formGroup]="venueInfoForm" #form="ngForm" (ngSubmit)="submit()">
+  <ui-form-error [formName]="FormName.UPSERT_VENUE"></ui-form-error>
+
+  <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Details</h2>
+  <ui-form-field-error [form]="form" [errorFor]="'venueName'" [errorType]="'required'">Venue Name is required</ui-form-field-error>
+  <div class="mx-2 my-2 flex">
+    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-magnifying-glass w-8 text-mmRust"></i>
+    <input
+      type="text"
+      placeholder="Venue Name"
+      formControlName="venueName"
+      class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+    <div class="flex-1"></div>
+  </div>
+
+  <ui-form-field-error [form]="form" [errorFor]="'about'" [errorType]="'required'">About is required</ui-form-field-error>
+  <div class="mx-2 my-2 flex">
+    <i class="flex-initial mx-1 text-2xl self-center fa-solid fa-circle-info w-8 text-mmRust"></i>
+    <textarea
+      placeholder="Describe your venue"
+      maxlength="300"
+      formControlName="about"
+      rows="3"
+      class="flex-auto border-b border-gray-800 dark:border-gray-500 self-center px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust"></textarea>
+  </div>
+
+  <div class="mx-2 my-2 flex">
+    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-link w-8 text-mmRust"></i>
+    <input
+      type="text"
+      placeholder="https://my-venue.info"
+      formControlName="website"
+      class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+    <div class="flex-1"></div>
+  </div>
+
+  <div>
+    <div class="mx-2 my-2 flex">
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust"></i>
+      <input
+        type="text"
+        placeholder="Music, Raffles, Contests"
+        formControlName="tags"
+        class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      <div class="flex-1"></div>
+    </div>
+    <div class="ml-2">
+      <ng-container *ngFor="let tag of splitTags()">
+        <app-chip [chip]="tag"></app-chip>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Location Info -->
+  <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Location</h2>
+  <ui-form-field-error [form]="form" [errorFor]="'datacenter'" [errorType]="'required'">Datacenter is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'world'" [errorType]="'required'">World is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'district'" [errorType]="'required'">District is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'ward'" [errorType]="'required'">Ward is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'plot'" [errorType]="'required'">Plot is required</ui-form-field-error>
+  <div class="border border-mmDarkRust p-3 rounded-md">
+    <div class="flex">
+      <div class="mx-2 my-2 flex">
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-server w-8 text-mmRust"></i>
+
+        <select
+          formControlName="datacenter"
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          <option>Aether</option>
+          <option>Crystal</option>
+          <option>Dynamis</option>
+          <option>Primal</option>
+        </select>
+      </div>
+
+      <div class="mx-2 my-2 flex">
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-globe w-8 text-mmRust"></i>
+
+        <select
+          formControlName="world"
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          <optgroup label="Aether">
+            <option>Adamantoise</option>
+            <option>Cactuar</option>
+            <option>Faerie</option>
+            <option>Gilgamesh</option>
+            <option>Jenova</option>
+            <option>Midgardsormr</option>
+            <option>Sargatanas</option>
+            <option>Siren</option>
+          </optgroup>
+          <optgroup label="Crystal">
+            <option>Balmung</option>
+            <option>Brynhildr</option>
+            <option>Coeurl</option>
+            <option>Diabolos</option>
+            <option>Goblin</option>
+            <option>Malboro</option>
+            <option>Mateus</option>
+            <option>Zalera</option>
+          </optgroup>
+          <optgroup label="Dynamis">
+            <option>Cuchulainn</option>
+            <option>Golem</option>
+            <option>Halicarnassus</option>
+            <option>Kraken</option>
+            <option>Maduin</option>
+            <option>Marilith</option>
+            <option>Rafflesia</option>
+            <option>Seraph</option>
+          </optgroup>
+          <optgroup label="Primal">
+            <option>Behemoth</option>
+            <option>Excalibur</option>
+            <option>Exodus</option>
+            <option>Famfrit</option>
+            <option>Hyperion</option>
+            <option>Lamia</option>
+            <option>Leviathan</option>
+            <option>Ultros</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <div class="mx-2 my-2 flex">
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-city w-8 text-mmRust"></i>
+      <select
+        formControlName="district"
+        class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+        <option>Empyreum</option>
+        <option>The Goblet</option>
+        <option>Mist</option>
+        <option>The Lavender Beds</option>
+        <option>Shirogane</option>
+      </select>
+      <div class="flex-1"></div>
+    </div>
+
+    <div class="flex">
+      <div class="mx-2 my-2 flex">
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-map w-8 text-mmRust"></i>
+
+        <input
+          type="number"
+          placeholder="Ward"
+          formControlName="ward"
+          class="flex-auto self-center max-w-16 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      </div>
+
+      <div class="mx-2 my-2 flex">
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-signs-post w-8 text-mmRust"></i>
+
+        <input
+          type="number"
+          placeholder="Plot"
+          formControlName="plot"
+          class="flex-auto self-center max-w-16 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Times -->
+  <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Times</h2>
+  <div class="border border-mmDarkRust p-3 rounded-md">
+    <div class="flex">
+      <div class="flex" (click)="addKnownHours()">
+        <i class="flex-initial self-center fa-solid fa-plus"></i>
+        <p class="flex-initial self-center">Add Known</p>
+      </div>
+      <div class="flex" (click)="addVariableHours()">
+        <i class="flex-initial self-center fa-solid fa-plus"></i>
+        <p class="flex-initial self-center">Add Variable</p>
+      </div>
+    </div>
+
+    <div *ngFor="let hour of editingHours" class="flex">
+      <i class="flex-initial self-center fa-regular fa-clock"></i>
+      <div *ngIf="!!hour.variableDay">
+        <input
+          type="string"
+          placeholder="Days"
+          [(value)]="hour.variableDay"
+          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+        <p>{{ hour.variableDay }}</p>
+        <!-- TODO: this is not changing the object -->
+        <input
+          type="string"
+          placeholder="Times"
+          [(value)]="hour.variableTimes"
+          class="flex-auto self-center max-w-40 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      </div>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
