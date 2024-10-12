@@ -163,34 +163,18 @@
   <!-- Times -->
   <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Times</h2>
   <div class="border border-mmDarkRust p-3 rounded-md">
-    <div class="flex">
-      <div class="flex" (click)="addKnownHours()">
-        <i class="flex-initial self-center fa-solid fa-plus"></i>
-        <p class="flex-initial self-center">Add Known</p>
-      </div>
-      <div class="flex" (click)="addVariableHours()">
-        <i class="flex-initial self-center fa-solid fa-plus"></i>
-        <p class="flex-initial self-center">Add Variable</p>
-      </div>
+    <div *ngFor="let hour of venueInfoForm.controls.hours.value">
+      <p>Entry:</p>
+      <p>{{ hour.day }}</p>
+      <p>{{ hour.open }}</p>
+      <p>{{ hour.close }}</p>
+      <p>{{ hour.timezoneID }}</p>
+      <p>{{ hour.variableDay }}</p>
+      <p>{{ hour.variableTimes }}</p>
+      <p (click)="onHoursRemoved(hour)">DELETE</p>
     </div>
 
-    <div *ngFor="let hour of editingHours" class="flex">
-      <i class="flex-initial self-center fa-regular fa-clock"></i>
-      <div *ngIf="!!hour.variableDay">
-        <input
-          type="string"
-          placeholder="Days"
-          [(value)]="hour.variableDay"
-          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
-        <p>{{ hour.variableDay }}</p>
-        <!-- TODO: this is not changing the object -->
-        <input
-          type="string"
-          placeholder="Times"
-          [(value)]="hour.variableTimes"
-          class="flex-auto self-center max-w-40 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
-      </div>
-    </div>
+    <app-hours-form (onHoursAdded)="onHoursAdded($event)"></app-hours-form>
   </div>
 
   <button type="submit">Submit</button>

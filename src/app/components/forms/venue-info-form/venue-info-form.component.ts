@@ -9,11 +9,12 @@ import { VenueStateService } from '../../../store/venue-state/venue-state.servic
 import { ChipComponent } from '../../ui/chip/chip.component';
 import { UiFormErrorComponent } from '../../ui/ui-form-error/ui-form-error.component';
 import { UiFormFieldErrorComponent } from '../../ui/ui-form-field-error/ui-form-field-error.component';
+import { HoursFormComponent } from '../hours-form/hours-form.component';
 
 @Component({
   selector: 'app-venue-info-form.',
   standalone: true,
-  imports: [ReactiveFormsModule, UiFormFieldErrorComponent, UiFormErrorComponent, CommonModule, ChipComponent],
+  imports: [ReactiveFormsModule, UiFormFieldErrorComponent, UiFormErrorComponent, CommonModule, ChipComponent, HoursFormComponent],
   templateUrl: './venue-info-form..component.html',
   styleUrl: './venue-info-form.component.css'
 })
@@ -22,15 +23,6 @@ export class VenueInfoFormComponent implements OnInit {
 
   venueInfoForm: FormGroup<VenueInfoForm>;
   FormName = FormName;
-
-  editingHours: {
-    day?: string;
-    open?: string;
-    close?: string;
-    timezoneID?: string;
-    variableDay?: string;
-    variableTimes?: string;
-  }[] = [];
 
   constructor(private formBuilder: FormBuilder, private venueStateService: VenueStateService) {
     this.venueInfoForm = this.formBuilder.group<VenueInfoForm>({
@@ -77,38 +69,26 @@ export class VenueInfoFormComponent implements OnInit {
       this.venueInfoForm.controls.hours.patchValue(this.venue.venue.hours);
       this.venueInfoForm.controls.website.patchValue(this.venue.venue.website);
       this.venueInfoForm.controls.tags.patchValue(this.venue.venue.tags.toString());
-
-      this.editingHours = this.venueInfoForm.controls.hours.value;
     }
   }
 
-  addKnownHours() {
-    this.editingHours.push({
-      day: '',
-      open: '',
-      close: '',
-      timezoneID: ''
-    });
+  onHoursAdded(hours: any) {
+    var existingHours = this.venueInfoForm.controls.hours.value;
+
+    existingHours.push(hours);
+
+    this.venueInfoForm.controls.hours.patchValue(existingHours);
   }
 
-  addVariableHours() {
-    this.editingHours.push({
-      variableDay: 'Wednesday - Saturday',
-      variableTimes: '8-10 ET'
-    });
-  }
+  onHoursRemoved(hour: any) {
+    var existingHours = this.venueInfoForm.controls.hours.value;
 
-  updateHourObject(hour: any, field: 'day' | 'open' | 'close' | 'timezoneID' | 'variableDay' | 'variableTimes', event: any) {
-    const newValue = (event.target as HTMLInputElement).value;
-    var memHour = this.editingHours[hour];
-    memHour[field] = newValue;
+    existingHours.splice(existingHours.indexOf(hour), 1);
+
+    this.venueInfoForm.controls.hours.patchValue(existingHours);
   }
 
   submit() {
-    this.venueInfoForm.controls.hours.patchValue(this.editingHours);
-
-    console.log(this.venueInfoForm.controls.hours.value);
-
     if (this.venueInfoForm.valid) {
       var newVenue: VenueChangeRequest = {
         venueName: this.venueInfoForm.controls.venueName.value,

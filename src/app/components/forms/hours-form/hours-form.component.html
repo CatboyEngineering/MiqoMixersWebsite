@@ -1,0 +1,14 @@
+<form [formGroup]="hoursForm" #form="ngForm" (ngSubmit)="submit()">
+  <!-- TODO: toggle types of hours, add remaining fields -->
+  <input
+    type="string"
+    placeholder="Days"
+    formControlName="variableDay"
+    class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+  <input
+    type="string"
+    placeholder="Times"
+    formControlName="variableTimes"
+    class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+  <button>Save</button>
+</form>
