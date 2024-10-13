@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HoursForm } from '../../../models/form/hours-form.interface';
@@ -23,23 +23,16 @@ export class HoursFormComponent {
 
   hoursForm: FormGroup<HoursForm>;
 
-  day?: string;
-  open?: string;
-  close?: string;
-  timezoneID?: string;
-  variableDay?: string;
-  variableTimes?: string;
-
   timeRegex = /^((0?\d)|(1[0-2])):([0-5]\d{1})\s?((A|P)M)$/;
 
-
-  // TODO need fields for openHour, openMinute, closeHour...
   constructor(private formBuilder: FormBuilder) {
     this.hoursForm = this.formBuilder.group<HoursForm>({
       isConstant: this.formBuilder.nonNullable.control(true),
       day: this.formBuilder.control(null),
-      open: this.formBuilder.control('', { validators: Validators.pattern(this.timeRegex) }),
-      close: this.formBuilder.control('', { validators: Validators.pattern(this.timeRegex) }),
+      openHour: this.formBuilder.control(null),
+      openMinute: this.formBuilder.control(45),
+      closeHour: this.formBuilder.control(null),
+      closeMinute: this.formBuilder.control(15),
       timezoneID: this.formBuilder.control(null),
       variableDay: this.formBuilder.control(''),
       variableTimes: this.formBuilder.control('')
@@ -50,8 +43,10 @@ export class HoursFormComponent {
 
   prepareIsConstant() {
     this.hoursForm.controls.day?.addValidators(Validators.required);
-    this.hoursForm.controls.open?.addValidators(Validators.required);
-    this.hoursForm.controls.close?.addValidators(Validators.required);
+    this.hoursForm.controls.openHour?.addValidators(Validators.required);
+    this.hoursForm.controls.openMinute?.addValidators(Validators.required);
+    this.hoursForm.controls.closeHour?.addValidators(Validators.required);
+    this.hoursForm.controls.closeMinute?.addValidators(Validators.required);
     this.hoursForm.controls.timezoneID?.addValidators(Validators.required);
 
     this.hoursForm.controls.variableDay?.removeValidators(Validators.required);
@@ -60,8 +55,10 @@ export class HoursFormComponent {
 
   prepareIsVariable() {
     this.hoursForm.controls.day?.removeValidators(Validators.required);
-    this.hoursForm.controls.open?.removeValidators(Validators.required);
-    this.hoursForm.controls.close?.removeValidators(Validators.required);
+    this.hoursForm.controls.openHour?.removeValidators(Validators.required);
+    this.hoursForm.controls.openMinute?.removeValidators(Validators.required);
+    this.hoursForm.controls.closeHour?.removeValidators(Validators.required);
+    this.hoursForm.controls.closeMinute?.removeValidators(Validators.required);
     this.hoursForm.controls.timezoneID?.removeValidators(Validators.required);
 
     this.hoursForm.controls.variableDay?.addValidators(Validators.required);
@@ -70,23 +67,33 @@ export class HoursFormComponent {
 
   submit() {
     if (this.hoursForm.valid) {
-      var hour = this.hoursForm.controls.open?.value?.exec(this.timeRegex);
+      if (this.hoursForm.controls.openHour?.value) {
+        var openHour = this.hoursForm.controls.openHour!.value!;
+        var openMinute = this.hoursForm.controls.openMinute!.value!;
+        var closeHour = this.hoursForm.controls.closeHour!.value!;
+        var closeMinute = this.hoursForm.controls.closeMinute!.value!;
 
-      
-      var timeOpenUTC = new DatePipe('en', 'UTC').transform(, 'h:mm aa');
+        var open = new Date(Date.now());
+        var close = new Date(Date.now());
 
-      console.log(timeOpenUTC);
+        open.setHours(openHour, openMinute, 0, 0);
+        close.setHours(closeHour, closeMinute, 0, 0);
 
-      this.onHoursAdded.emit({
-        day: this.hoursForm.controls.day?.value || undefined,
-        open: this.hoursForm.controls.open?.value || undefined,
-        close: this.hoursForm.controls.close?.value || undefined,
-        timezoneID: this.hoursForm.controls.timezoneID?.value || undefined,
-        variableDay: this.hoursForm.controls.variableDay?.value || undefined,
-        variableTimes: this.hoursForm.controls.variableTimes?.value || undefined
-      });
+        var timeOpenUTC = open.toISOString();
+        var timeCloseUTC = close.toISOString();
+
+        this.onHoursAdded.emit({
+          day: this.hoursForm.controls.day?.value || undefined,
+          open: timeOpenUTC || undefined,
+          close: timeCloseUTC || undefined,
+          timezoneID: this.hoursForm.controls.timezoneID?.value || undefined,
+          variableDay: this.hoursForm.controls.variableDay?.value || undefined,
+          variableTimes: this.hoursForm.controls.variableTimes?.value || undefined
+        });
+      }
 
       this.hoursForm.reset();
+      // Errors don't go away
     }
   }
 }
