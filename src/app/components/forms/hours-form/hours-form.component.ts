@@ -30,9 +30,9 @@ export class HoursFormComponent {
       isConstant: this.formBuilder.nonNullable.control(true),
       day: this.formBuilder.control(null),
       openHour: this.formBuilder.control(null),
-      openMinute: this.formBuilder.control(45),
+      openMinute: this.formBuilder.control(null),
       closeHour: this.formBuilder.control(null),
-      closeMinute: this.formBuilder.control(15),
+      closeMinute: this.formBuilder.control(null),
       timezoneID: this.formBuilder.control(null),
       variableDay: this.formBuilder.control(''),
       variableTimes: this.formBuilder.control('')
@@ -41,25 +41,39 @@ export class HoursFormComponent {
     this.prepareIsConstant();
   }
 
+  resetValidators() {
+    this.hoursForm.controls.day?.clearValidators();
+    this.hoursForm.controls.openHour?.clearValidators();
+    this.hoursForm.controls.openMinute?.clearValidators();
+    this.hoursForm.controls.closeHour?.clearValidators();
+    this.hoursForm.controls.closeMinute?.clearValidators();
+    this.hoursForm.controls.timezoneID?.clearValidators();
+    this.hoursForm.controls.variableDay?.clearValidators();
+    this.hoursForm.controls.variableTimes?.clearValidators();
+
+    this.hoursForm.controls.day?.setErrors(null);
+    this.hoursForm.controls.openHour?.setErrors(null);
+    this.hoursForm.controls.openMinute?.setErrors(null);
+    this.hoursForm.controls.closeHour?.setErrors(null);
+    this.hoursForm.controls.closeMinute?.setErrors(null);
+    this.hoursForm.controls.timezoneID?.setErrors(null);
+    this.hoursForm.controls.variableDay?.setErrors(null);
+    this.hoursForm.controls.variableTimes?.setErrors(null);
+  }
+
   prepareIsConstant() {
+    this.resetValidators();
+
     this.hoursForm.controls.day?.addValidators(Validators.required);
     this.hoursForm.controls.openHour?.addValidators(Validators.required);
     this.hoursForm.controls.openMinute?.addValidators(Validators.required);
     this.hoursForm.controls.closeHour?.addValidators(Validators.required);
     this.hoursForm.controls.closeMinute?.addValidators(Validators.required);
     this.hoursForm.controls.timezoneID?.addValidators(Validators.required);
-
-    this.hoursForm.controls.variableDay?.removeValidators(Validators.required);
-    this.hoursForm.controls.variableTimes?.removeValidators(Validators.required);
   }
 
   prepareIsVariable() {
-    this.hoursForm.controls.day?.removeValidators(Validators.required);
-    this.hoursForm.controls.openHour?.removeValidators(Validators.required);
-    this.hoursForm.controls.openMinute?.removeValidators(Validators.required);
-    this.hoursForm.controls.closeHour?.removeValidators(Validators.required);
-    this.hoursForm.controls.closeMinute?.removeValidators(Validators.required);
-    this.hoursForm.controls.timezoneID?.removeValidators(Validators.required);
+    this.resetValidators();
 
     this.hoursForm.controls.variableDay?.addValidators(Validators.required);
     this.hoursForm.controls.variableTimes?.addValidators(Validators.required);
@@ -67,7 +81,7 @@ export class HoursFormComponent {
 
   submit() {
     if (this.hoursForm.valid) {
-      if (this.hoursForm.controls.openHour?.value) {
+      if (this.hoursForm.controls.isConstant.value) {
         var openHour = this.hoursForm.controls.openHour!.value!;
         var openMinute = this.hoursForm.controls.openMinute!.value!;
         var closeHour = this.hoursForm.controls.closeHour!.value!;
@@ -86,14 +100,18 @@ export class HoursFormComponent {
           day: this.hoursForm.controls.day?.value || undefined,
           open: timeOpenUTC || undefined,
           close: timeCloseUTC || undefined,
-          timezoneID: this.hoursForm.controls.timezoneID?.value || undefined,
+          timezoneID: this.hoursForm.controls.timezoneID?.value || undefined
+        });
+      } else {
+        this.onHoursAdded.emit({
           variableDay: this.hoursForm.controls.variableDay?.value || undefined,
           variableTimes: this.hoursForm.controls.variableTimes?.value || undefined
         });
       }
 
       this.hoursForm.reset();
-      // Errors don't go away
+      this.hoursForm.controls.isConstant.patchValue(true);
+      this.prepareIsConstant();
     }
   }
 }

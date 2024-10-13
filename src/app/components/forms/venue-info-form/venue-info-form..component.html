@@ -140,6 +140,7 @@
     <div class="flex">
       <div class="mx-2 my-2 flex">
         <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-map w-8 text-mmRust"></i>
+        <p class="self-center">Ward:</p>
 
         <input
           type="number"
@@ -150,6 +151,7 @@
 
       <div class="mx-2 my-2 flex">
         <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-signs-post w-8 text-mmRust"></i>
+        <p class="self-center">Plot:</p>
 
         <input
           type="number"
@@ -163,15 +165,24 @@
   <!-- Times -->
   <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Times</h2>
   <div class="border border-mmDarkRust p-3 rounded-md">
-    <div *ngFor="let hour of venueInfoForm.controls.hours.value">
-      <p>Entry:</p>
-      <p>{{ hour.day }}</p>
-      <p>{{ hour.open }}</p>
-      <p>{{ hour.close }}</p>
-      <p>{{ hour.timezoneID }}</p>
-      <p>{{ hour.variableDay }}</p>
-      <p>{{ hour.variableTimes }}</p>
-      <p (click)="onHoursRemoved(hour)">DELETE</p>
+    <div *ngFor="let hour of venueInfoForm.controls.hours.value" class="flex">
+      <i class="flex-initial self-center fa-regular fa-clock"></i>
+      <div class="self-center">
+        <p class="inline-block">{{ hour.day }}:</p>
+        <!-- TODO: fixing this -->
+        <p>O: {{ hour.open }}</p>
+        <p>O: {{ hour.open! | time : true }}</p>
+        <p>O: {{ hour.open! | date : 'h:mm a' }}</p>
+        <p>{{ hour.close | date }}</p>
+        <p>{{ hour.timezoneID }}</p>
+        <p>{{ hour.variableDay }}</p>
+        <p>{{ hour.variableTimes }}</p>
+      </div>
+      <div
+        class="flex-initial self-center px-1 rounded-md bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkBlue hover:cursor-pointer"
+        (click)="onHoursRemoved(hour)">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
     </div>
 
     <app-hours-form (onHoursAdded)="onHoursAdded($event)"></app-hours-form>

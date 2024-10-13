@@ -5,6 +5,7 @@ import { VenueChangeRequest } from '../../../models/API/request/venue-change-req
 import { FormName } from '../../../models/enum/form-name.enum';
 import { VenueInfoForm } from '../../../models/form/venue-info-form.interface';
 import { Venue } from '../../../models/venue.interface';
+import { TimePipe } from '../../../pipes/time-pipe/time.pipe';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { ChipComponent } from '../../ui/chip/chip.component';
 import { UiFormErrorComponent } from '../../ui/ui-form-error/ui-form-error.component';
@@ -14,7 +15,7 @@ import { HoursFormComponent } from '../hours-form/hours-form.component';
 @Component({
   selector: 'app-venue-info-form.',
   standalone: true,
-  imports: [ReactiveFormsModule, UiFormFieldErrorComponent, UiFormErrorComponent, CommonModule, ChipComponent, HoursFormComponent],
+  imports: [ReactiveFormsModule, UiFormFieldErrorComponent, UiFormErrorComponent, CommonModule, ChipComponent, HoursFormComponent, TimePipe],
   templateUrl: './venue-info-form..component.html',
   styleUrl: './venue-info-form.component.css'
 })
@@ -73,7 +74,7 @@ export class VenueInfoFormComponent implements OnInit {
   }
 
   onHoursAdded(hours: any) {
-    var existingHours = this.venueInfoForm.controls.hours.value;
+    var existingHours = structuredClone(this.venueInfoForm.controls.hours.value);
 
     existingHours.push(hours);
 
@@ -81,7 +82,7 @@ export class VenueInfoFormComponent implements OnInit {
   }
 
   onHoursRemoved(hour: any) {
-    var existingHours = this.venueInfoForm.controls.hours.value;
+    var existingHours = structuredClone(this.venueInfoForm.controls.hours.value);
 
     existingHours.splice(existingHours.indexOf(hour), 1);
 
