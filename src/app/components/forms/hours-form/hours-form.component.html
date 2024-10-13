@@ -5,6 +5,7 @@
       id="radioconstant"
       formControlName="isConstant"
       [value]="true"
+      (change)="prepareIsConstant()"
       class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none" />
     <label for="radioconstant" class="inline-block">Constant</label>
   </div>
@@ -14,16 +15,20 @@
       id="radiovariable"
       formControlName="isConstant"
       [value]="false"
+      (change)="prepareIsVariable()"
       class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none" />
     <label for="radiovariable" class="inline-block">Variable</label>
   </div>
+
   <ng-container *ngIf="hoursForm.controls.isConstant.value; else isVariable">
     <div>
+      <ui-form-field-error [form]="form" [errorFor]="'day'" [errorType]="'required'">Please select a day</ui-form-field-error>
       <div class="flex">
         <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust"></i>
         <select
           formControlName="day"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          <option disabled [value]="null">Select Day...</option>
           <option>Sunday</option>
           <option>Monday</option>
           <option>Tuesday</option>
@@ -34,23 +39,42 @@
         </select>
       </div>
 
-      <ui-form-field-error [form]="form" [errorFor]="'open'" [errorType]="'pattern'">Plot is required</ui-form-field-error>
+      <ui-form-field-error [form]="form" [errorFor]="'open'" [errorType]="'required'">Please enter an opening time</ui-form-field-error>
+      <ui-form-field-error [form]="form" [errorFor]="'open'" [errorType]="'pattern'">Invalid format</ui-form-field-error>
       <div class="flex">
         <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
         <input
           type="string"
-          placeholder="Open"
+          placeholder="8:00 PM"
           formControlName="open"
           class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
       </div>
 
+      <ui-form-field-error [form]="form" [errorFor]="'close'" [errorType]="'required'">Please enter a closing time</ui-form-field-error>
+      <ui-form-field-error [form]="form" [errorFor]="'close'" [errorType]="'pattern'">Invalid format</ui-form-field-error>
       <div class="flex">
         <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
         <input
           type="string"
-          placeholder="Close"
+          placeholder="11:00 PM"
           formControlName="close"
           class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      </div>
+
+      <ui-form-field-error [form]="form" [errorFor]="'timezoneID'" [errorType]="'required'">Please choose a Timezone</ui-form-field-error>
+      <div class="flex">
+        <i class="flex-initial self-center text-2xl fa-solid fa-earth-americas w-8 text-mmRust"></i>
+        <select
+          formControlName="timezoneID"
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          <option disabled [value]="null">Timezone...</option>
+          <option value="Pacific/Honolulu">Hawaii</option>
+          <option value="America/Anchorage">Alaska</option>
+          <option value="America/Los_Angeles">Pacific</option>
+          <option value="America/Denver">Mountain</option>
+          <option value="America/Chicago">Central</option>
+          <option value="America/New_York">Eastern</option>
+        </select>
       </div>
     </div>
   </ng-container>

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HoursForm } from '../../../models/form/hours-form.interface';
@@ -30,20 +30,53 @@ export class HoursFormComponent {
   variableDay?: string;
   variableTimes?: string;
 
+  timeRegex = /^((0?\d)|(1[0-2])):([0-5]\d{1})\s?((A|P)M)$/;
+
+
+  // TODO need fields for openHour, openMinute, closeHour...
   constructor(private formBuilder: FormBuilder) {
     this.hoursForm = this.formBuilder.group<HoursForm>({
       isConstant: this.formBuilder.nonNullable.control(true),
-      day: this.formBuilder.control(''),
-      open: this.formBuilder.control('', { validators: Validators.pattern(/^((0?\d)|(1[0-2])):[0-5]\d{1}$/) }),
-      close: this.formBuilder.control('', { validators: Validators.pattern(/^((0?\d)|(1[0-2])):[0-5]\d{1}$/) }),
-      timezoneID: this.formBuilder.control(''),
+      day: this.formBuilder.control(null),
+      open: this.formBuilder.control('', { validators: Validators.pattern(this.timeRegex) }),
+      close: this.formBuilder.control('', { validators: Validators.pattern(this.timeRegex) }),
+      timezoneID: this.formBuilder.control(null),
       variableDay: this.formBuilder.control(''),
       variableTimes: this.formBuilder.control('')
     });
+
+    this.prepareIsConstant();
+  }
+
+  prepareIsConstant() {
+    this.hoursForm.controls.day?.addValidators(Validators.required);
+    this.hoursForm.controls.open?.addValidators(Validators.required);
+    this.hoursForm.controls.close?.addValidators(Validators.required);
+    this.hoursForm.controls.timezoneID?.addValidators(Validators.required);
+
+    this.hoursForm.controls.variableDay?.removeValidators(Validators.required);
+    this.hoursForm.controls.variableTimes?.removeValidators(Validators.required);
+  }
+
+  prepareIsVariable() {
+    this.hoursForm.controls.day?.removeValidators(Validators.required);
+    this.hoursForm.controls.open?.removeValidators(Validators.required);
+    this.hoursForm.controls.close?.removeValidators(Validators.required);
+    this.hoursForm.controls.timezoneID?.removeValidators(Validators.required);
+
+    this.hoursForm.controls.variableDay?.addValidators(Validators.required);
+    this.hoursForm.controls.variableTimes?.addValidators(Validators.required);
   }
 
   submit() {
     if (this.hoursForm.valid) {
+      var hour = this.hoursForm.controls.open?.value?.exec(this.timeRegex);
+
+      
+      var timeOpenUTC = new DatePipe('en', 'UTC').transform(, 'h:mm aa');
+
+      console.log(timeOpenUTC);
+
       this.onHoursAdded.emit({
         day: this.hoursForm.controls.day?.value || undefined,
         open: this.hoursForm.controls.open?.value || undefined,
