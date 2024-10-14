@@ -79,7 +79,7 @@
           formControlName="openMinute"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Min</option>
-          <option *ngFor="let item of [].constructor(59); let i = index" value="{{ i + 1 }}">{{ i + 1 }}</option>
+          <option *ngFor="let item of [].constructor(60); let i = index" value="{{ i }}">{{ i }}</option>
         </select>
       </div>
 
@@ -122,7 +122,7 @@
           formControlName="closeMinute"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Min</option>
-          <option *ngFor="let item of [].constructor(59); let i = index" value="{{ i + 1 }}">{{ i + 1 }}</option>
+          <option *ngFor="let item of [].constructor(60); let i = index" value="{{ i }}">{{ i }}</option>
         </select>
       </div>
 

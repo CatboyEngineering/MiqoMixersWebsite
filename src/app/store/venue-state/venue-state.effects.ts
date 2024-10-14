@@ -98,7 +98,7 @@ export class VenueStateEffects {
     this.actions$.pipe(
       ofType(VenueStateActions.requestUpdateVenue),
       mergeMap(action =>
-        this.httpService.PUT<any>('venue/' + action.venueID, action.request, 'UPDATE_VENUE').pipe(
+        this.httpService.PATCH<any>('venue/' + action.venueID, action.request, 'UPDATE_VENUE').pipe(
           map(response => {
             return VenueStateActions.receiveUpdateVenue();
           }),

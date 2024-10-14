@@ -12,6 +12,7 @@ export interface VenueChangeRequest {
     close?: string;
     variableDay?: string;
     variableTimes?: string;
+    timezoneID?: string;
   }[];
   website: string;
   tags: string[];
