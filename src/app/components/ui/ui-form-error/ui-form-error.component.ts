@@ -1,9 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormName } from '../../../models/enum/form-name.enum';
 import { Observable, filter, map } from 'rxjs';
+import { FormName } from '../../../models/enum/form-name.enum';
 import { FormValidationError } from '../../../models/form-validation-error.interface';
 import { AppDetailsStateService } from '../../../store/app-details-state/app-details-state.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ui-form-error',

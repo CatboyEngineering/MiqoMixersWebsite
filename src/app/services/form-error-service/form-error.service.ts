@@ -25,6 +25,11 @@ export class FormErrorService {
           form,
           error: 'There was an error processing your request. Please check your data and try again.'
         };
+      case 401:
+        return {
+          form,
+          error: 'Your login expired. Please log back in and try again.'
+        };
       default:
         return {
           form,

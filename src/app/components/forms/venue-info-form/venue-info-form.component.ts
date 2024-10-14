@@ -81,11 +81,10 @@ export class VenueInfoFormComponent implements OnInit {
     this.venueInfoForm.controls.hours.patchValue(existingHours);
   }
 
-  onHoursRemoved(hour: any) {
-    // TODO this does not work, removes the wrong element
+  onHoursRemoved(index: number) {
     var existingHours = structuredClone(this.venueInfoForm.controls.hours.value);
 
-    existingHours.splice(existingHours.indexOf(hour), 1);
+    existingHours.splice(index, 1);
 
     this.venueInfoForm.controls.hours.patchValue(existingHours);
   }

@@ -167,30 +167,42 @@
   <!-- Times -->
   <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Times</h2>
   <div class="border border-mmDarkRust p-3 rounded-md">
-    <div *ngFor="let hour of venueInfoForm.controls.hours.value" class="flex my-1">
-      <i class="flex-initial self-center fa-regular fa-clock mr-1"></i>
-      <div class="self-center text-sm">
-        <ng-container *ngIf="hour.day; else variable">
-          <p class="inline-block font-bold mx-1">{{ hour.day }}:</p>
-          <p class="inline-block">{{ hour.open! | time : true }}</p>
-          <p class="inline-block mx-1">-</p>
-          <p class="inline-block">{{ hour.close! | time : true }}</p>
-        </ng-container>
-        <ng-template #variable>
-          <p class="inline-block font-bold mx-1">{{ hour.variableDay }}:</p>
-          <p class="inline-block">{{ hour.variableTimes }}</p>
-        </ng-template>
+    <ng-container *ngIf="venueInfoForm.controls.hours.value.length > 0; else noTimes">
+      <h2 class="text-2xl text-mmRust font-FFXIV uppercase">This Venue is Open:</h2>
+      <div *ngFor="let hour of venueInfoForm.controls.hours.value; let i = index" class="flex my-1">
+        <i class="flex-initial self-center fa-regular fa-clock mr-1"></i>
+        <div class="self-center text-sm">
+          <ng-container *ngIf="hour.day; else variable">
+            <p class="inline-block font-bold mx-1">{{ hour.day }}:</p>
+            <p class="inline-block">{{ hour.open! | time : true }}</p>
+            <p class="inline-block mx-1">-</p>
+            <p class="inline-block">{{ hour.close! | time : true }}</p>
+          </ng-container>
+          <ng-template #variable>
+            <p class="inline-block font-bold mx-1">{{ hour.variableDay }}:</p>
+            <p class="inline-block">{{ hour.variableTimes }}</p>
+          </ng-template>
+        </div>
+        <div
+          class="flex-initial self-center px-1.5 mx-2 rounded-md bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkBlue hover:cursor-pointer"
+          (click)="onHoursRemoved(i)">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
       </div>
-      <div
-        class="flex-initial self-center px-1.5 mx-2 rounded-md bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkBlue hover:cursor-pointer"
-        (click)="onHoursRemoved(hour)">
-        <i class="fa-solid fa-xmark"></i>
-      </div>
-    </div>
+    </ng-container>
+    <ng-template #noTimes>
+      <p>You have not added any times to this venue</p>
+    </ng-template>
+
     <div class="my-2">
       <app-hours-form (onHoursAdded)="onHoursAdded($event)"></app-hours-form>
     </div>
   </div>
 
-  <button type="submit">Submit</button>
+  <div class="text-center">
+    <button type="submit" class="px-2 py-1 mt-5 rounded-md bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
+      <i class="fa-solid fa-plus"></i>
+      Submit Venue
+    </button>
+  </div>
 </form>

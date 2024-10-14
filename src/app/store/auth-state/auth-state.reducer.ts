@@ -54,5 +54,6 @@ export const authStateReducer = createReducer(
     })
   ),
   on(AuthStateActions.logOutSuccess, (state, action): AuthState => authInitialState),
+  on(AuthStateActions.authExpired, (state, action): AuthState => authInitialState),
   on(AuthStateActions.authDataCleared, (state, action): AuthState => authInitialState)
 );

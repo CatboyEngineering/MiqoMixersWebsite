@@ -1,4 +1,10 @@
-<form [formGroup]="hoursForm" #form="ngForm" (ngSubmit)="submit()" class="p-3 rounded-md border border-mmRust">
+<form [formGroup]="hoursForm" #form="ngForm" (ngSubmit)="submit()" class="p-3 rounded-md w-fit border border-mmRust">
+  <div>
+    <h2 class="text-2xl text-mmRust font-FFXIV uppercase">Add Times</h2>
+    <p class="text-sm">Use the form below to add the times this venue is open.</p>
+    <hr class="my-2 border-mmRust" />
+  </div>
+
   <div class="inline-block mr-1">
     <input
       type="radio"
@@ -21,7 +27,7 @@
   </div>
 
   <ng-container *ngIf="hoursForm.controls.isConstant.value; else isVariable">
-    <div class="my-2">
+    <div class="my-3">
       <ui-form-field-error [form]="form" [errorFor]="'day'" [errorType]="'required'">Please select a day</ui-form-field-error>
       <div class="flex my-1">
         <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust"></i>
@@ -42,7 +48,7 @@
 
       <ui-form-field-error [form]="form" [errorFor]="'openHour'" [errorType]="'required'">Please enter an opening time</ui-form-field-error>
       <ui-form-field-error [form]="form" [errorFor]="'openHour'" [errorType]="'pattern'">Invalid format</ui-form-field-error>
-      <div class="flex my-1">
+      <div class="flex my-3">
         <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
         <p class="self-center">Open:</p>
         <select
@@ -79,13 +85,16 @@
           formControlName="openMinute"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Min</option>
-          <option *ngFor="let item of [].constructor(60); let i = index" value="{{ i }}">{{ i }}</option>
+          <option value="0">00</option>
+          <option value="15">15</option>
+          <option value="30">30</option>
+          <option value="45">45</option>
         </select>
       </div>
 
       <ui-form-field-error [form]="form" [errorFor]="'closeHour'" [errorType]="'required'">Please enter a closing time</ui-form-field-error>
       <ui-form-field-error [form]="form" [errorFor]="'closeHour'" [errorType]="'pattern'">Invalid format</ui-form-field-error>
-      <div class="flex my-1">
+      <div class="flex my-3">
         <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
         <p class="self-center">Close:</p>
         <select
@@ -122,12 +131,15 @@
           formControlName="closeMinute"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Min</option>
-          <option *ngFor="let item of [].constructor(60); let i = index" value="{{ i }}">{{ i }}</option>
+          <option value="0">00</option>
+          <option value="15">15</option>
+          <option value="30">30</option>
+          <option value="45">45</option>
         </select>
       </div>
 
       <ui-form-field-error [form]="form" [errorFor]="'timezoneID'" [errorType]="'required'">Please choose a Timezone</ui-form-field-error>
-      <div class="flex my-1">
+      <div class="flex my-3">
         <i class="flex-initial self-center text-2xl fa-solid fa-earth-americas w-8 text-mmRust"></i>
         <p class="self-center">Timezone:</p>
         <select
@@ -149,7 +161,7 @@
       <ui-form-field-error [form]="form" [errorFor]="'variableDay'" [errorType]="'required'">
         Please specify the days this is open
       </ui-form-field-error>
-      <div class="flex my-1">
+      <div class="flex my-3">
         <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust"></i>
         <p class="self-center">Days:</p>
         <input
@@ -162,7 +174,7 @@
       <ui-form-field-error [form]="form" [errorFor]="'variableTimes'" [errorType]="'required'">
         Please specify the times this is open
       </ui-form-field-error>
-      <div class="flex my-1">
+      <div class="flex my-3">
         <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
         <p class="self-center">Times:</p>
         <input
@@ -173,7 +185,7 @@
       </div>
     </div>
   </ng-template>
-  <button class="px-2 py-1 rounded-md bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
+  <button class="px-2 py-1 rounded-md w-full bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
     <i class="fa-solid fa-plus"></i>
     Add
   </button>

@@ -178,7 +178,7 @@ export class AuthStateEffects {
       this.actions$.pipe(
         ofType(AuthStateActions.authExpired),
         tap(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         })
       ),
     { dispatch: false }
