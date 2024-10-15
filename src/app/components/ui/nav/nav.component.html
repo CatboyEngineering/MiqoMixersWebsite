@@ -21,6 +21,15 @@
           <ng-container *ngIf="isLoggedIn$ | async; else guestUser">
             <li
               class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              [routerLink]="['/admin']"
+              (click)="expanded = false"
+              *ngIf="isAdmin$ | async">
+              <i class="fa-solid fa-toolbox mx-1.5"></i>
+              <p class="inline-block">Admin</p>
+            </li>
+
+            <li
+              class="inline-block mx-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
               [routerLink]="['/add-venue']"
               (click)="expanded = false">
               <i class="fa-solid fa-circle-plus mx-1.5"></i>

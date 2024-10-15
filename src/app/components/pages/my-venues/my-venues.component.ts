@@ -18,8 +18,8 @@ export class MyVenuesComponent {
 
   constructor(private authStateService: AuthStateService, private venueStateService: VenueStateService) {
     this.myVenues$ = venueStateService.venues$.pipe(
-      withLatestFrom(authStateService.accountID$),
-      map(([venues, accountID]) => venues.filter(venue => venue.venue.userID === accountID))
+      withLatestFrom(authStateService.accountID$, authStateService.isAdmin$),
+      map(([venues, accountID, isAdmin]) => venues.filter(venue => isAdmin || venue.venue.userID === accountID))
     );
   }
 }

@@ -54,7 +54,7 @@
   </div>
 
   <!-- Location Info -->
-  <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Location</h2>
+  <h2 class="text-3xl text-mmRust my-2 mt-5 font-FFXIV uppercase">Location</h2>
   <ui-form-field-error [form]="form" [errorFor]="'datacenter'" [errorType]="'required'">Datacenter is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'world'" [errorType]="'required'">World is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'district'" [errorType]="'required'">District is required</ui-form-field-error>
@@ -165,7 +165,7 @@
   </div>
 
   <!-- Times -->
-  <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Times</h2>
+  <h2 class="text-3xl text-mmRust my-2 mt-5 font-FFXIV uppercase">Times</h2>
   <div class="border border-mmDarkRust p-3 rounded-md">
     <ng-container *ngIf="venueInfoForm.controls.hours.value.length > 0; else noTimes">
       <h2 class="text-2xl text-mmRust font-FFXIV uppercase">This Venue is Open:</h2>

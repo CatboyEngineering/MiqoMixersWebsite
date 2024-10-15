@@ -28,10 +28,6 @@ export class AppDetailsStateService {
     this.store.dispatch(AppDetailsStateActions.formErrorsCleared());
   }
 
-  onHeartbeat(): void {
-    this.store.dispatch(AppDetailsStateActions.authenticationHeartbeatAttempt());
-  }
-
   private watchPageNavigation(): void {
     this.router.events
       .pipe(

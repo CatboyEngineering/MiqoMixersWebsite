@@ -6,6 +6,4 @@ export abstract class AppDetailsStateActions {
   static readonly formError = createAction('@miqomixers/action/error/form', props<{ error: FormValidationError }>());
   static readonly formErrorsCleared = createAction('@miqomixers/action/error/form/clear');
   static readonly clearFullState = createAction('@miqomixers/action/state/cleared');
-  static readonly authenticationHeartbeatAttempt = createAction('@miqomixers/action/heartbeat/attempt');
-  static readonly authenticationHeartbeatSucceeded = createAction('@miqomixers/action/heartbeat/succeed');
 }

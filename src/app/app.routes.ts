@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AddVenueComponent } from './components/pages/add-venue/add-venue.component';
+import { AdminComponent } from './components/pages/admin/admin.component';
 import { EditVenueComponent } from './components/pages/edit-venue/edit-venue.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -11,6 +12,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { TermsComponent } from './components/pages/terms/terms.component';
 import { VerifyCharacterSuccessComponent } from './components/pages/verify-character-success/verify-character-success.component';
 import { VerifyCharacterComponent } from './components/pages/verify-character/verify-character.component';
+import { canActivateIsAdmin } from './guards/admin-guard/can-activate-admin';
 import { canActivateAuthenticated } from './guards/auth-guard/can-activate-authenticated';
 import { canActivateEditVenue } from './guards/can-activate-edit-venue-guard/can-activate-edit-venue';
 import { canActivateCharacterUnverified } from './guards/unverified-guard/can-activate-character-unverified';
@@ -54,6 +56,11 @@ export const routes: Routes = [
     path: 'my-venues',
     component: MyVenuesComponent,
     canActivate: [canActivateAuthenticated()]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [canActivateAuthenticated(), canActivateIsAdmin()]
   },
   {
     path: 'privacy-policy',

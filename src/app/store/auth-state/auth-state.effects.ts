@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, tap, withLatestFrom } from 'rxjs';
+import { catchError, filter, map, mergeMap, of, tap, withLatestFrom } from 'rxjs';
 import { AccountAuthenticatedResponse } from '../../models/API/response/account-authenticated-response.interface';
 import { CharacterVerifiedResponse } from '../../models/API/response/character-verified-response.interface';
 import { NameChangeResponse } from '../../models/API/response/name-change-response.interface';
@@ -182,6 +182,24 @@ export class AuthStateEffects {
         })
       ),
     { dispatch: false }
+  );
+
+  heartbeatAttempt$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthStateActions.authenticationHeartbeatAttempt),
+      withLatestFrom(this.authStateService.authToken$),
+      filter(([_, token]) => !!token),
+      mergeMap(() =>
+        this.httpService.GET<any>('account', 'GET_ACCOUNT').pipe(
+          map(() => {
+            return AuthStateActions.authenticationHeartbeatSucceeded();
+          }),
+          catchError(() => {
+            return of(AuthStateActions.authExpired());
+          })
+        )
+      )
+    )
   );
 
   authFailure$ = createEffect(() =>

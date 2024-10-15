@@ -24,4 +24,6 @@ export abstract class AuthStateActions {
   static readonly deleteAttempt = createAction('@miqomixers/action/delete/attempt');
   static readonly deleteSuccess = createAction('@miqomixers/action/delete/success');
   static readonly authDataCleared = createAction('@miqomixers/action/authentication/cleared');
+  static readonly authenticationHeartbeatAttempt = createAction('@miqomixers/action/heartbeat/attempt');
+  static readonly authenticationHeartbeatSucceeded = createAction('@miqomixers/action/heartbeat/succeed');
 }
