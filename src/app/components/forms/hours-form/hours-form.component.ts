@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import moment from 'moment-timezone';
 import { HoursForm } from '../../../models/form/hours-form.interface';
+import { TimeService } from '../../../services/time-service/time.service';
 import { UiFormFieldErrorComponent } from '../../ui/ui-form-field-error/ui-form-field-error.component';
 
 @Component({
@@ -25,7 +27,7 @@ export class HoursFormComponent {
 
   timeRegex = /^((0?\d)|(1[0-2])):([0-5]\d{1})\s?((A|P)M)$/;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private timeService: TimeService) {
     this.hoursForm = this.formBuilder.group<HoursForm>({
       isConstant: this.formBuilder.nonNullable.control(true),
       day: this.formBuilder.control(null),
@@ -86,15 +88,19 @@ export class HoursFormComponent {
         var openMinute = this.hoursForm.controls.openMinute!.value!;
         var closeHour = this.hoursForm.controls.closeHour!.value!;
         var closeMinute = this.hoursForm.controls.closeMinute!.value!;
+        var timezoneID = this.hoursForm.controls.timezoneID!.value!;
 
-        var open = new Date(Date.now());
-        var close = new Date(Date.now());
+        var open = moment();
+        var close = moment();
 
-        open.setHours(openHour, openMinute, 0, 0);
-        close.setHours(closeHour, closeMinute, 0, 0);
+        open.tz(timezoneID);
+        close.tz(timezoneID);
 
-        var timeOpenUTC = open.toISOString();
-        var timeCloseUTC = close.toISOString();
+        open.set('hour', openHour).set('minute', openMinute);
+        close.set('hour', closeHour).set('minute', closeMinute);
+
+        var timeOpenUTC = open.utc().format();
+        var timeCloseUTC = close.utc().format();
 
         this.onHoursAdded.emit({
           day: this.hoursForm.controls.day?.value || undefined,
