@@ -8,6 +8,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { RECAPTCHA_V3_SITE_KEY, ReCaptchaV3Service, RecaptchaLoaderService } from 'ng-recaptcha';
 import { environment } from '../environments/environment.dev';
 import { routes } from './app.routes';
+import { AdminStateEffects } from './store/admin-state/admin-state.effects';
 import { AppDetailsStateEffects } from './store/app-details-state/app-details-state.effects';
 import { AuthStateEffects } from './store/auth-state/auth-state.effects';
 import { localstorageMetaReducer } from './store/localstorage-meta.reducer';
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideStore(rootReducer, { metaReducers: metaReducers }),
-    provideEffects([AuthStateEffects, AppDetailsStateEffects, VenueStateEffects]),
+    provideEffects([AuthStateEffects, AppDetailsStateEffects, VenueStateEffects, AdminStateEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !environment.production }),
     provideHttpClient(withFetch()),
     {

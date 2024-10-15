@@ -17,6 +17,8 @@ export class FormErrorService {
         return this.mapLoginFailure(error);
       case FormName.VERIFY_CHARACTER:
         return this.mapVerifyFailure(error);
+      case FormName.ADMIN:
+        return this.mapAdminFailure(error);
     }
 
     switch (error.status) {
@@ -29,6 +31,16 @@ export class FormErrorService {
         return {
           form,
           error: 'Your login expired. Please log back in and try again.'
+        };
+      case 403:
+        return {
+          form,
+          error: 'Your character must be verified before you can proceed.'
+        };
+      case 409:
+        return {
+          form,
+          error: 'Your account has been suspended, and you cannot make any changes.'
         };
       default:
         return {
@@ -111,6 +123,38 @@ export class FormErrorService {
         return {
           form,
           error: 'Your character has already been verified.'
+        };
+      default:
+        return {
+          form,
+          error: 'There was an error with your request. Please try again.'
+        };
+    }
+  }
+
+  private mapAdminFailure(error: HttpErrorResponse): FormValidationError {
+    let form = FormName.ADMIN;
+
+    switch (error.status) {
+      case 400:
+        return {
+          form,
+          error: 'There was an error processing your request. Please check your data and try again.'
+        };
+      case 401:
+        return {
+          form,
+          error: 'Login expired. Please log back in and try again.'
+        };
+      case 404:
+        return {
+          form,
+          error: 'The server could not find the associated account.'
+        };
+      case 409:
+        return {
+          form,
+          error: 'You cannot deactivate the Admin account.'
         };
       default:
         return {

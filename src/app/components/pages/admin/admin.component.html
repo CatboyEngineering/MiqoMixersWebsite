@@ -1,1 +1,34 @@
-<p>admin works!</p>
+<h1 class="text-5xl text-mmRust text-center font-FFXIV uppercase">MiqoMixers Administrator</h1>
+<ui-form-error [formName]="FormName.ADMIN"></ui-form-error>
+
+<div class="my-5">
+  <h2 class="text-3xl text-mmRust font-FFXIV uppercase">Registered Accounts</h2>
+
+  <div>
+    <div *ngFor="let account of accounts$ | async" class="p-3 m-3 rounded-md bg-mmRust w-fit text-gray-50">
+      <div class="flex">
+        <ng-container *ngIf="account.characterAvatarURL; else unverified">
+          <img src="{{ account.characterAvatarURL }}" class="flex-initial self-center w-16" />
+        </ng-container>
+        <ng-template #unverified>
+          <i class="fa-solid fa-circle-question text-4xl w-16 self-center flex-initial"></i>
+        </ng-template>
+        <div class="mx-2 self-center">
+          <p class="font-bold">{{ account.characterName }}</p>
+          <p class="text-sm">
+            {{ account.characterServer }} -
+            <strong>{{ account.characterVerified ? 'Verified' : 'Unverified' }}</strong>
+          </p>
+          <p class="text-xs">{{ account.accountID }} : {{ account.characterID }}</p>
+          <p
+            class="px-2 py-1 rounded-md {{
+              account.isSuspended ? 'bg-red-800 hover:bg-red-900 active:bg-red-950' : 'bg-mmBlue hover:bg-mmDarkBlue active:bg-mmDarkerBlue'
+            }} hover:cursor-pointer font-semibold text-center"
+            (click)="toggleUserStatus(account.accountID)">
+            {{ account.isSuspended ? 'Suspended' : 'Active' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
