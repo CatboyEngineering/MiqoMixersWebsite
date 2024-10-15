@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { VenueChangeRequest } from '../../../models/API/request/venue-change-request.interface';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { VenueInfoForm } from '../../../models/form/venue-info-form.interface';
@@ -15,7 +16,16 @@ import { HoursFormComponent } from '../hours-form/hours-form.component';
 @Component({
   selector: 'app-venue-info-form.',
   standalone: true,
-  imports: [ReactiveFormsModule, UiFormFieldErrorComponent, UiFormErrorComponent, CommonModule, ChipComponent, HoursFormComponent, TimePipe],
+  imports: [
+    ReactiveFormsModule,
+    UiFormFieldErrorComponent,
+    UiFormErrorComponent,
+    CommonModule,
+    ChipComponent,
+    HoursFormComponent,
+    TimePipe,
+    RouterLink
+  ],
   templateUrl: './venue-info-form..component.html',
   styleUrl: './venue-info-form.component.css'
 })

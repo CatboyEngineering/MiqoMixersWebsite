@@ -1,3 +1,7 @@
+<p class="text-xs my-2 p-1 px-2 w-fit rounded-md mx-auto md:mr-0 bg-mmBlue text-white">
+  Please remember to follow MiqoMixers'
+  <a class="underline hover:text-ksNavy" [routerLink]="['/content-guidelines']">Content Guidelines</a>
+</p>
 <form [formGroup]="venueInfoForm" #form="ngForm" (ngSubmit)="submit()">
   <ui-form-error [formName]="FormName.UPSERT_VENUE"></ui-form-error>
 

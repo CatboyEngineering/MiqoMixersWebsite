@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AddVenueComponent } from './components/pages/add-venue/add-venue.component';
 import { AdminComponent } from './components/pages/admin/admin.component';
+import { ContentGuidelinesComponent } from './components/pages/content-guidelines/content-guidelines.component';
 import { EditVenueComponent } from './components/pages/edit-venue/edit-venue.component';
 import { ErrorComponent } from './components/pages/error/error.component';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -69,6 +70,10 @@ export const routes: Routes = [
   {
     path: 'terms',
     component: TermsComponent
+  },
+  {
+    path: 'content-guidelines',
+    component: ContentGuidelinesComponent
   },
   {
     path: 'error',
