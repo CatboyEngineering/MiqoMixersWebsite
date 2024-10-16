@@ -1,4 +1,4 @@
-export interface NameChangeResponse {
+export interface ChangeCharacterRequest {
   characterName: string;
   characterServer: string;
 }

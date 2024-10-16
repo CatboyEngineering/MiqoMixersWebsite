@@ -1,16 +1,12 @@
 <div>
   <h1 class="font-FFXIV text-5xl text-mmRust text-center">Welcome, {{ characterName$ | async }}!</h1>
-  <p>Profile options are coming soon, including:</p>
-  <ul>
-    <li>Change password</li>
-    <li>Change character</li>
-    <li>Delete account</li>
-  </ul>
+
   <div class="p-3 my-3 border border-mmBlue rounded-md text-center">
     <h2 class="font-FFXIV text-3xl text-mmBlue">Change Password</h2>
   </div>
   <div class="p-3 my-3 border border-mmRust rounded-md text-center">
     <h2 class="font-FFXIV text-3xl text-mmRust">Change Character</h2>
+    <app-change-character-form></app-change-character-form>
   </div>
   <div class="p-3 my-3 border border-red-800 rounded-md text-center">
     <h2 class="font-FFXIV text-3xl text-red-800">Delete Account</h2>

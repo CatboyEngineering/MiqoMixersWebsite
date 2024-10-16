@@ -12,13 +12,15 @@ export class FormErrorService {
   mapFormAPIError(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (form) {
       case FormName.REGISTER_ACCOUNT:
-        return this.mapRegisterFailure(error);
+        return this.mapRegisterFailure(form, error);
       case FormName.LOG_IN:
-        return this.mapLoginFailure(error);
+        return this.mapLoginFailure(form, error);
       case FormName.VERIFY_CHARACTER:
-        return this.mapVerifyFailure(error);
+        return this.mapVerifyFailure(form, error);
       case FormName.ADMIN:
-        return this.mapAdminFailure(error);
+        return this.mapAdminFailure(form, error);
+      case FormName.CHANGE_CHARACTER:
+        return this.mapChangeCharacterFailure(form, error);
     }
 
     switch (error.status) {
@@ -50,9 +52,7 @@ export class FormErrorService {
     }
   }
 
-  private mapRegisterFailure(error: HttpErrorResponse): FormValidationError {
-    let form = FormName.REGISTER_ACCOUNT;
-
+  private mapRegisterFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
       case 400:
         return {
@@ -77,9 +77,7 @@ export class FormErrorService {
     }
   }
 
-  private mapLoginFailure(error: HttpErrorResponse): FormValidationError {
-    let form = FormName.LOG_IN;
-
+  private mapLoginFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
       case 400:
         return {
@@ -110,9 +108,7 @@ export class FormErrorService {
     }
   }
 
-  private mapVerifyFailure(error: HttpErrorResponse): FormValidationError {
-    let form = FormName.VERIFY_CHARACTER;
-
+  private mapVerifyFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
       case 400:
         return {
@@ -137,9 +133,7 @@ export class FormErrorService {
     }
   }
 
-  private mapAdminFailure(error: HttpErrorResponse): FormValidationError {
-    let form = FormName.ADMIN;
-
+  private mapAdminFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
       case 400:
         return {
@@ -160,6 +154,31 @@ export class FormErrorService {
         return {
           form,
           error: 'You cannot deactivate the Admin account.'
+        };
+      default:
+        return {
+          form,
+          error: 'There was an error with your request. Please try again.'
+        };
+    }
+  }
+
+  private mapChangeCharacterFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
+    switch (error.status) {
+      case 400:
+        return {
+          form,
+          error: 'There was an error processing your request. Please check your data and try again.'
+        };
+      case 401:
+        return {
+          form,
+          error: 'Your login expired. Please log back in and try again.'
+        };
+      case 404:
+        return {
+          form,
+          error: 'That character could not be found.'
         };
       default:
         return {

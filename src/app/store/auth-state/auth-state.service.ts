@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AccountCreateRequest } from '../../models/API/request/account-create-request.interface';
 import { AccountLoginRequest } from '../../models/API/request/account-login-request.interface';
-import { NameChangeRequest } from '../../models/API/request/name-change-request.interface';
+import { ChangeCharacterRequest } from '../../models/API/request/change-character-request.interface';
 import { AuthStateActions } from './auth-state.actions';
 import {
   selectAccountID,
@@ -45,8 +45,8 @@ export class AuthStateService {
     this.store.dispatch(AuthStateActions.verifyAttempt());
   }
 
-  onNameChangeRequest(request: NameChangeRequest): void {
-    this.store.dispatch(AuthStateActions.nameChangeAttempt({ request }));
+  onChangeCharacterRequest(request: ChangeCharacterRequest): void {
+    this.store.dispatch(AuthStateActions.characterChangeAttempt({ request }));
   }
 
   onDeleteAccountRequest(): void {

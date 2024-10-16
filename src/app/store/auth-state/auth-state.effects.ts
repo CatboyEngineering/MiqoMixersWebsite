@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, filter, map, mergeMap, of, tap, withLatestFrom } from 'rxjs';
 import { AccountAuthenticatedResponse } from '../../models/API/response/account-authenticated-response.interface';
+import { CharacterChangeResponse } from '../../models/API/response/character-change-response.interface';
 import { CharacterVerifiedResponse } from '../../models/API/response/character-verified-response.interface';
-import { NameChangeResponse } from '../../models/API/response/name-change-response.interface';
 import { FormName } from '../../models/enum/form-name.enum';
 import { FormErrorService } from '../../services/form-error-service/form-error.service';
 import { HTTPService } from '../../services/http-service/http.service';
@@ -108,20 +108,31 @@ export class AuthStateEffects {
     { dispatch: false }
   );
 
-  nameChangeAttempt$ = createEffect(() =>
+  characterChangeAttempt$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthStateActions.nameChangeAttempt),
+      ofType(AuthStateActions.characterChangeAttempt),
       mergeMap(action =>
-        this.httpService.PATCH<NameChangeResponse>('account', action.request, 'CHANGE_NAME').pipe(
+        this.httpService.PATCH<CharacterChangeResponse>('account', action.request, 'CHANGE_CHARACTER').pipe(
           map(response => {
-            return AuthStateActions.nameChangeSuccess({ response: response.body! });
+            return AuthStateActions.characterChangeSuccess({ response: response.body! });
           }),
           catchError(error => {
-            return of(AuthStateActions.authFailure({ form: FormName.CHANGE_NAME, error: error }));
+            return of(AuthStateActions.authFailure({ form: FormName.CHANGE_CHARACTER, error: error }));
           })
         )
       )
     )
+  );
+
+  characterChangeSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthStateActions.characterChangeSuccess),
+        tap(() => {
+          this.router.navigate(['/verify-character']);
+        })
+      ),
+    { dispatch: false }
   );
 
   logOutAttempt$ = createEffect(() =>

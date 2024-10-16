@@ -1,10 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { AccountCreateRequest } from '../../models/API/request/account-create-request.interface';
 import { AccountLoginRequest } from '../../models/API/request/account-login-request.interface';
-import { NameChangeRequest } from '../../models/API/request/name-change-request.interface';
+import { ChangeCharacterRequest } from '../../models/API/request/change-character-request.interface';
 import { AccountAuthenticatedResponse } from '../../models/API/response/account-authenticated-response.interface';
+import { CharacterChangeResponse } from '../../models/API/response/character-change-response.interface';
 import { CharacterVerifiedResponse } from '../../models/API/response/character-verified-response.interface';
-import { NameChangeResponse } from '../../models/API/response/name-change-response.interface';
 import { FormName } from '../../models/enum/form-name.enum';
 
 export abstract class AuthStateActions {
@@ -17,8 +17,8 @@ export abstract class AuthStateActions {
   static readonly verifyAttempt = createAction('@miqomixers/action/verify/attempt');
   static readonly verifySuccess = createAction('@miqomixers/action/verify/success', props<{ response: CharacterVerifiedResponse }>());
   static readonly verifyFailure = createAction('@miqomixers/action/verify/failure', props<{ form: FormName; error: any }>());
-  static readonly nameChangeAttempt = createAction('@miqomixers/action/namechange/attempt', props<{ request: NameChangeRequest }>());
-  static readonly nameChangeSuccess = createAction('@miqomixers/action/namechange/success', props<{ response: NameChangeResponse }>());
+  static readonly characterChangeAttempt = createAction('@miqomixers/action/characterchange/attempt', props<{ request: ChangeCharacterRequest }>());
+  static readonly characterChangeSuccess = createAction('@miqomixers/action/characterchange/success', props<{ response: CharacterChangeResponse }>());
   static readonly logOutAttempt = createAction('@miqomixers/action/logout/attempt');
   static readonly logOutSuccess = createAction('@miqomixers/action/logout/success');
   static readonly deleteAttempt = createAction('@miqomixers/action/delete/attempt');

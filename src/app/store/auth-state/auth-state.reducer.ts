@@ -46,11 +46,14 @@ export const authStateReducer = createReducer(
     })
   ),
   on(
-    AuthStateActions.nameChangeSuccess,
+    AuthStateActions.characterChangeSuccess,
     (state, action): AuthState => ({
       ...state,
       characterName: action.response.characterName,
-      characterServer: action.response.characterServer
+      characterServer: action.response.characterServer,
+      characterID: action.response.characterID,
+      characterVerificationCode: action.response.characterVerificationCode,
+      characterVerified: false
     })
   ),
   on(AuthStateActions.logOutSuccess, (state, action): AuthState => authInitialState),

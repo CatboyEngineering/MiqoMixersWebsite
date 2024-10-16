@@ -8,6 +8,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './verify-character-success.component.html',
   styleUrl: './verify-character-success.component.css'
 })
-export class VerifyCharacterSuccessComponent {
-  onSubmit() {}
-}
+export class VerifyCharacterSuccessComponent {}

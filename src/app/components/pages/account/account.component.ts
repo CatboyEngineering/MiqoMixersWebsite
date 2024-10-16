@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthStateService } from '../../../store/auth-state/auth-state.service';
+import { ChangeCharacterFormComponent } from '../../forms/change-character-form/change-character-form.component';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ChangeCharacterFormComponent],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })
