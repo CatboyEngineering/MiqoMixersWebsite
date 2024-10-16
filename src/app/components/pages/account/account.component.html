@@ -1,0 +1,35 @@
+<div>
+  <h1 class="font-FFXIV text-5xl text-mmRust text-center">Welcome, {{ characterName$ | async }}!</h1>
+  <p>Profile options are coming soon, including:</p>
+  <ul>
+    <li>Change password</li>
+    <li>Change character</li>
+    <li>Delete account</li>
+  </ul>
+  <div class="p-3 my-3 border border-mmBlue rounded-md text-center">
+    <h2 class="font-FFXIV text-3xl text-mmBlue">Change Password</h2>
+  </div>
+  <div class="p-3 my-3 border border-mmRust rounded-md text-center">
+    <h2 class="font-FFXIV text-3xl text-mmRust">Change Character</h2>
+  </div>
+  <div class="p-3 my-3 border border-red-800 rounded-md text-center">
+    <h2 class="font-FFXIV text-3xl text-red-800">Delete Account</h2>
+    <p class="text-sm">If MiqoMixers is not for you, you can click the button below to delete your account.</p>
+    <p class="text-sm font-bold">Note: deleting your account will also delete all venues you have posted.</p>
+    <button
+      type="submit"
+      class="px-2 py-1 mt-5 rounded-md bg-red-800 hover:bg-mmDarkRust active:bg-mmDarkerBlue disabled:bg-gray-500 text-white"
+      (click)="setIsDeleting()"
+      [disabled]="isDeleting">
+      <i class="fa-solid fa-trash"></i>
+      Delete Account
+    </button>
+    <div *ngIf="isDeleting">
+      <p class="text-sm font-bold my-3">This action is irreversible!</p>
+      <button type="submit" class="px-2 py-1 rounded-md bg-red-800 hover:bg-mmDarkRust active:bg-mmDarkerBlue text-white">
+        <i class="fa-solid fa-trash"></i>
+        Confirm Delete
+      </button>
+    </div>
+  </div>
+</div>

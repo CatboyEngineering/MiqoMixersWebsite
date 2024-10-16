@@ -64,6 +64,11 @@ export class FormErrorService {
           form,
           error: 'Your email address or password was incorrect.'
         };
+      case 404:
+        return {
+          form,
+          error: 'That character could not be found.'
+        };
       default:
         return {
           form,

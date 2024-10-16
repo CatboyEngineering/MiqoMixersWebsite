@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AccountComponent } from './components/pages/account/account.component';
 import { AddVenueComponent } from './components/pages/add-venue/add-venue.component';
 import { AdminComponent } from './components/pages/admin/admin.component';
 import { ContentGuidelinesComponent } from './components/pages/content-guidelines/content-guidelines.component';
@@ -62,6 +63,11 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [canActivateAuthenticated(), canActivateIsAdmin()]
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [canActivateAuthenticated()]
   },
   {
     path: 'privacy-policy',
