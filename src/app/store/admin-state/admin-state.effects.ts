@@ -4,6 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { AdminAccountListResponse } from '../../models/API/response/admin-account-list-response.interface';
 import { FormName } from '../../models/enum/form-name.enum';
+import { Report } from '../../models/report.interface';
 import { FormErrorService } from '../../services/form-error-service/form-error.service';
 import { HTTPService } from '../../services/http-service/http.service';
 import { AppDetailsStateActions } from '../app-details-state/app-details-state.actions';
@@ -20,7 +21,7 @@ export class AdminStateEffects {
     private router: Router
   ) {}
 
-  accountRequest$ = createEffect(() =>
+  accountsRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AdminStateActions.requestAccounts),
       mergeMap(action =>
@@ -45,6 +46,56 @@ export class AdminStateEffects {
         })
       ),
     { dispatch: false }
+  );
+
+  reportsRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AdminStateActions.requestReports),
+      mergeMap(action =>
+        this.httpService.GET<Report[]>('report', 'GET_REPORTS').pipe(
+          map(response => {
+            return AdminStateActions.receiveReports({ reports: response.body! });
+          }),
+          catchError(error => {
+            return of(AdminStateActions.retrievalError({ form: FormName.ADMIN, error: error }));
+          })
+        )
+      )
+    )
+  );
+
+  reportsReceived$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AdminStateActions.receiveReports),
+        tap(action => {
+          this.adminStateService.reports$.next(action.reports);
+        })
+      ),
+    { dispatch: false }
+  );
+
+  deleteReportRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AdminStateActions.requestDeleteReport),
+      mergeMap(action =>
+        this.httpService.DELETE<any>('report/' + action.reportID, 'DELETE_REPORT').pipe(
+          map(response => {
+            return AdminStateActions.receiveDeleteReport();
+          }),
+          catchError(error => {
+            return of(AdminStateActions.retrievalError({ form: FormName.ADMIN, error: error }));
+          })
+        )
+      )
+    )
+  );
+
+  deleteReportReceived$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AdminStateActions.receiveDeleteReport),
+      map(() => AdminStateActions.requestReports())
+    )
   );
 
   accountToggleRequest$ = createEffect(() =>

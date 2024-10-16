@@ -2,6 +2,36 @@
 <ui-form-error [formName]="FormName.ADMIN"></ui-form-error>
 
 <div class="my-5">
+  <h2 class="text-3xl text-mmRust font-FFXIV uppercase">Reports</h2>
+
+  <div>
+    <div *ngFor="let report of reports$ | async" class="p-3 m-3 rounded-md bg-mmRust w-fit text-gray-50">
+      <div class="mx-2 self-center">
+        <p class="font-bold">Reporting Account: {{ report.reporterID || 'Guest' }}</p>
+        <p class="text-sm my-1 underline">
+          {{ report.reportReason }}
+        </p>
+        <p class="text-xs my-1 max-w-96 bg-mmDarkRust p-1 rounded-md">{{ report.details }}</p>
+        <p class="text-xs font-semibold">{{ report.dateCreated | date : 'MM/dd/yyyy h:mm a' }}</p>
+        <div class="my-2">
+          <div
+            class="py-2 px-3 w-fit inline-block rounded-md bg-red-700 text-white hover:cursor-pointer hover:bg-red-800 active:bg-red-900"
+            (click)="deleteReport(report.reportID)">
+            <i class="fa-solid fa-trash"></i>
+          </div>
+          <div
+            class="py-2 px-3 w-fit inline-block rounded-md bg-green-700 text-white hover:cursor-pointer hover:bg-green-800 active:bg-green-900"
+            [routerLink]="['/edit-venue']"
+            [queryParams]="{ id: report.venueID }">
+            <i class="fa-solid fa-pencil"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="my-5">
   <h2 class="text-3xl text-mmRust font-FFXIV uppercase">Registered Accounts</h2>
 
   <div>
