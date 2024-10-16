@@ -26,4 +26,8 @@ export class AccountComponent {
   setIsDeleting() {
     this.isDeleting = true;
   }
+
+  deleteAccount() {
+    this.authStateService.onDeleteAccountRequest();
+  }
 }
