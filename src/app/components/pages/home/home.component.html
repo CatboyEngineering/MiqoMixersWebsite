@@ -1,2 +1,5 @@
 <h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase text-center">Venue List</h1>
+<div class="max-w-[85%] bg-amber-100 border border-amber-300 text-amber-500 p-2 text-center rounded-md mx-auto text-sm">
+  <p>MiqoMixers is in beta. Thank you for your patience and feedback!</p>
+</div>
 <app-venue-post *ngFor="let venue of venues$ | async" [venue]="venue"></app-venue-post>

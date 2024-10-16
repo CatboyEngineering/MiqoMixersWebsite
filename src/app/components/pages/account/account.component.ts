@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthStateService } from '../../../store/auth-state/auth-state.service';
 import { ChangeCharacterFormComponent } from '../../forms/change-character-form/change-character-form.component';
+import { ChangePasswordFormComponent } from '../../forms/change-password-form/change-password-form.component';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [CommonModule, ChangeCharacterFormComponent],
+  imports: [CommonModule, ChangeCharacterFormComponent, ChangePasswordFormComponent, RouterLink],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css'
 })

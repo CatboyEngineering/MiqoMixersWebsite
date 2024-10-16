@@ -1,0 +1,21 @@
+<div class="text-center">
+  <h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase">Report Venue</h1>
+  <p class="text-sm my-1">You are reporting this venue to site moderators.</p>
+</div>
+<div *ngIf="venue$ | async as venue">
+  <app-venue-post [venue]="venue" [expanded]="true"></app-venue-post>
+  <div class="p-3 my-2 border border-mmRust rounded-md">
+    <p class="font-bold underline">Reporting a Venue</p>
+    <p class="text-sm my-2">
+      You are reporting the venue above. Please select the most appropriate reason for your report from the dropdown list, as well as any details that
+      will help our moderators with review. If none of the reasons match your concern, please select "Other".
+    </p>
+    <p class="text-sm my-2">Submitting a false report may result in a ban.</p>
+    <p class="text-sm my-2">
+      You can review our Content Guidelines
+      <a class="underline" [routerLink]="['/content-guidelines']">here</a>
+      .
+    </p>
+  </div>
+  <app-report-venue-form [venue]="venue"></app-report-venue-form>
+</div>

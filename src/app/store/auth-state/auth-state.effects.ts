@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, filter, map, mergeMap, of, tap, withLatestFrom } from 'rxjs';
 import { AccountAuthenticatedResponse } from '../../models/API/response/account-authenticated-response.interface';
+import { ChangePasswordResponse } from '../../models/API/response/change-password-response.interface';
 import { CharacterChangeResponse } from '../../models/API/response/character-change-response.interface';
 import { CharacterVerifiedResponse } from '../../models/API/response/character-verified-response.interface';
 import { FormName } from '../../models/enum/form-name.enum';
@@ -133,6 +134,22 @@ export class AuthStateEffects {
         })
       ),
     { dispatch: false }
+  );
+
+  passwordChangeAttempt$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthStateActions.passwordChangeAttempt),
+      mergeMap(action =>
+        this.httpService.PATCH<ChangePasswordResponse>('account/password', action.request, 'CHANGE_PASSWORD').pipe(
+          map(response => {
+            return AuthStateActions.passwordChangeSuccess({ response: response.body! });
+          }),
+          catchError(error => {
+            return of(AuthStateActions.authFailure({ form: FormName.CHANGE_PASSWORD, error: error }));
+          })
+        )
+      )
+    )
   );
 
   logOutAttempt$ = createEffect(() =>

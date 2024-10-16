@@ -11,12 +11,15 @@ import { MyVenuesComponent } from './components/pages/my-venues/my-venues.compon
 import { NotFoundComponent } from './components/pages/not-found/not-found.component';
 import { PrivacyComponent } from './components/pages/privacy/privacy.component';
 import { RegisterComponent } from './components/pages/register/register.component';
+import { ReportSubmittedComponent } from './components/pages/report-submitted/report-submitted.component';
+import { ReportComponent } from './components/pages/report/report.component';
 import { TermsComponent } from './components/pages/terms/terms.component';
 import { VerifyCharacterSuccessComponent } from './components/pages/verify-character-success/verify-character-success.component';
 import { VerifyCharacterComponent } from './components/pages/verify-character/verify-character.component';
 import { canActivateIsAdmin } from './guards/admin-guard/can-activate-admin';
 import { canActivateAuthenticated } from './guards/auth-guard/can-activate-authenticated';
 import { canActivateEditVenue } from './guards/can-activate-edit-venue-guard/can-activate-edit-venue';
+import { canActivateReportVenue } from './guards/report-venue-guard/report-venue-guard';
 import { canActivateCharacterUnverified } from './guards/unverified-guard/can-activate-character-unverified';
 import { canActivateCharacterVerified } from './guards/verified-guard/can-activate-character-verified';
 
@@ -68,6 +71,15 @@ export const routes: Routes = [
     path: 'account',
     component: AccountComponent,
     canActivate: [canActivateAuthenticated()]
+  },
+  {
+    path: 'report-venue',
+    component: ReportComponent,
+    canActivate: [canActivateReportVenue]
+  },
+  {
+    path: 'report-submitted',
+    component: ReportSubmittedComponent
   },
   {
     path: 'privacy-policy',

@@ -2,7 +2,9 @@ import { createAction, props } from '@ngrx/store';
 import { AccountCreateRequest } from '../../models/API/request/account-create-request.interface';
 import { AccountLoginRequest } from '../../models/API/request/account-login-request.interface';
 import { ChangeCharacterRequest } from '../../models/API/request/change-character-request.interface';
+import { ChangePasswordRequest } from '../../models/API/request/change-password-request.interface';
 import { AccountAuthenticatedResponse } from '../../models/API/response/account-authenticated-response.interface';
+import { ChangePasswordResponse } from '../../models/API/response/change-password-response.interface';
 import { CharacterChangeResponse } from '../../models/API/response/character-change-response.interface';
 import { CharacterVerifiedResponse } from '../../models/API/response/character-verified-response.interface';
 import { FormName } from '../../models/enum/form-name.enum';
@@ -19,6 +21,8 @@ export abstract class AuthStateActions {
   static readonly verifyFailure = createAction('@miqomixers/action/verify/failure', props<{ form: FormName; error: any }>());
   static readonly characterChangeAttempt = createAction('@miqomixers/action/characterchange/attempt', props<{ request: ChangeCharacterRequest }>());
   static readonly characterChangeSuccess = createAction('@miqomixers/action/characterchange/success', props<{ response: CharacterChangeResponse }>());
+  static readonly passwordChangeAttempt = createAction('@miqomixers/action/passwordchange/attempt', props<{ request: ChangePasswordRequest }>());
+  static readonly passwordChangeSuccess = createAction('@miqomixers/action/passwordchange/success', props<{ response: ChangePasswordResponse }>());
   static readonly logOutAttempt = createAction('@miqomixers/action/logout/attempt');
   static readonly logOutSuccess = createAction('@miqomixers/action/logout/success');
   static readonly deleteAttempt = createAction('@miqomixers/action/delete/attempt');

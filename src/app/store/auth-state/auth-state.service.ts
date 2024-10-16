@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AccountCreateRequest } from '../../models/API/request/account-create-request.interface';
 import { AccountLoginRequest } from '../../models/API/request/account-login-request.interface';
 import { ChangeCharacterRequest } from '../../models/API/request/change-character-request.interface';
+import { ChangePasswordRequest } from '../../models/API/request/change-password-request.interface';
 import { AuthStateActions } from './auth-state.actions';
 import {
   selectAccountID,
@@ -47,6 +48,10 @@ export class AuthStateService {
 
   onChangeCharacterRequest(request: ChangeCharacterRequest): void {
     this.store.dispatch(AuthStateActions.characterChangeAttempt({ request }));
+  }
+
+  onChangePasswordRequest(request: ChangePasswordRequest): void {
+    this.store.dispatch(AuthStateActions.passwordChangeAttempt({ request }));
   }
 
   onDeleteAccountRequest(): void {

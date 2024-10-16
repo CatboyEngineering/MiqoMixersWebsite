@@ -1,0 +1,46 @@
+<form [formGroup]="reportVenueForm" #form="ngForm" (ngSubmit)="submit()" class="p-3">
+  <ui-form-error [formName]="FormName.REPORT_VENUE"></ui-form-error>
+
+  <ui-form-field-error [form]="form" [errorFor]="'reportReason'" [errorType]="'required'">Please select a report reason</ui-form-field-error>
+
+  <div class="mx-2 my-2 flex">
+    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-circle-exclamation w-8 text-mmRust"></i>
+
+    <select
+      formControlName="reportReason"
+      class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+      <option disabled [value]="''">Report reason...</option>
+      <option>The Venue is inactive or closed</option>
+      <option>The Venue details are incorrect</option>
+      <option>This listing is a duplicate of another</option>
+      <option>Somebody else posted my Venue</option>
+      <option>This post's website is broken or dangerous</option>
+      <option>This Venue features adult content and is not properly tagged</option>
+      <option>This venue violates the Content Guidelines</option>
+      <option>I have a copyright or legal concern</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <ui-form-field-error [form]="form" [errorFor]="'details'" [errorType]="'required'">Please provide details about the report</ui-form-field-error>
+  <div class="mx-2 my-2 flex">
+    <i class="flex-initial mx-1 text-2xl self-center fa-solid fa-circle-info w-8 text-mmRust"></i>
+    <textarea
+      placeholder="Add any relevant details here..."
+      maxlength="500"
+      formControlName="details"
+      rows="3"
+      class="flex-auto border-b border-gray-800 dark:border-gray-500 self-center px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust"></textarea>
+  </div>
+
+  <br />
+
+  <div class="text-center">
+    <button
+      [disabled]="isLoading$ | async"
+      class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
+      type="submit">
+      Submit Report
+    </button>
+  </div>
+</form>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, filter, withLatestFrom } from 'rxjs';
+import { ReportVenueRequest } from '../../models/API/request/report-venue-request.interface';
 import { FormValidationError } from '../../models/form-validation-error.interface';
 import { AppDetailsStateActions } from './app-details-state.actions';
 
@@ -26,6 +27,10 @@ export class AppDetailsStateService {
 
   onFormErrorsCleared() {
     this.store.dispatch(AppDetailsStateActions.formErrorsCleared());
+  }
+
+  onRequestReport(request: ReportVenueRequest) {
+    this.store.dispatch(AppDetailsStateActions.requestReport({ request }));
   }
 
   private watchPageNavigation(): void {

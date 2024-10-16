@@ -18,8 +18,8 @@ import { UiFormErrorComponent } from '../ui-form-error/ui-form-error.component';
 export class VenuePostComponent {
   @Input() venue: Venue;
   @Input() isEditing: boolean = false;
+  @Input() expanded: boolean = false;
 
-  expanded: boolean = false;
   isDeleting: boolean = false;
 
   FormName = FormName;

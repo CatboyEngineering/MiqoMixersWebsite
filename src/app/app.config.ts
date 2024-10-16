@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
@@ -19,7 +19,12 @@ export const metaReducers: MetaReducer[] = [localstorageMetaReducer];
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'top'
+      })
+    ),
     provideStore(rootReducer, { metaReducers: metaReducers }),
     provideEffects([AuthStateEffects, AppDetailsStateEffects, VenueStateEffects, AdminStateEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !environment.production }),

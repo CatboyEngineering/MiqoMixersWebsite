@@ -3,9 +3,13 @@
 
   <div class="p-3 my-3 border border-mmBlue rounded-md text-center">
     <h2 class="font-FFXIV text-3xl text-mmBlue">Change Password</h2>
+    <p class="text-sm">Use the form below to change your MiqoMixers password.</p>
+    <app-change-password-form></app-change-password-form>
   </div>
   <div class="p-3 my-3 border border-mmRust rounded-md text-center">
     <h2 class="font-FFXIV text-3xl text-mmRust">Change Character</h2>
+    <p class="text-sm">Changed your character's name? Want to use an alt? Enter their details below.</p>
+    <p class="text-sm font-bold">Note: this change will require re-verification.</p>
     <app-change-character-form></app-change-character-form>
   </div>
   <div class="p-3 my-3 border border-red-800 rounded-md text-center">
@@ -27,5 +31,14 @@
         Confirm Delete
       </button>
     </div>
+  </div>
+  <div class="mt-2">
+    <p class="text-xs text-center">
+      Copyright &copy; Catboy Engineering, 2024. All rights reserved. Read our
+      <a class="underline hover:text-ksNavy" [routerLink]="['/terms']">Terms,</a>
+      <a class="underline hover:text-ksNavy ml-1" [routerLink]="['/privacy-policy']">Privacy Policy,</a>
+      and
+      <a class="underline hover:text-ksNavy" [routerLink]="['/content-guidelines']">Content Guidelines</a>
+    </p>
   </div>
 </div>

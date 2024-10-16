@@ -56,6 +56,13 @@ export const authStateReducer = createReducer(
       characterVerified: false
     })
   ),
+  on(
+    AuthStateActions.passwordChangeSuccess,
+    (state, action): AuthState => ({
+      ...state,
+      authToken: action.response.authToken
+    })
+  ),
   on(AuthStateActions.logOutSuccess, (state, action): AuthState => authInitialState),
   on(AuthStateActions.authExpired, (state, action): AuthState => authInitialState),
   on(AuthStateActions.authDataCleared, (state, action): AuthState => authInitialState)
