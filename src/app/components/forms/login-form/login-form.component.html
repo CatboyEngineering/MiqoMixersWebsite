@@ -1,7 +1,8 @@
-<form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="submit()" class="p-3">
+<form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="submit()" class="p-3 w-fit mx-auto">
   <ui-form-error [formName]="FormName.LOG_IN"></ui-form-error>
 
   <ui-form-field-error [form]="form" [errorFor]="'email'" [errorType]="'required'">Email is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'email'" [errorType]="'email'">Please enter a valid email address.</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'required'">Password is required</ui-form-field-error>
 
   <div class="inline-block mx-2 my-2">
@@ -10,7 +11,7 @@
       type="text"
       placeholder="wol@scions.org"
       formControlName="email"
-      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <div class="inline-block mx-2 my-2">
@@ -19,14 +20,14 @@
       type="password"
       placeholder="Password"
       formControlName="password"
-      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <br />
 
   <button
     [disabled]="isLoading$ | async"
-    class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 my-3 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
+    class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 my-3 outline-none focus:outline-mmRust focus:outline-1 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
     type="submit">
     Log In
   </button>

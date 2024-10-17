@@ -1,8 +1,21 @@
 <div class="my-5">
   <div *ngIf="!isDeleting; else readyToDelete">
+    <!-- A nice banner -->
+    <div class="relative top-3 -left-4 -rotate-12 w-32 px-1 text-center font-lilitaOne" [ngSwitch]="venueHoursStatus">
+      <div *ngSwitchCase="VenueHoursStatus.OPENING_SOON" class="rounded-md bg-mmBlue">
+        <p>Opening Soon</p>
+      </div>
+      <div *ngSwitchCase="VenueHoursStatus.OPEN" class="rounded-md bg-[#0aad4b]">
+        <p>Open Now</p>
+      </div>
+      <div *ngSwitchCase="VenueHoursStatus.CLOSING_SOON" class="rounded-md bg-mmRust">
+        <p>Closing Soon</p>
+      </div>
+    </div>
     <!-- Venue info -->
     <div
       class="p-3 rounded-tl-md rounded-tr-md {{ !expanded ? 'rounded-md' : '' }} bg-gray-50 dark:bg-gray-600 hover:cursor-pointer flex"
+      style="{{ borderColor }}"
       (click)="toggleExpand()">
       <div>
         <p class="text-lg font-bold">{{ venue.venue.venueName }}</p>

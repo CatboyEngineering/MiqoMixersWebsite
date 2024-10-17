@@ -1,7 +1,8 @@
-<form [formGroup]="registerForm" #form="ngForm" (ngSubmit)="submit()" class="p-3">
+<form [formGroup]="registerForm" #form="ngForm" (ngSubmit)="submit()" class="p-3 w-fit mx-auto">
   <ui-form-error [formName]="FormName.REGISTER_ACCOUNT"></ui-form-error>
 
   <ui-form-field-error [form]="form" [errorFor]="'email'" [errorType]="'required'">Email is required</ui-form-field-error>
+  <ui-form-field-error [form]="form" [errorFor]="'email'" [errorType]="'email'">Please enter a valid email address.</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'required'">Password is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'minlength'">Passwords must be at least 8 characters</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'password'" [errorType]="'pattern'">
@@ -22,7 +23,7 @@
       type="text"
       placeholder="wol@scions.org"
       formControlName="email"
-      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <div class="inline-block mx-2 my-2">
@@ -31,7 +32,7 @@
       type="password"
       placeholder="Password"
       formControlName="password"
-      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <br />
@@ -42,7 +43,7 @@
       type="password"
       placeholder="Confirm Password"
       formControlName="confirmPassword"
-      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-3 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <div class="inline-block mx-2 my-2">
@@ -51,7 +52,7 @@
       type="text"
       placeholder="Character Name"
       formControlName="characterName"
-      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
   </div>
 
   <br />
@@ -61,7 +62,7 @@
 
     <select
       formControlName="characterServer"
-      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+      class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
       <optgroup label="Aether">
         <option>Adamantoise</option>
         <option>Cactuar</option>
@@ -109,7 +110,7 @@
 
   <button
     [disabled]="isLoading$ | async"
-    class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 my-3 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
+    class="bg-mmBlue font-bold text-gray-100 rounded-md outline-none focus:outline-mmRust focus:outline-1 px-3 py-2 my-3 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
     type="submit">
     Create Account
   </button>

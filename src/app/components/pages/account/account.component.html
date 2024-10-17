@@ -18,7 +18,7 @@
     <p class="text-sm font-bold">Note: deleting your account will also delete all venues you have posted.</p>
     <button
       type="submit"
-      class="px-2 py-1 mt-5 rounded-md bg-red-800 hover:bg-mmDarkRust active:bg-mmDarkerBlue disabled:bg-gray-500 text-white"
+      class="px-2 py-1 mt-5 rounded-md outline-none focus:outline-mmRust focus:outline-1 bg-red-800 hover:bg-mmDarkRust active:bg-mmDarkerBlue disabled:bg-gray-500 text-white"
       (click)="setIsDeleting()"
       [disabled]="isDeleting">
       <i class="fa-solid fa-trash"></i>
@@ -26,7 +26,10 @@
     </button>
     <div *ngIf="isDeleting">
       <p class="text-sm font-bold my-3">This action is irreversible!</p>
-      <button type="submit" class="px-2 py-1 rounded-md bg-red-800 hover:bg-mmDarkRust active:bg-mmDarkerBlue text-white" (click)="deleteAccount()">
+      <button
+        type="submit"
+        class="px-2 py-1 rounded-md outline-none focus:outline-mmRust focus:outline-1 bg-red-800 hover:bg-mmDarkRust active:bg-mmDarkerBlue text-white"
+        (click)="deleteAccount()">
         <i class="fa-solid fa-trash"></i>
         Confirm Delete
       </button>

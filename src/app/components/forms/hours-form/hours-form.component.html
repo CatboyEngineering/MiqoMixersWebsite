@@ -12,7 +12,7 @@
       formControlName="isConstant"
       [value]="true"
       (change)="prepareIsConstant()"
-      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none" />
+      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1" />
     <label for="radioconstant" class="inline-block mx-1">Constant</label>
   </div>
   <div class="inline-block mx-1">
@@ -22,7 +22,7 @@
       formControlName="isConstant"
       [value]="false"
       (change)="prepareIsVariable()"
-      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none" />
+      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1" />
     <label for="radiovariable" class="inline-block mx-1">Variable</label>
   </div>
 
@@ -34,7 +34,7 @@
         <p class="self-center">Day:</p>
         <select
           formControlName="day"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Select Day...</option>
           <option>Sunday</option>
           <option>Monday</option>
@@ -53,7 +53,7 @@
         <p class="self-center">Open:</p>
         <select
           formControlName="openHour"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Hour</option>
           <option value="0">12 AM</option>
           <option value="1">1 AM</option>
@@ -83,7 +83,7 @@
         <p>:</p>
         <select
           formControlName="openMinute"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Min</option>
           <option value="0">00</option>
           <option value="15">15</option>
@@ -99,7 +99,7 @@
         <p class="self-center">Close:</p>
         <select
           formControlName="closeHour"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Hour</option>
           <option value="0">12 AM</option>
           <option value="1">1 AM</option>
@@ -129,7 +129,7 @@
         <p>:</p>
         <select
           formControlName="closeMinute"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Min</option>
           <option value="0">00</option>
           <option value="15">15</option>
@@ -144,7 +144,7 @@
         <p class="self-center">Timezone:</p>
         <select
           formControlName="timezoneID"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
           <option disabled [value]="null">Timezone...</option>
           <option value="Pacific/Honolulu">Hawaii</option>
           <option value="America/Anchorage">Alaska</option>
@@ -168,7 +168,7 @@
           type="string"
           placeholder="M - F"
           formControlName="variableDay"
-          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
       </div>
 
       <ui-form-field-error [form]="form" [errorFor]="'variableTimes'" [errorType]="'required'">
@@ -181,11 +181,12 @@
           type="string"
           placeholder="8PM - 10PM ET"
           formControlName="variableTimes"
-          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
       </div>
     </div>
   </ng-template>
-  <button class="px-2 py-1 rounded-md w-full bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
+  <button
+    class="px-2 py-1 rounded-md w-full outline-none focus:outline-mmRust focus:outline-1 bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
     <i class="fa-solid fa-plus"></i>
     Add
   </button>

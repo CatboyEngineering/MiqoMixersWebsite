@@ -13,7 +13,7 @@
         type="text"
         placeholder="Character Name"
         formControlName="characterName"
-        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none placeholder:text-gray-500 text-mmRust" />
+        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
     </div>
   </div>
   <div>
@@ -23,7 +23,7 @@
 
       <select
         formControlName="characterServer"
-        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none placeholder:text-gray-500 text-mmRust">
+        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
         <optgroup label="Aether">
           <option>Adamantoise</option>
           <option>Cactuar</option>
@@ -71,7 +71,7 @@
   <div class="text-center">
     <button
       [disabled]="isLoading$ | async"
-      class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 my-3 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
+      class="bg-mmBlue font-bold text-gray-100 rounded-md px-3 py-2 my-3 outline-none focus:outline-mmRust focus:outline-1 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
       type="submit">
       Change Character
     </button>

@@ -24,6 +24,11 @@ export class FormErrorService {
     }
 
     switch (error.status) {
+      case 0:
+        return {
+          form,
+          error: 'The MiqoMixers server could not be reached.'
+        };
       case 400:
         return {
           form,
@@ -54,6 +59,11 @@ export class FormErrorService {
 
   private mapRegisterFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
+      case 0:
+        return {
+          form,
+          error: 'The MiqoMixers server could not be reached.'
+        };
       case 400:
         return {
           form,
@@ -79,6 +89,11 @@ export class FormErrorService {
 
   private mapLoginFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
+      case 0:
+        return {
+          form,
+          error: 'The MiqoMixers server could not be reached.'
+        };
       case 400:
         return {
           form,
@@ -110,6 +125,11 @@ export class FormErrorService {
 
   private mapVerifyFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
+      case 0:
+        return {
+          form,
+          error: 'The MiqoMixers server could not be reached.'
+        };
       case 400:
         return {
           form,
@@ -135,6 +155,11 @@ export class FormErrorService {
 
   private mapAdminFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
+      case 0:
+        return {
+          form,
+          error: 'The MiqoMixers server could not be reached.'
+        };
       case 400:
         return {
           form,
@@ -165,6 +190,11 @@ export class FormErrorService {
 
   private mapChangeCharacterFailure(form: FormName, error: HttpErrorResponse): FormValidationError {
     switch (error.status) {
+      case 0:
+        return {
+          form,
+          error: 'The MiqoMixers server could not be reached.'
+        };
       case 400:
         return {
           form,
