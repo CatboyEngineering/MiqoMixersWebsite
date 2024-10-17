@@ -25,7 +25,7 @@ export class AdminStateEffects {
     this.actions$.pipe(
       ofType(AdminStateActions.requestAccounts),
       mergeMap(action =>
-        this.httpService.GET<AdminAccountListResponse[]>('admin/accounts', 'GET_ACCOUNTS').pipe(
+        this.httpService.GET<AdminAccountListResponse[]>('admin/accounts', undefined).pipe(
           map(response => {
             return AdminStateActions.receiveAccounts({ accounts: response.body! });
           }),
@@ -52,7 +52,7 @@ export class AdminStateEffects {
     this.actions$.pipe(
       ofType(AdminStateActions.requestReports),
       mergeMap(action =>
-        this.httpService.GET<Report[]>('report', 'GET_REPORTS').pipe(
+        this.httpService.GET<Report[]>('report', undefined).pipe(
           map(response => {
             return AdminStateActions.receiveReports({ reports: response.body! });
           }),
@@ -79,7 +79,7 @@ export class AdminStateEffects {
     this.actions$.pipe(
       ofType(AdminStateActions.requestDeleteReport),
       mergeMap(action =>
-        this.httpService.DELETE<any>('report/' + action.reportID, 'DELETE_REPORT').pipe(
+        this.httpService.DELETE<any>('report/' + action.reportID, undefined).pipe(
           map(response => {
             return AdminStateActions.receiveDeleteReport();
           }),
@@ -102,7 +102,7 @@ export class AdminStateEffects {
     this.actions$.pipe(
       ofType(AdminStateActions.requestAccountStatusToggle),
       mergeMap(action =>
-        this.httpService.PATCH<AdminAccountListResponse>('admin/account/' + action.accountID, null, 'TOGGLE_ACCOUNT').pipe(
+        this.httpService.PATCH<AdminAccountListResponse>('admin/account/' + action.accountID, null, undefined).pipe(
           map(response => {
             return AdminStateActions.receiveAccountStatusToggle({ account: response.body! });
           }),

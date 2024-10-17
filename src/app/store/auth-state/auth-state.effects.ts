@@ -27,7 +27,7 @@ export class AuthStateEffects {
     this.actions$.pipe(
       ofType(AuthStateActions.registerAttempt),
       mergeMap(action =>
-        this.httpService.PUT<AccountAuthenticatedResponse>('account', action.request, 'REGISTER_ACCOUNT').pipe(
+        this.httpService.PUT<AccountAuthenticatedResponse>('account', action.request, 'PUT_REGISTER').pipe(
           map(response => {
             return AuthStateActions.registerSuccess({ response: response.body! });
           }),
@@ -54,7 +54,7 @@ export class AuthStateEffects {
     this.actions$.pipe(
       ofType(AuthStateActions.loginAttempt),
       mergeMap(action =>
-        this.httpService.POST<AccountAuthenticatedResponse>('account', action.request, 'LOG_IN').pipe(
+        this.httpService.POST<AccountAuthenticatedResponse>('account', action.request, 'POST_LOGIN').pipe(
           map(response => {
             return AuthStateActions.loginSuccess({ response: response.body! });
           }),
@@ -86,7 +86,7 @@ export class AuthStateEffects {
     this.actions$.pipe(
       ofType(AuthStateActions.verifyAttempt),
       mergeMap(action =>
-        this.httpService.PUT<CharacterVerifiedResponse>('account/verify', null, 'VERIFY_CHARACTER').pipe(
+        this.httpService.PUT<CharacterVerifiedResponse>('account/verify', null, undefined).pipe(
           map(response => {
             return AuthStateActions.verifySuccess({ response: response.body! });
           }),
@@ -113,7 +113,7 @@ export class AuthStateEffects {
     this.actions$.pipe(
       ofType(AuthStateActions.characterChangeAttempt),
       mergeMap(action =>
-        this.httpService.PATCH<CharacterChangeResponse>('account', action.request, 'CHANGE_CHARACTER').pipe(
+        this.httpService.PATCH<CharacterChangeResponse>('account', action.request, undefined).pipe(
           map(response => {
             return AuthStateActions.characterChangeSuccess({ response: response.body! });
           }),
@@ -140,7 +140,7 @@ export class AuthStateEffects {
     this.actions$.pipe(
       ofType(AuthStateActions.passwordChangeAttempt),
       mergeMap(action =>
-        this.httpService.PATCH<ChangePasswordResponse>('account/password', action.request, 'CHANGE_PASSWORD').pipe(
+        this.httpService.PATCH<ChangePasswordResponse>('account/password', action.request, undefined).pipe(
           map(response => {
             return AuthStateActions.passwordChangeSuccess({ response: response.body! });
           }),
@@ -156,7 +156,7 @@ export class AuthStateEffects {
     this.actions$.pipe(
       ofType(AuthStateActions.logOutAttempt),
       mergeMap(() =>
-        this.httpService.POST<any>('logout', {}, 'LOG_OUT').pipe(
+        this.httpService.POST<any>('logout', {}, undefined).pipe(
           map(response => {
             return AuthStateActions.logOutSuccess();
           }),
@@ -183,7 +183,7 @@ export class AuthStateEffects {
     this.actions$.pipe(
       ofType(AuthStateActions.deleteAttempt),
       mergeMap(() =>
-        this.httpService.DELETE<any>('account', 'DELETE_ACCOUNT').pipe(
+        this.httpService.DELETE<any>('account', undefined).pipe(
           map(response => {
             return AuthStateActions.deleteSuccess();
           })
@@ -218,7 +218,7 @@ export class AuthStateEffects {
       withLatestFrom(this.authStateService.authToken$),
       filter(([_, token]) => !!token),
       mergeMap(() =>
-        this.httpService.GET<any>('account', 'GET_ACCOUNT').pipe(
+        this.httpService.GET<any>('account', undefined).pipe(
           map(() => {
             return AuthStateActions.authenticationHeartbeatSucceeded();
           }),

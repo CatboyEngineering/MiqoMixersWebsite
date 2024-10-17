@@ -1,9 +1,8 @@
-import { HttpClient, HttpErrorResponse, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthStateService } from '../../store/auth-state/auth-state.service';
-import { Router } from '@angular/router';
-import { Observable, catchError, combineLatest, filter, finalize, map, mergeMap, switchMap, take, tap, withLatestFrom } from 'rxjs';
+import { Observable, catchError, combineLatest, filter, finalize, map, switchMap, take } from 'rxjs';
 import { environment } from '../../../environments/environment.dev';
+import { AuthStateService } from '../../store/auth-state/auth-state.service';
 import { CaptchaService } from '../captcha-service/captcha.service';
 import { LoadingService } from '../loading-service/loading.service';
 
@@ -11,9 +10,14 @@ import { LoadingService } from '../loading-service/loading.service';
   providedIn: 'root'
 })
 export class HTTPService {
-  constructor(private http: HttpClient, private authStateService: AuthStateService, private captchaService: CaptchaService, private loadingService: LoadingService) {}
+  constructor(
+    private http: HttpClient,
+    private authStateService: AuthStateService,
+    private captchaService: CaptchaService,
+    private loadingService: LoadingService
+  ) {}
 
-  GET<T>(url: string, action: string): Observable<HttpResponse<T>> {
+  GET<T>(url: string, action?: string): Observable<HttpResponse<T>> {
     this.loadingService.beginLoad();
 
     return combineLatest([this.authStateService.authToken$, this.captchaService.createCaptchaToken$(action)]).pipe(
@@ -25,7 +29,7 @@ export class HTTPService {
     );
   }
 
-  POST<T>(url: string, body: any, action: string): Observable<HttpResponse<T>> {
+  POST<T>(url: string, body: any, action?: string): Observable<HttpResponse<T>> {
     this.loadingService.beginLoad();
 
     return combineLatest([this.authStateService.authToken$, this.captchaService.createCaptchaToken$(action)]).pipe(
@@ -37,7 +41,7 @@ export class HTTPService {
     );
   }
 
-  PUT<T>(url: string, body: any, action: string): Observable<HttpResponse<T>> {
+  PUT<T>(url: string, body: any, action?: string): Observable<HttpResponse<T>> {
     this.loadingService.beginLoad();
 
     return combineLatest([this.authStateService.authToken$, this.captchaService.createCaptchaToken$(action)]).pipe(
@@ -49,7 +53,7 @@ export class HTTPService {
     );
   }
 
-  PATCH<T>(url: string, body: any, action: string): Observable<HttpResponse<T>> {
+  PATCH<T>(url: string, body: any, action?: string): Observable<HttpResponse<T>> {
     this.loadingService.beginLoad();
 
     return combineLatest([this.authStateService.authToken$, this.captchaService.createCaptchaToken$(action)]).pipe(
@@ -61,7 +65,7 @@ export class HTTPService {
     );
   }
 
-  DELETE<T>(url: string, action: string): Observable<HttpResponse<T>> {
+  DELETE<T>(url: string, action?: string): Observable<HttpResponse<T>> {
     this.loadingService.beginLoad();
 
     return combineLatest([this.authStateService.authToken$, this.captchaService.createCaptchaToken$(action)]).pipe(

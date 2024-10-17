@@ -24,7 +24,7 @@ export class VenueStateEffects {
     this.actions$.pipe(
       ofType(VenueStateActions.requestVenues),
       mergeMap(action =>
-        this.httpService.GET<Venue[]>('venue', 'GET_VENUES').pipe(
+        this.httpService.GET<Venue[]>('venue', undefined).pipe(
           map(response => {
             return VenueStateActions.receiveVenues({ venues: response.body! });
           }),
@@ -51,7 +51,7 @@ export class VenueStateEffects {
     this.actions$.pipe(
       ofType(VenueStateActions.requestDeleteVenue),
       mergeMap(action =>
-        this.httpService.DELETE<any>('venue/' + action.venue.venue.venueID, 'DELETE_VENUE').pipe(
+        this.httpService.DELETE<any>('venue/' + action.venue.venue.venueID, undefined).pipe(
           map(response => {
             return VenueStateActions.receiveDeleteVenue({ venue: action.venue });
           }),
@@ -74,7 +74,7 @@ export class VenueStateEffects {
     this.actions$.pipe(
       ofType(VenueStateActions.requestAddVenue),
       mergeMap(action =>
-        this.httpService.PUT<any>('venue', action.request, 'ADD_VENUE').pipe(
+        this.httpService.PUT<any>('venue', action.request, undefined).pipe(
           map(response => {
             return VenueStateActions.receiveAddVenue();
           }),
@@ -98,7 +98,7 @@ export class VenueStateEffects {
     this.actions$.pipe(
       ofType(VenueStateActions.requestUpdateVenue),
       mergeMap(action =>
-        this.httpService.PATCH<any>('venue/' + action.venueID, action.request, 'UPDATE_VENUE').pipe(
+        this.httpService.PATCH<any>('venue/' + action.venueID, action.request, undefined).pipe(
           map(response => {
             return VenueStateActions.receiveUpdateVenue();
           }),
