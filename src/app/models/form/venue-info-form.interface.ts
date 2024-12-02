@@ -20,4 +20,6 @@ export interface VenueInfoForm {
   >;
   website: FormControl<string>;
   tags: FormControl<string>;
+  syncShellID: FormControl<string | null>;
+  syncShellPass: FormControl<string | null>;
 }

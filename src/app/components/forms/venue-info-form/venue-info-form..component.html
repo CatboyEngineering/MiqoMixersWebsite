@@ -72,6 +72,7 @@
         <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-server w-8 text-mmRust"></i>
 
         <select
+          #dataCenter
           formControlName="datacenter"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
           <option>Aether</option>
@@ -87,7 +88,7 @@
         <select
           formControlName="world"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
-          <optgroup label="Aether">
+          <optgroup *ngIf="dataCenter.value === 'Aether'" label="Aether">
             <option>Adamantoise</option>
             <option>Cactuar</option>
             <option>Faerie</option>
@@ -97,7 +98,7 @@
             <option>Sargatanas</option>
             <option>Siren</option>
           </optgroup>
-          <optgroup label="Crystal">
+          <optgroup *ngIf="dataCenter.value === 'Crystal'" label="Crystal">
             <option>Balmung</option>
             <option>Brynhildr</option>
             <option>Coeurl</option>
@@ -107,7 +108,7 @@
             <option>Mateus</option>
             <option>Zalera</option>
           </optgroup>
-          <optgroup label="Dynamis">
+          <optgroup *ngIf="dataCenter.value === 'Dynamis'" label="Dynamis">
             <option>Cuchulainn</option>
             <option>Golem</option>
             <option>Halicarnassus</option>
@@ -117,7 +118,7 @@
             <option>Rafflesia</option>
             <option>Seraph</option>
           </optgroup>
-          <optgroup label="Primal">
+          <optgroup *ngIf="dataCenter.value === 'Primal'" label="Primal">
             <option>Behemoth</option>
             <option>Excalibur</option>
             <option>Exodus</option>
@@ -170,38 +171,83 @@
     </div>
   </div>
 
+  <!-- Mare Info -->
+  <h2 class="text-3xl text-mmRust my-2 mt-5 font-FFXIV uppercase">Mare Synchronos</h2>
+  <div class="border border-mmDarkRust p-3 rounded-md">
+    <div class="flex mb-4 mx-2 text-gray-700 dark:text-gray-400">
+      <i class="text-lg self-center flex-initial fa-solid fa-circle-info"></i>
+      <p class="text-sm self-center flex-initial mx-1">
+        If this venue uses Mare Synchronos, provide the details here. Otherwise, leave this section blank.
+      </p>
+    </div>
+    <div class="mx-2 my-2 flex">
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-wifi w-8 text-mmRust"></i>
+
+      <input
+        data-1p-ignore
+        type="text"
+        placeholder="SyncShell ID"
+        formControlName="syncShellID"
+        class="self-center border-b border-gray-800 dark:border-gray-500 max-w-60 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+    </div>
+
+    <div class="mx-2 my-2 flex">
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-lock w-8 text-mmRust"></i>
+
+      <input
+        data-1p-ignore
+        type="text"
+        placeholder="SyncShell Password"
+        formControlName="syncShellPass"
+        class="self-center border-b border-gray-800 dark:border-gray-500 max-w-60 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+    </div>
+  </div>
+
   <!-- Times -->
   <h2 class="text-3xl text-mmRust my-2 mt-5 font-FFXIV uppercase">Times</h2>
   <div class="border border-mmDarkRust p-3 rounded-md">
-    <ng-container *ngIf="venueInfoForm.controls.hours.value.length > 0; else noTimes">
-      <h2 class="text-2xl text-mmRust font-FFXIV uppercase">This Venue is Open:</h2>
-      <div *ngFor="let hour of venueInfoForm.controls.hours.value; let i = index" class="flex my-1">
-        <i class="flex-initial self-center fa-regular fa-clock mr-1"></i>
-        <div class="self-center text-sm">
-          <ng-container *ngIf="hour.day; else variable">
-            <p class="inline-block font-bold mx-1">{{ hour.day }}:</p>
-            <p class="inline-block">{{ hour.open! | time : true }}</p>
-            <p class="inline-block mx-1">-</p>
-            <p class="inline-block">{{ hour.close! | time : true }}</p>
-          </ng-container>
-          <ng-template #variable>
-            <p class="inline-block font-bold mx-1">{{ hour.variableDay }}:</p>
-            <p class="inline-block">{{ hour.variableTimes }}</p>
-          </ng-template>
-        </div>
-        <div
-          class="flex-initial self-center px-1.5 mx-2 rounded-md bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkBlue hover:cursor-pointer"
-          (click)="onHoursRemoved(i)">
-          <i class="fa-solid fa-xmark"></i>
-        </div>
-      </div>
-    </ng-container>
-    <ng-template #noTimes>
-      <p>You have not added any times to this venue</p>
-    </ng-template>
+    <div class="flex mb-4 mx-2 text-gray-700 dark:text-gray-400">
+      <i class="text-lg self-center flex-initial fa-solid fa-circle-info"></i>
+      <p class="text-sm self-center flex-initial mx-1">
+        Add Constant hours if this venue has regular operating hours, and Variable hours if the times vary. Constant hours help your venue stand out.
+      </p>
+    </div>
 
-    <div class="my-2">
-      <app-hours-form (onHoursAdded)="onHoursAdded($event)"></app-hours-form>
+    <div class="mx-2 md:flex">
+      <app-hours-form (onHoursAdded)="onHoursAdded($event)" class="flex-initial self-center"></app-hours-form>
+
+      <div class="flex-auto"></div>
+
+      <div class="flex-initial self-start my-4 md:my-0">
+        <ng-container *ngIf="venueInfoForm.controls.hours.value.length > 0; else noTimes">
+          <h2 class="text-2xl text-mmRust font-FFXIV uppercase">This Venue is Open:</h2>
+          <div *ngFor="let hour of venueInfoForm.controls.hours.value; let i = index" class="flex my-1">
+            <i class="flex-initial self-center fa-regular fa-clock mr-1"></i>
+            <div class="self-center text-sm">
+              <ng-container *ngIf="hour.day; else variable">
+                <p class="inline-block font-bold mx-1">{{ hour.day }}:</p>
+                <p class="inline-block">{{ hour.open! | time : true }}</p>
+                <p class="inline-block mx-1">-</p>
+                <p class="inline-block">{{ hour.close! | time : true }}</p>
+              </ng-container>
+              <ng-template #variable>
+                <p class="inline-block font-bold mx-1">{{ hour.variableDay }}:</p>
+                <p class="inline-block">{{ hour.variableTimes }}</p>
+              </ng-template>
+            </div>
+            <div
+              class="flex-initial self-center px-1.5 mx-2 rounded-md bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkBlue hover:cursor-pointer"
+              (click)="onHoursRemoved(i)">
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #noTimes>
+          <p>You have not added any times to this venue</p>
+        </ng-template>
+      </div>
+
+      <div class="flex-auto"></div>
     </div>
   </div>
 

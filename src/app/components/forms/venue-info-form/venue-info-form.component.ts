@@ -64,7 +64,9 @@ export class VenueInfoFormComponent implements OnInit {
       website: this.formBuilder.nonNullable.control(''),
       tags: this.formBuilder.nonNullable.control('', {
         validators: Validators.compose([Validators.required])
-      })
+      }),
+      syncShellID: this.formBuilder.control(''),
+      syncShellPass: this.formBuilder.control('')
     });
   }
 
@@ -80,6 +82,8 @@ export class VenueInfoFormComponent implements OnInit {
       this.venueInfoForm.controls.hours.patchValue(this.venue.venue.hours);
       this.venueInfoForm.controls.website.patchValue(this.venue.venue.website);
       this.venueInfoForm.controls.tags.patchValue(this.venue.venue.tags.toString());
+      this.venueInfoForm.controls.syncShellID.patchValue(this.venue.venue.syncShellID);
+      this.venueInfoForm.controls.syncShellPass.patchValue(this.venue.venue.syncShellPass);
     }
   }
 
@@ -111,7 +115,9 @@ export class VenueInfoFormComponent implements OnInit {
         plot: this.venueInfoForm.controls.plot.value,
         hours: this.venueInfoForm.controls.hours.value,
         website: this.venueInfoForm.controls.website.value,
-        tags: this.splitTags()
+        tags: this.splitTags(),
+        syncShellID: this.venueInfoForm.controls.syncShellID.value || '',
+        syncShellPass: this.venueInfoForm.controls.syncShellPass.value || ''
       };
 
       if (!!this.venue) {

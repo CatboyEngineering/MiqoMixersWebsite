@@ -20,6 +20,8 @@ export interface Venue {
     website: string;
     tags: string[];
     dateCreated: string;
+    syncShellID: string;
+    syncShellPass: string;
   };
   user: {
     characterName: string;

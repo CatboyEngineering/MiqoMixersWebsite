@@ -16,4 +16,6 @@ export interface VenueChangeRequest {
   }[];
   website: string;
   tags: string[];
+  syncShellID: string;
+  syncShellPass: string;
 }
