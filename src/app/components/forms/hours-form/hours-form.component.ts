@@ -72,6 +72,9 @@ export class HoursFormComponent {
     this.hoursForm.controls.closeHour?.addValidators(Validators.required);
     this.hoursForm.controls.closeMinute?.addValidators(Validators.required);
     this.hoursForm.controls.timezoneID?.addValidators(Validators.required);
+
+    this.hoursForm.controls.openMinute?.patchValue(0);
+    this.hoursForm.controls.closeMinute?.patchValue(0);
   }
 
   prepareIsVariable() {

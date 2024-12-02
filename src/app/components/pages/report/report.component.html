@@ -3,7 +3,7 @@
   <p class="text-sm my-1">You are reporting this venue to site moderators.</p>
 </div>
 <div *ngIf="venue$ | async as venue">
-  <app-venue-post [venue]="venue" [expanded]="true"></app-venue-post>
+  <app-venue-post [venue]="venue"></app-venue-post>
   <div class="p-3 my-2 border border-mmRust rounded-md">
     <p class="font-bold underline">Reporting a Venue</p>
     <p class="text-sm my-2">
