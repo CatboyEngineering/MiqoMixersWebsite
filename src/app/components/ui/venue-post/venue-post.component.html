@@ -19,9 +19,13 @@
       (click)="toggleExpand()">
       <div>
         <p class="text-lg font-bold">{{ venue.venue.venueName }}</p>
+        <div>
+          <i class="fa-solid fa-map-location-dot inline-block self-center"></i>
+          <p class="inline-block self-center mx-2 text-xs">{{ venue.venue.datacenter }}, {{ venue.venue.world }}, {{ venue.venue.district }}</p>
+        </div>
 
         <div class="mt-4">
-          <app-chip *ngFor="let tag of venue.venue.tags" [chip]="tag"></app-chip>
+          <app-chip *ngFor="let tag of venue.venue.tags | chipsort" [chip]="tag"></app-chip>
         </div>
       </div>
 
@@ -62,7 +66,8 @@
         <div class="flex-initial self-center text-center my-4 md:my-0 bg-mmRust text-mmSand dark:bg-mmDarkBlue px-3 py-2 rounded-md">
           <i class="fa-solid fa-map-location-dot inline-block self-center text-xl"></i>
           <p class="inline-block self-center mx-2 text-xs md:text-sm">
-            {{ venue.venue.datacenter }}, {{ venue.venue.world }}: {{ venue.venue.district }}, Ward {{ venue.venue.ward }}, Plot
+            <strong>{{ venue.venue.datacenter }}, {{ venue.venue.world }}:</strong>
+            {{ venue.venue.district }}, Ward {{ venue.venue.ward }}, Plot
             {{ venue.venue.plot }}
           </p>
         </div>

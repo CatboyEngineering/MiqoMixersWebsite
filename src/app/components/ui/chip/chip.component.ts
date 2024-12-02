@@ -30,6 +30,7 @@ export class ChipComponent implements OnInit {
         this.bgColor = '#85586F';
         break;
       case 'NSFW':
+      case '18+':
         this.bgColor = '#9B3922';
         break;
       case 'SFW':
