@@ -18,7 +18,7 @@
       style="{{ borderColor }}"
       (click)="toggleExpand()">
       <div>
-        <p class="text-lg font-bold">{{ venue.venue.venueName }}</p>
+        <p class="text-2xl font-lilitaOne">{{ venue.venue.venueName }}</p>
         <div>
           <i class="fa-solid fa-map-location-dot inline-block self-center"></i>
           <p class="inline-block self-center mx-2 text-xs">{{ venue.venue.datacenter }}, {{ venue.venue.world }}, {{ venue.venue.district }}</p>
@@ -46,13 +46,20 @@
     <!-- Collapsed Details -->
     <div class="p-3 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-gray-700" *ngIf="expanded">
       <div class="md:flex">
-        <div class="flex text-center w-fit mx-auto">
-          <i class="fa-solid fa-quote-left mx-1 md:mx-2"></i>
-          <p class="text-sm my-3 inline-block">{{ venue.venue.about }}</p>
-          <i class="fa-solid fa-quote-right mx-1 md:mx-2"></i>
+        <div class="text-center w-full md:mr-3 px-3 py-2 bg-gray-300 dark:bg-gray-800 rounded-md shadow-sm">
+          <div class="mb-2 text-mmRust flex w-fit mx-auto">
+            <i class="self-center text-2xl mx-2 fa-solid fa-meteor"></i>
+            <h2 class="self-center text-2xl font-lilitaOne uppercase">About</h2>
+          </div>
+
+          <p class="text-sm">{{ venue.venue.about }}</p>
         </div>
-        <div *ngIf="venue.venue.syncShellID" class="my-2 md:my-0 px-3 py-2 min-w-60 bg-gray-300 dark:bg-gray-600 rounded-md shadow-sm">
-          <h2 class="text-2xl md:text-3xl mb-2 text-mmRust font-FFXIV uppercase md:text-center">Mare Synchronos</h2>
+
+        <div *ngIf="venue.venue.syncShellID" class="my-3 md:my-0 px-3 py-2 min-w-60 bg-gray-300 dark:bg-gray-800 rounded-md shadow-sm">
+          <div class="mb-2 text-mmRust flex w-fit mx-auto">
+            <i class="self-center text-2xl mx-2 fa-solid fa-person-rays"></i>
+            <h2 class="self-center text-2xl font-lilitaOne uppercase">Mare</h2>
+          </div>
 
           <div class="flex">
             <i class="self-center w-5 fa-solid fa-wifi"></i>
