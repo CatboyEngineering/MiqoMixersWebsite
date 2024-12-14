@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
+import { ReassignVenueRequest } from '../../models/API/request/reassign-venue-request.interface';
 import { AdminAccountListResponse } from '../../models/API/response/admin-account-list-response.interface';
 import { Report } from '../../models/report.interface';
 import { AdminStateActions } from './admin-state.actions';
@@ -28,6 +29,10 @@ export class AdminStateService {
 
   onDeleteReport(reportID: string): void {
     this.store.dispatch(AdminStateActions.requestDeleteReport({ reportID }));
+  }
+
+  onReassignVenue(request: ReassignVenueRequest): void {
+    this.store.dispatch(AdminStateActions.requestReassignVenue({ request }));
   }
 
   onToggleAccountStatus(accountID: string): void {

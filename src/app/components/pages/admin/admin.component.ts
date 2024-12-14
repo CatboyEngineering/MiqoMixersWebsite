@@ -7,12 +7,13 @@ import { FormName } from '../../../models/enum/form-name.enum';
 import { Report } from '../../../models/report.interface';
 import { TimePipe } from '../../../pipes/time-pipe/time.pipe';
 import { AdminStateService } from '../../../store/admin-state/admin-state.service';
+import { ReassignVenueFormComponent } from '../../forms/reassign-venue-form/reassign-venue-form.component';
 import { UiFormErrorComponent } from '../../ui/ui-form-error/ui-form-error.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, UiFormErrorComponent, TimePipe, RouterLink],
+  imports: [CommonModule, UiFormErrorComponent, ReassignVenueFormComponent, TimePipe, RouterLink],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
 })

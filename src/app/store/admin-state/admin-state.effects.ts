@@ -98,6 +98,22 @@ export class AdminStateEffects {
     )
   );
 
+  venueReassignRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AdminStateActions.requestReassignVenue),
+      mergeMap(action =>
+        this.httpService.POST<any>('admin/venue/' + action.request.venueID + '/reassign/' + action.request.accountID, undefined).pipe(
+          map(response => {
+            return AdminStateActions.receiveReassignVenue();
+          }),
+          catchError(error => {
+            return of(AdminStateActions.retrievalError({ form: FormName.REASSIGN_VENUE, error: error }));
+          })
+        )
+      )
+    )
+  );
+
   accountToggleRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AdminStateActions.requestAccountStatusToggle),
