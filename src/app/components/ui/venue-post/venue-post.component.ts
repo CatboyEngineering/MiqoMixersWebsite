@@ -36,8 +36,6 @@ export class VenuePostComponent implements OnInit {
   ngOnInit(): void {
     this.venueHoursStatus = this.getVenueHoursStatus();
 
-    console.log(this.venueHoursStatus);
-
     this.setBorderColor();
   }
 

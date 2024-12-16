@@ -1,7 +1,19 @@
 <h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase text-center">Venue List</h1>
+
+<div class="mx-2 my-4 right-0 flex">
+  <div class="flex-auto hidden md:inline-block"></div>
+  <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust"></i>
+  <input
+    [(ngModel)]="tagFilter"
+    data-1p-ignore
+    type="text"
+    placeholder="Filter by tags"
+    class="flex-auto md:flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+</div>
+
 <ui-form-error [formName]="FormName.VENUE_LIST"></ui-form-error>
 <div *ngIf="isLoading$ | async" class="flex w-fit mx-auto my-5">
   <i class="flex-initial fa-solid fa-spinner animate-spin text-2xl mx-2"></i>
   <p class="flex-initial">Retrieving venues...</p>
 </div>
-<app-venue-post *ngFor="let venue of venues$ | async" [venue]="venue"></app-venue-post>
+<app-venue-post *ngFor="let venue of venues$ | async | venueFilter : split(tagFilter)" [venue]="venue"></app-venue-post>
