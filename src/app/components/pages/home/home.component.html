@@ -16,4 +16,4 @@
   <i class="flex-initial fa-solid fa-spinner animate-spin text-2xl mx-2"></i>
   <p class="flex-initial">Retrieving venues...</p>
 </div>
-<app-venue-post *ngFor="let venue of venues$ | async | venueFilter : split(tagFilter)" [venue]="venue"></app-venue-post>
+<app-venue-post *ngFor="let venue of venues$ | async | venueFilter : split(tagFilter) | venueSort" [venue]="venue"></app-venue-post>

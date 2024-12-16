@@ -41,7 +41,20 @@ export class VenueStateEffects {
       this.actions$.pipe(
         ofType(VenueStateActions.receiveVenues),
         tap(action => {
-          this.venueStateService.venues$.next(action.venues);
+          this.venueStateService.setCurrentTime();
+          var newVenues: Venue[] = [];
+
+          action.venues.forEach(v =>
+            newVenues.push({
+              ...v,
+              venue: {
+                ...v.venue,
+                hoursStatus: this.venueStateService.calculateVenueHoursStatus(v)
+              }
+            })
+          );
+
+          this.venueStateService.venues$.next(newVenues);
         })
       ),
     { dispatch: false }

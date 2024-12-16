@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { Venue } from '../../../models/venue.interface';
 import { VenueFilterPipe } from '../../../pipes/venue-filter-pipe/venue-filter.pipe';
+import { VenueSortPipe } from '../../../pipes/venue-sort-pipe/venue-sort.pipe';
 import { LoadingService } from '../../../services/loading-service/loading.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { UiFormErrorComponent } from '../../ui/ui-form-error/ui-form-error.component';
@@ -13,7 +14,7 @@ import { VenuePostComponent } from '../../ui/venue-post/venue-post.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, VenueFilterPipe, VenuePostComponent, UiFormErrorComponent],
+  imports: [CommonModule, FormsModule, VenueFilterPipe, VenueSortPipe, VenuePostComponent, UiFormErrorComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

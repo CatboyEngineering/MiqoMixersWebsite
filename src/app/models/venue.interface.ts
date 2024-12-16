@@ -1,3 +1,5 @@
+import { VenueHoursStatus } from './enum/venue-hours-status.enum';
+
 export interface Venue {
   venue: {
     venueID: string;
@@ -17,6 +19,7 @@ export interface Venue {
       variableDay?: string;
       variableTimes?: string;
     }[];
+    hoursStatus?: VenueHoursStatus;
     website: string;
     tags: string[];
     dateCreated: string;
