@@ -1,0 +1,11 @@
+<div class="relative inline-block">
+  <div
+    *ngIf="showCopyTooltip"
+    class="absolute bg-gray-100 text-gray-800 text-xs text-center z-10 w-14 bottom-full left-1/2 -ml-5 p-1 shadow-md border border-gray-600 rounded-md">
+    <p>{{ copyTooltipText }}</p>
+  </div>
+
+  <button ngxClipboard [cbContent]="copyText" (mouseenter)="toggleTooltip(true)" (mouseleave)="toggleTooltip(false)" (click)="updateTooltip()">
+    <i class="self-center fa-regular fa-copy hover:cursor-pointer"></i>
+  </button>
+</div>

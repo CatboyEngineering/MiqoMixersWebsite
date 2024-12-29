@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ClipboardModule } from 'ngx-clipboard';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { VenueHoursStatus } from '../../../models/enum/venue-hours-status.enum';
 import { Venue } from '../../../models/venue.interface';
@@ -9,12 +10,13 @@ import { TimePipe } from '../../../pipes/time-pipe/time.pipe';
 import { TimeService } from '../../../services/time-service/time.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { ChipComponent } from '../chip/chip.component';
+import { CopyButtonComponent } from '../copy-button/copy-button.component';
 import { UiFormErrorComponent } from '../ui-form-error/ui-form-error.component';
 
 @Component({
   selector: 'app-venue-post',
   standalone: true,
-  imports: [CommonModule, ChipComponent, TimePipe, ChipSortPipe, RouterLink, UiFormErrorComponent],
+  imports: [CommonModule, ChipComponent, TimePipe, ChipSortPipe, RouterLink, UiFormErrorComponent, ClipboardModule, CopyButtonComponent],
   templateUrl: './venue-post.component.html',
   styleUrl: './venue-post.component.css'
 })

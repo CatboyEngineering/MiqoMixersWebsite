@@ -75,7 +75,6 @@ export class VenueInfoFormComponent implements OnInit {
       this.venueInfoForm.controls.venueName.patchValue(this.venue.venue.venueName);
       this.venueInfoForm.controls.about.patchValue(this.venue.venue.about);
       this.venueInfoForm.controls.datacenter.patchValue(this.venue.venue.datacenter);
-      this.venueInfoForm.controls.world.patchValue(this.venue.venue.world);
       this.venueInfoForm.controls.district.patchValue(this.venue.venue.district);
       this.venueInfoForm.controls.ward.patchValue(this.venue.venue.ward);
       this.venueInfoForm.controls.plot.patchValue(this.venue.venue.plot);
@@ -84,6 +83,12 @@ export class VenueInfoFormComponent implements OnInit {
       this.venueInfoForm.controls.tags.patchValue(this.venue.venue.tags.toString());
       this.venueInfoForm.controls.syncShellID.patchValue(this.venue.venue.syncShellID);
       this.venueInfoForm.controls.syncShellPass.patchValue(this.venue.venue.syncShellPass);
+
+      // When DC gets patched, Angular performs a filter on the options, and it conflicts with this patch.
+      // This is a fix to patch the world after that filtering is complete.
+      setTimeout(() => {
+        this.venueInfoForm.controls.world.patchValue(this.venue!.venue.world);
+      }, 50);
     }
   }
 

@@ -46,7 +46,7 @@
     <!-- Collapsed Details -->
     <div class="p-3 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-gray-700" *ngIf="expanded">
       <div class="md:flex">
-        <div class="text-center w-full md:mr-3 px-3 py-2 bg-gray-300 dark:bg-gray-800 rounded-md shadow-sm">
+        <div class="text-center w-full {{ !!venue.venue.syncShellID ? 'md:mr-3' : '' }} px-3 py-2 bg-gray-300 dark:bg-gray-800 rounded-md shadow-sm">
           <div class="mb-2 text-mmRust flex w-fit mx-auto">
             <i class="self-center text-2xl mx-2 fa-solid fa-meteor"></i>
             <h2 class="self-center text-2xl font-lilitaOne uppercase">About</h2>
@@ -63,12 +63,16 @@
 
           <div class="flex">
             <i class="self-center w-5 fa-solid fa-wifi"></i>
-            <p class="self-center mx-1">{{ venue.venue.syncShellID }}</p>
+            <p class="self-center mx-1 px-1 rounded-md bg-gray-400 dark:bg-gray-700">{{ venue.venue.syncShellID }}</p>
+
+            <app-copy-button [copyText]="venue.venue.syncShellID"></app-copy-button>
           </div>
 
-          <div class="flex">
+          <div class="flex mt-1">
             <i class="self-center w-5 fa-solid fa-lock"></i>
-            <p class="self-center mx-1">{{ venue.venue.syncShellPass }}</p>
+            <p class="self-center mx-1 px-1 rounded-md bg-gray-400 dark:bg-gray-700">{{ venue.venue.syncShellPass }}</p>
+
+            <app-copy-button [copyText]="venue.venue.syncShellPass"></app-copy-button>
           </div>
         </div>
       </div>
@@ -117,7 +121,7 @@
         </div>
       </div>
 
-      <div class="mt-3 md:mt-0 text-xs flex">
+      <div class="mt-3 text-xs flex">
         <p class="flex-initial italic">Posted on {{ venue.venue.dateCreated | date }}</p>
         <div class="flex-auto"></div>
         <a [routerLink]="['/report-venue']" [queryParams]="{ id: venue.venue.venueID }" class="flex-initial underline">Report</a>
