@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { Venue } from '../../../models/venue.interface';
+import { LoadThrottlePipe } from '../../../pipes/load-throttle/load-throttle.pipe';
 import { VenueFilterPipe } from '../../../pipes/venue-filter-pipe/venue-filter.pipe';
 import { VenueSortPipe } from '../../../pipes/venue-sort-pipe/venue-sort.pipe';
 import { LoadingService } from '../../../services/loading-service/loading.service';
@@ -14,7 +15,7 @@ import { VenuePostComponent } from '../../ui/venue-post/venue-post.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, VenueFilterPipe, VenueSortPipe, VenuePostComponent, UiFormErrorComponent],
+  imports: [CommonModule, FormsModule, VenueFilterPipe, VenueSortPipe, VenuePostComponent, UiFormErrorComponent, LoadThrottlePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -24,11 +25,17 @@ export class HomeComponent {
 
   FormName = FormName;
 
+  itemLoadStep = 7;
+  itemsLoaded = this.itemLoadStep;
   tagFilter: string = '';
 
   constructor(private venueStateService: VenueStateService, private loadingService: LoadingService) {
     this.venues$ = venueStateService.venues$;
     this.isLoading$ = loadingService.isLoading$;
+  }
+
+  loadMore() {
+    this.itemsLoaded += this.itemLoadStep;
   }
 
   split(value: string): string[] {
