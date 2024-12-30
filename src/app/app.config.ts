@@ -12,6 +12,7 @@ import { AdminStateEffects } from './store/admin-state/admin-state.effects';
 import { AppDetailsStateEffects } from './store/app-details-state/app-details-state.effects';
 import { AuthStateEffects } from './store/auth-state/auth-state.effects';
 import { localstorageMetaReducer } from './store/localstorage-meta.reducer';
+import { SavedStateEffects } from './store/saved-state/saved-state.effects';
 import { rootReducer } from './store/store';
 import { VenueStateEffects } from './store/venue-state/venue-state.effects';
 
@@ -26,7 +27,7 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideStore(rootReducer, { metaReducers: metaReducers }),
-    provideEffects([AuthStateEffects, AppDetailsStateEffects, VenueStateEffects, AdminStateEffects]),
+    provideEffects([AuthStateEffects, AppDetailsStateEffects, VenueStateEffects, AdminStateEffects, SavedStateEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !environment.production }),
     provideHttpClient(withFetch()),
     {

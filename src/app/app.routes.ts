@@ -13,6 +13,7 @@ import { PrivacyComponent } from './components/pages/privacy/privacy.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { ReportSubmittedComponent } from './components/pages/report-submitted/report-submitted.component';
 import { ReportComponent } from './components/pages/report/report.component';
+import { SavedVenuesComponent } from './components/pages/saved-venues/saved-venues.component';
 import { TermsComponent } from './components/pages/terms/terms.component';
 import { VerifyCharacterSuccessComponent } from './components/pages/verify-character-success/verify-character-success.component';
 import { VerifyCharacterComponent } from './components/pages/verify-character/verify-character.component';
@@ -36,6 +37,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'saved',
+    component: SavedVenuesComponent
   },
   {
     path: 'verify-character',

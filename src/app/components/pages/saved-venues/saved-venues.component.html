@@ -1,0 +1,16 @@
+<div class="text-center">
+  <h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase">Attuned Venues</h1>
+  <p class="text-sm my-1">These are the venues you've saved on MiqoMixers.</p>
+</div>
+
+<div *ngIf="savedVenues$ | async as venues; else emptyList">
+  <ng-container *ngIf="venues.length > 0; else emptyList">
+    <div *ngFor="let venue of venues">
+      <app-venue-post [venue]="venue"></app-venue-post>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #emptyList>
+  <p class="text-center pt-5 font-bold text-mmRust dark:text-mmSand">You haven't saved any venues yet.</p>
+</ng-template>

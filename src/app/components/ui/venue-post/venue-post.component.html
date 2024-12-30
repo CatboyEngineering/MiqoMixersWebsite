@@ -60,6 +60,25 @@
 
     <!-- Collapsed Details -->
     <div class="p-3 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-mmClubSpace" *ngIf="expanded">
+      <ng-container *ngIf="isSaved$ | async; else notSaved">
+        <button (click)="unsave()">
+          <div
+            class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mb-3 mr-1">
+            <i class="inline-block fa-solid fa-bookmark mx-1 text-red-900 dark:text-red-500"></i>
+            <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Unsave</p>
+          </div>
+        </button>
+      </ng-container>
+      <ng-template #notSaved>
+        <button (click)="save()">
+          <div
+            class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mb-3 mr-1">
+            <i class="inline-block fa-solid fa-bookmark mx-1 text-mmSand"></i>
+            <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Save</p>
+          </div>
+        </button>
+      </ng-template>
+
       <button *ngIf="isLoggedIn$ | async" (click)="star()">
         <div
           class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mb-3">

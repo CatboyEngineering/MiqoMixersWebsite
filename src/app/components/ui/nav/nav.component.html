@@ -18,6 +18,14 @@
       <div class="flex-auto"></div>
       <div class="basis-full md:basis-auto flex-initial self-center">
         <ul class="text-center md:text-inherit border-t md:border-none py-2 md:py-0">
+          <li
+            class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
+            [routerLink]="['/saved']"
+            (click)="expanded = false">
+            <i class="fa-solid fa-bookmark mx-1.5"></i>
+            <p class="inline-block">Saved</p>
+          </li>
+
           <ng-container *ngIf="isLoggedIn$ | async; else guestUser">
             <li
               class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"

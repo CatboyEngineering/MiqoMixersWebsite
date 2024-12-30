@@ -9,6 +9,7 @@ import { VenueHoursStatus } from '../../../models/enum/venue-hours-status.enum';
 import { ChipSortPipe } from '../../../pipes/chip-sort-pipe/chip-sort.pipe';
 import { TimePipe } from '../../../pipes/time-pipe/time.pipe';
 import { AuthStateService } from '../../../store/auth-state/auth-state.service';
+import { SavedStateService } from '../../../store/saved-state/saved-state.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { ChipComponent } from '../chip/chip.component';
 import { CopyButtonComponent } from '../copy-button/copy-button.component';
@@ -27,6 +28,7 @@ export class VenuePostComponent implements OnInit {
   @Input() expanded: boolean = false;
 
   isLoggedIn$: Observable<boolean>;
+  isSaved$: Observable<boolean>;
 
   venueHoursStatus: VenueHoursStatus;
   borderColor: string;
@@ -36,13 +38,19 @@ export class VenuePostComponent implements OnInit {
   FormName = FormName;
   VenueHoursStatus = VenueHoursStatus;
 
-  constructor(private venueStateService: VenueStateService, private authStateService: AuthStateService) {}
+  constructor(
+    private venueStateService: VenueStateService,
+    private authStateService: AuthStateService,
+    private savedStateService: SavedStateService
+  ) {}
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authStateService.authToken$.pipe(
       withLatestFrom(this.authStateService.isCharacterVerified$),
       map(([token, isVerified]) => !!token && !!isVerified)
     );
+
+    this.isSaved$ = this.savedStateService.savedVenues$.pipe(map(saved => !!saved.find(v => v === this.venue.venue.venueID)));
 
     this.venueHoursStatus = this.venue.venue.hoursStatus!;
     this.setBorderColor();
@@ -70,6 +78,14 @@ export class VenuePostComponent implements OnInit {
 
   star() {
     this.venueStateService.onStarVenue(this.venue.venue.venueID);
+  }
+
+  save() {
+    this.savedStateService.onSaveVenue(this.venue);
+  }
+
+  unsave() {
+    this.savedStateService.onUnsaveVenue(this.venue);
   }
 
   private setBorderColor() {
