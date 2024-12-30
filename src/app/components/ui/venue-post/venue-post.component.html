@@ -18,7 +18,22 @@
       style="{{ borderColor }}"
       (click)="toggleExpand()">
       <div>
-        <p class="text-2xl font-lilitaOne">{{ venue.venue.venueName }}</p>
+        <div class="flex">
+          <p class="self-center text-2xl font-lilitaOne">{{ venue.venue.venueName }}</p>
+
+          <div class="self-center relative inline-block">
+            <div
+              *ngIf="showCommTooltip"
+              class="absolute bg-gray-100 text-gray-800 text-xs text-center z-10 w-28 bottom-full left-1/2 -ml-11 p-1 shadow-md border border-gray-600 rounded-md">
+              <p>Commendations</p>
+            </div>
+
+            <div class="self-center flex-initial flex text-amber-500 ml-3" (mouseenter)="toggleTooltip(true)" (mouseleave)="toggleTooltip(false)">
+              <i class="self-center fa-solid fa-star mx-1"></i>
+              <p class="self-center font-bold">{{ venue.venue.stars }}</p>
+            </div>
+          </div>
+        </div>
         <div>
           <i class="fa-solid fa-map-location-dot inline-block self-center"></i>
           <p class="inline-block self-center mx-2 text-xs">{{ venue.venue.datacenter }}, {{ venue.venue.world }}, {{ venue.venue.district }}</p>
@@ -45,6 +60,14 @@
 
     <!-- Collapsed Details -->
     <div class="p-3 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-mmClubSpace" *ngIf="expanded">
+      <button *ngIf="isLoggedIn$ | async" (click)="star()">
+        <div
+          class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mb-3">
+          <i class="inline-block fa-solid fa-star mx-1 text-amber-500"></i>
+          <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Give Commendation</p>
+        </div>
+      </button>
+
       <div class="md:flex">
         <!-- About -->
         <div

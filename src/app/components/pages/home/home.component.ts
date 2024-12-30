@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { FormName } from '../../../models/enum/form-name.enum';
-import { Venue } from '../../../models/venue.interface';
 import { LoadThrottlePipe } from '../../../pipes/load-throttle/load-throttle.pipe';
 import { VenueFilterPipe } from '../../../pipes/venue-filter-pipe/venue-filter.pipe';
 import { VenueSortPipe } from '../../../pipes/venue-sort-pipe/venue-sort.pipe';
@@ -20,12 +20,12 @@ import { VenuePostComponent } from '../../ui/venue-post/venue-post.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  venues$: BehaviorSubject<Venue[]>;
+  venues$: BehaviorSubject<CombinedVenue[]>;
   isLoading$: BehaviorSubject<boolean>;
 
   FormName = FormName;
 
-  itemLoadStep = 7;
+  itemLoadStep = 3;
   itemsLoaded = this.itemLoadStep;
   tagFilter: string = '';
 

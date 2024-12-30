@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CombinedVenue } from '../../models/combined-venue.interface';
 import { VenueHoursStatus } from '../../models/enum/venue-hours-status.enum';
-import { Venue } from '../../models/venue.interface';
 
 @Pipe({
   name: 'venueSort',
@@ -9,7 +9,7 @@ import { Venue } from '../../models/venue.interface';
 export class VenueSortPipe implements PipeTransform {
   readonly order = [VenueHoursStatus.OPENING_SOON, VenueHoursStatus.OPEN, VenueHoursStatus.CLOSING_SOON, VenueHoursStatus.CLOSED];
 
-  transform(venues: Venue[] | undefined): Venue[] | undefined {
-    return venues?.sort((a: Venue, b: Venue) => this.order.indexOf(a.venue.hoursStatus!) - this.order.indexOf(b.venue.hoursStatus!));
+  transform(venues: CombinedVenue[] | undefined): CombinedVenue[] | undefined {
+    return venues?.sort((a: CombinedVenue, b: CombinedVenue) => this.order.indexOf(a.venue.hoursStatus!) - this.order.indexOf(b.venue.hoursStatus!));
   }
 }

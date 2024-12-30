@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Venue } from '../../models/venue.interface';
+import { CombinedVenue } from '../../models/combined-venue.interface';
 
 @Pipe({
   name: 'venueFilter',
   standalone: true
 })
 export class VenueFilterPipe implements PipeTransform {
-  transform(venues: Venue[] | null, tags: string[]): Venue[] | undefined {
+  transform(venues: CombinedVenue[] | null, tags: string[]): CombinedVenue[] | undefined {
     if (venues && tags.length == 0) {
       return venues;
     }

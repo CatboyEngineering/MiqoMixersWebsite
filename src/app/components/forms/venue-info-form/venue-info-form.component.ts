@@ -3,9 +3,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { VenueChangeRequest } from '../../../models/API/request/venue-change-request.interface';
+import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { VenueInfoForm } from '../../../models/form/venue-info-form.interface';
-import { Venue } from '../../../models/venue.interface';
 import { TimePipe } from '../../../pipes/time-pipe/time.pipe';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { ChipComponent } from '../../ui/chip/chip.component';
@@ -30,7 +30,7 @@ import { HoursFormComponent } from '../hours-form/hours-form.component';
   styleUrl: './venue-info-form.component.css'
 })
 export class VenueInfoFormComponent implements OnInit {
-  @Input() venue?: Venue;
+  @Input() venue?: CombinedVenue;
 
   venueInfoForm: FormGroup<VenueInfoForm>;
   FormName = FormName;

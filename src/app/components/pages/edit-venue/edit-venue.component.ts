@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, map, Observable, withLatestFrom } from 'rxjs';
-import { Venue } from '../../../models/venue.interface';
+import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { AuthStateService } from '../../../store/auth-state/auth-state.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { VenueInfoFormComponent } from '../../forms/venue-info-form/venue-info-form.component';
@@ -15,7 +15,7 @@ import { VenueInfoFormComponent } from '../../forms/venue-info-form/venue-info-f
   styleUrl: './edit-venue.component.css'
 })
 export class EditVenueComponent implements OnInit {
-  venue$: Observable<Venue | undefined>;
+  venue$: Observable<CombinedVenue | undefined>;
 
   constructor(private route: ActivatedRoute, private authStateService: AuthStateService, private venueStateService: VenueStateService) {}
 

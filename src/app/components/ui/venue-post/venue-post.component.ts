@@ -2,12 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ClipboardModule } from 'ngx-clipboard';
+import { map, Observable, withLatestFrom } from 'rxjs';
+import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { VenueHoursStatus } from '../../../models/enum/venue-hours-status.enum';
-import { Venue } from '../../../models/venue.interface';
 import { ChipSortPipe } from '../../../pipes/chip-sort-pipe/chip-sort.pipe';
 import { TimePipe } from '../../../pipes/time-pipe/time.pipe';
-import { TimeService } from '../../../services/time-service/time.service';
+import { AuthStateService } from '../../../store/auth-state/auth-state.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { ChipComponent } from '../chip/chip.component';
 import { CopyButtonComponent } from '../copy-button/copy-button.component';
@@ -21,20 +22,28 @@ import { UiFormErrorComponent } from '../ui-form-error/ui-form-error.component';
   styleUrl: './venue-post.component.css'
 })
 export class VenuePostComponent implements OnInit {
-  @Input() venue: Venue;
+  @Input() venue: CombinedVenue;
   @Input() isEditing: boolean = false;
   @Input() expanded: boolean = false;
+
+  isLoggedIn$: Observable<boolean>;
 
   venueHoursStatus: VenueHoursStatus;
   borderColor: string;
 
   isDeleting: boolean = false;
+  showCommTooltip: boolean = false;
   FormName = FormName;
   VenueHoursStatus = VenueHoursStatus;
 
-  constructor(private venueStateService: VenueStateService, private timeService: TimeService) {}
+  constructor(private venueStateService: VenueStateService, private authStateService: AuthStateService) {}
 
   ngOnInit(): void {
+    this.isLoggedIn$ = this.authStateService.authToken$.pipe(
+      withLatestFrom(this.authStateService.isCharacterVerified$),
+      map(([token, isVerified]) => !!token && !!isVerified)
+    );
+
     this.venueHoursStatus = this.venue.venue.hoursStatus!;
     this.setBorderColor();
   }
@@ -53,6 +62,14 @@ export class VenuePostComponent implements OnInit {
     } else {
       this.isDeleting = true;
     }
+  }
+
+  toggleTooltip(show: boolean) {
+    this.showCommTooltip = show;
+  }
+
+  star() {
+    this.venueStateService.onStarVenue(this.venue.venue.venueID);
   }
 
   private setBorderColor() {

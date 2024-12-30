@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { filter, map, Observable, withLatestFrom } from 'rxjs';
-import { Venue } from '../../../models/venue.interface';
+import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { ReportVenueFormComponent } from '../../forms/report-venue-form/report-venue-form.component';
 import { VenuePostComponent } from '../../ui/venue-post/venue-post.component';
@@ -15,7 +15,7 @@ import { VenuePostComponent } from '../../ui/venue-post/venue-post.component';
   styleUrl: './report.component.css'
 })
 export class ReportComponent {
-  venue$: Observable<Venue | undefined>;
+  venue$: Observable<CombinedVenue | undefined>;
 
   constructor(private route: ActivatedRoute, private venueStateService: VenueStateService) {}
 

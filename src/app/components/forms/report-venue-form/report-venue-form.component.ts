@@ -3,9 +3,9 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { ReportVenueRequest } from '../../../models/API/request/report-venue-request.interface';
+import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { ReportVenueForm } from '../../../models/form/report-venue-form.interface';
-import { Venue } from '../../../models/venue.interface';
 import { LoadingService } from '../../../services/loading-service/loading.service';
 import { AppDetailsStateService } from '../../../store/app-details-state/app-details-state.service';
 import { UiFormErrorComponent } from '../../ui/ui-form-error/ui-form-error.component';
@@ -19,7 +19,7 @@ import { UiFormFieldErrorComponent } from '../../ui/ui-form-field-error/ui-form-
   styleUrl: './report-venue-form.component.css'
 })
 export class ReportVenueFormComponent {
-  @Input() venue?: Venue;
+  @Input() venue?: CombinedVenue;
 
   reportVenueForm: FormGroup<ReportVenueForm>;
   FormName = FormName;

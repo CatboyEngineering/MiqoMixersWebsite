@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import moment from 'moment-timezone';
 import { BehaviorSubject } from 'rxjs';
 import { VenueChangeRequest } from '../../models/API/request/venue-change-request.interface';
+import { CombinedVenue } from '../../models/combined-venue.interface';
 import { VenueHoursStatus } from '../../models/enum/venue-hours-status.enum';
-import { Venue } from '../../models/venue.interface';
 import { TimeService } from '../../services/time-service/time.service';
 import { VenueStateActions } from './venue-state.actions';
 
@@ -12,13 +12,13 @@ import { VenueStateActions } from './venue-state.actions';
   providedIn: 'root'
 })
 export class VenueStateService {
-  venues$: BehaviorSubject<Venue[]>;
+  venues$: BehaviorSubject<CombinedVenue[]>;
 
   dayOfWeek: string;
   now: moment.Moment;
 
   constructor(private store: Store, private timeService: TimeService) {
-    this.venues$ = new BehaviorSubject<Venue[]>([]);
+    this.venues$ = new BehaviorSubject<CombinedVenue[]>([]);
     this.dayOfWeek = this.timeService.getDayOfWeek();
   }
 
@@ -34,7 +34,7 @@ export class VenueStateService {
     this.store.dispatch(VenueStateActions.requestUpdateVenue({ request, venueID }));
   }
 
-  onDeleteVenue(venue: Venue): void {
+  onDeleteVenue(venue: CombinedVenue): void {
     this.store.dispatch(VenueStateActions.requestDeleteVenue({ venue }));
   }
 
@@ -42,11 +42,15 @@ export class VenueStateService {
     this.store.dispatch(VenueStateActions.clearVenues());
   }
 
+  onStarVenue(venueID: string) {
+    this.store.dispatch(VenueStateActions.requestStarVenue({ venueID }));
+  }
+
   setCurrentTime() {
     this.now = moment();
   }
 
-  calculateVenueHoursStatus(venue: Venue): VenueHoursStatus {
+  calculateVenueHoursStatus(venue: CombinedVenue): VenueHoursStatus {
     for (var i = 0; i < venue.venue.hours.length; i++) {
       let hours = venue.venue.hours[i];
 
