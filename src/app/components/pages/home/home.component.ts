@@ -9,13 +9,23 @@ import { VenueFilterPipe } from '../../../pipes/venue-filter-pipe/venue-filter.p
 import { VenueSortPipe } from '../../../pipes/venue-sort-pipe/venue-sort.pipe';
 import { LoadingService } from '../../../services/loading-service/loading.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
+import { PageHeaderComponent } from '../../shared-ui/page-header/page-header.component';
 import { UiFormErrorComponent } from '../../ui/ui-form-error/ui-form-error.component';
 import { VenuePostComponent } from '../../ui/venue-post/venue-post.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, VenueFilterPipe, VenueSortPipe, VenuePostComponent, UiFormErrorComponent, LoadThrottlePipe],
+  imports: [
+    CommonModule,
+    FormsModule,
+    VenueFilterPipe,
+    VenueSortPipe,
+    VenuePostComponent,
+    UiFormErrorComponent,
+    LoadThrottlePipe,
+    PageHeaderComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

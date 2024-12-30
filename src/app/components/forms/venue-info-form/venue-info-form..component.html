@@ -5,51 +5,51 @@
 <form [formGroup]="venueInfoForm" #form="ngForm" (ngSubmit)="submit()">
   <ui-form-error [formName]="FormName.UPSERT_VENUE"></ui-form-error>
 
-  <h2 class="text-3xl text-mmRust my-2 font-FFXIV uppercase">Details</h2>
+  <h2 class="text-3xl text-mmRust dark:text-mmSand my-2 font-FFXIV uppercase">Details</h2>
   <ui-form-field-error [form]="form" [errorFor]="'venueName'" [errorType]="'required'">Venue Name is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'venueName'" [errorType]="'maxlength'">Venue Name is too long (60 chars max)</ui-form-field-error>
   <div class="mx-2 my-2 flex">
-    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-magnifying-glass w-8 text-mmRust"></i>
+    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-magnifying-glass w-8 text-mmRust dark:text-mmSand"></i>
     <input
       data-1p-ignore
       type="text"
       placeholder="Venue Name"
       formControlName="venueName"
-      class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+      class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
     <div class="flex-1"></div>
   </div>
 
   <ui-form-field-error [form]="form" [errorFor]="'about'" [errorType]="'required'">About is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'about'" [errorType]="'maxlength'">About is too long (300 chars max)</ui-form-field-error>
   <div class="mx-2 my-2 flex">
-    <i class="flex-initial mx-1 text-2xl self-center fa-solid fa-circle-info w-8 text-mmRust"></i>
+    <i class="flex-initial mx-1 text-2xl self-center fa-solid fa-circle-info w-8 text-mmRust dark:text-mmSand"></i>
     <textarea
       placeholder="Describe your venue"
       maxlength="300"
       formControlName="about"
       rows="3"
-      class="flex-auto border-b border-gray-800 dark:border-gray-500 self-center px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust"></textarea>
+      class="flex-auto border-b border-gray-800 dark:border-gray-500 self-center px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand"></textarea>
   </div>
 
   <div class="mx-2 my-2 flex">
-    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-link w-8 text-mmRust"></i>
+    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-link w-8 text-mmRust dark:text-mmSand"></i>
     <input
       type="text"
       placeholder="https://my-venue.info"
       formControlName="website"
-      class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+      class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
     <div class="flex-1"></div>
   </div>
 
   <div>
     <div class="mx-2 my-2 flex">
-      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust"></i>
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust dark:text-mmSand"></i>
       <input
         data-1p-ignore
         type="text"
         placeholder="Music, Raffles, Contests"
         formControlName="tags"
-        class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+        class="flex-auto self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
       <div class="flex-1"></div>
     </div>
     <div class="ml-2">
@@ -60,7 +60,7 @@
   </div>
 
   <!-- Location Info -->
-  <h2 class="text-3xl text-mmRust my-2 mt-5 font-FFXIV uppercase">Location</h2>
+  <h2 class="text-3xl text-mmRust dark:text-mmSand my-2 mt-5 font-FFXIV uppercase">Location</h2>
   <ui-form-field-error [form]="form" [errorFor]="'datacenter'" [errorType]="'required'">Datacenter is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'world'" [errorType]="'required'">World is required</ui-form-field-error>
   <ui-form-field-error [form]="form" [errorFor]="'district'" [errorType]="'required'">District is required</ui-form-field-error>
@@ -69,12 +69,12 @@
   <div class="border border-mmDarkRust p-3 rounded-md">
     <div class="flex">
       <div class="mx-2 my-2 flex">
-        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-server w-8 text-mmRust"></i>
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-server w-8 text-mmRust dark:text-mmSand"></i>
 
         <select
           #dataCenter
           formControlName="datacenter"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <option>Aether</option>
           <option>Crystal</option>
           <option>Dynamis</option>
@@ -83,11 +83,11 @@
       </div>
 
       <div class="mx-2 my-2 flex">
-        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-globe w-8 text-mmRust"></i>
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-globe w-8 text-mmRust dark:text-mmSand"></i>
 
         <select
           formControlName="world"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <optgroup *ngIf="dataCenter.value === 'Aether'" label="Aether">
             <option>Adamantoise</option>
             <option>Cactuar</option>
@@ -133,10 +133,10 @@
     </div>
 
     <div class="mx-2 my-2 flex">
-      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-city w-8 text-mmRust"></i>
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-city w-8 text-mmRust dark:text-mmSand"></i>
       <select
         formControlName="district"
-        class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+        class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
         <option>Empyreum</option>
         <option>The Goblet</option>
         <option>Mist</option>
@@ -148,31 +148,31 @@
 
     <div class="flex">
       <div class="mx-2 my-2 flex">
-        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-map w-8 text-mmRust"></i>
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-map w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Ward:</p>
 
         <input
           type="number"
           placeholder="Ward"
           formControlName="ward"
-          class="flex-auto self-center max-w-16 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+          class="flex-auto self-center max-w-16 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
       </div>
 
       <div class="mx-2 my-2 flex">
-        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-signs-post w-8 text-mmRust"></i>
+        <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-signs-post w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Plot:</p>
 
         <input
           type="number"
           placeholder="Plot"
           formControlName="plot"
-          class="flex-auto self-center max-w-16 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+          class="flex-auto self-center max-w-16 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
       </div>
     </div>
   </div>
 
   <!-- Mare Info -->
-  <h2 class="text-3xl text-mmRust my-2 mt-5 font-FFXIV uppercase">Mare Synchronos</h2>
+  <h2 class="text-3xl text-mmRust dark:text-mmSand my-2 mt-5 font-FFXIV uppercase">Mare Synchronos</h2>
   <div class="border border-mmDarkRust p-3 rounded-md">
     <div class="flex mb-4 mx-2 text-gray-700 dark:text-gray-400">
       <i class="text-lg self-center flex-initial fa-solid fa-circle-info"></i>
@@ -181,30 +181,30 @@
       </p>
     </div>
     <div class="mx-2 my-2 flex">
-      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-wifi w-8 text-mmRust"></i>
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-wifi w-8 text-mmRust dark:text-mmSand"></i>
 
       <input
         data-1p-ignore
         type="text"
         placeholder="SyncShell ID"
         formControlName="syncShellID"
-        class="self-center border-b border-gray-800 dark:border-gray-500 max-w-60 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+        class="self-center border-b border-gray-800 dark:border-gray-500 max-w-60 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
     </div>
 
     <div class="mx-2 my-2 flex">
-      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-lock w-8 text-mmRust"></i>
+      <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-lock w-8 text-mmRust dark:text-mmSand"></i>
 
       <input
         data-1p-ignore
         type="text"
         placeholder="SyncShell Password"
         formControlName="syncShellPass"
-        class="self-center border-b border-gray-800 dark:border-gray-500 max-w-60 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+        class="self-center border-b border-gray-800 dark:border-gray-500 max-w-60 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
     </div>
   </div>
 
   <!-- Times -->
-  <h2 class="text-3xl text-mmRust my-2 mt-5 font-FFXIV uppercase">Times</h2>
+  <h2 class="text-3xl text-mmRust dark:text-mmSand my-2 mt-5 font-FFXIV uppercase">Times</h2>
   <div class="border border-mmDarkRust p-3 rounded-md">
     <div class="flex mb-4 mx-2 text-gray-700 dark:text-gray-400">
       <i class="text-lg self-center flex-initial fa-solid fa-circle-info"></i>
@@ -220,7 +220,7 @@
 
       <div class="flex-initial self-start my-4 md:my-0">
         <ng-container *ngIf="venueInfoForm.controls.hours.value.length > 0; else noTimes">
-          <h2 class="text-2xl text-mmRust font-FFXIV uppercase">This Venue is Open:</h2>
+          <h2 class="text-2xl text-mmRust dark:text-mmSand font-FFXIV uppercase">This Venue is Open:</h2>
           <div *ngFor="let hour of venueInfoForm.controls.hours.value; let i = index" class="flex my-1">
             <i class="flex-initial self-center fa-regular fa-clock mr-1"></i>
             <div class="self-center text-sm">
@@ -254,9 +254,9 @@
   <div class="text-center">
     <button
       type="submit"
-      class="px-2 py-1 mt-5 rounded-md outline-none focus:outline-mmRust focus:outline-1 bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
+      class="px-2 py-1 mt-5 rounded-md outline-none focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
       <i class="fa-solid fa-plus"></i>
-      Submit Venue
+      {{ venue ? 'Update Venue' : 'Submit Venue' }}
     </button>
   </div>
 </form>

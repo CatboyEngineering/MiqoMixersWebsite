@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoadingService } from '../../../services/loading-service/loading.service';
 import { AuthStateService } from '../../../store/auth-state/auth-state.service';
+import { PageHeaderComponent } from '../../shared-ui/page-header/page-header.component';
 
 @Component({
   selector: 'app-verify-character',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, PageHeaderComponent],
   templateUrl: './verify-character.component.html',
   styleUrl: './verify-character.component.css'
 })

@@ -14,11 +14,11 @@ module.exports = {
         mmRust: '#CB6040',
         mmDarkRust: '#a04e35',
         mmClubPurple: '#2E1C35',
-        mmClubLavender: '#554971',
+        mmClubLavender: '#413857',
         mmClubSpace: '#383348',
         mmClubDeepSpace: '#2B2934',
         mmClubBlack: '#1D1E20',
-        mmClubBlue: '#121A2B',
+        mmClubBlue: '#1E2B48',
         mmCyan: '#18848e'
       },
       fontFamily: {

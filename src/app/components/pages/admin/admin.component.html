@@ -1,31 +1,54 @@
-<h1 class="text-5xl text-mmRust text-center font-FFXIV uppercase">MiqoMixers Administrator</h1>
+<app-page-header>MiqoMixers Administrator</app-page-header>
 <ui-form-error [formName]="FormName.ADMIN"></ui-form-error>
 
 <div class="my-5">
   <h2 class="text-3xl text-mmRust font-FFXIV uppercase">Reports</h2>
 
   <div>
-    <div *ngFor="let report of reports$ | async" class="p-3 m-3 rounded-md bg-mmRust w-fit text-gray-50">
+    <div *ngFor="let report of reports$ | async" class="flex p-3 m-3 rounded-md bg-mmRust w-fit text-gray-50">
+      <div class="flex-initial">
+        <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+      </div>
       <div class="mx-2 self-center">
-        <p class="font-bold">Reporting Account: {{ report.reporterID || 'Guest' }}</p>
-        <p class="text-sm my-1 underline">
-          {{ report.reportReason }}
+        <p class="text-sm font-bold">
+          {{ report.reportReason | titlecase }}
         </p>
-        <p class="text-xs my-1 max-w-96 bg-mmDarkRust p-1 rounded-md">{{ report.details }}</p>
-        <p class="text-xs font-semibold">{{ report.dateCreated | date : 'MM/dd/yyyy h:mm a' }}</p>
+        <p class="text-xs">
+          Reported by
+          <strong>{{ getReporterName$(report.reporterID) | async }}</strong>
+        </p>
+        <p class="text-xs my-2 max-w-96 bg-mmDarkRust px-2 p-1 rounded-md">{{ report.details }}</p>
         <div class="my-2">
-          <div
-            class="py-2 px-3 w-fit inline-block rounded-md bg-red-700 text-white hover:cursor-pointer hover:bg-red-800 active:bg-red-900"
-            (click)="deleteReport(report.reportID)">
-            <i class="fa-solid fa-trash"></i>
+          <div class="text-xs my-2 max-w-96 bg-mmDarkRust px-2 p-1 rounded-md" *ngIf="getVenueDetails$(report.venueID) | async as venue">
+            <p>
+              <strong>Venue:</strong>
+              {{ venue.venue.venueName }}
+            </p>
+            <p>
+              <strong>Poster:</strong>
+              {{ venue.user.characterName }}
+            </p>
+            <p>
+              <strong>Created:</strong>
+              {{ venue.venue.dateCreated | date : 'MM/dd/yyyy' }}
+            </p>
           </div>
           <div
-            class="py-2 px-3 w-fit inline-block rounded-md bg-green-700 text-white hover:cursor-pointer hover:bg-green-800 active:bg-green-900"
+            class="py-2 px-3 my-1 w-fit rounded-md bg-green-700 text-white hover:cursor-pointer hover:bg-green-800 active:bg-green-900"
             [routerLink]="['/edit-venue']"
             [queryParams]="{ id: report.venueID }">
-            <i class="fa-solid fa-pencil"></i>
+            <i class="inline-block mr-2 fa-solid fa-pencil"></i>
+            <p class="inline-block font-bold">Edit Venue</p>
+          </div>
+          <div
+            class="py-2 px-3 my-1 w-fit rounded-md bg-red-700 text-white hover:cursor-pointer hover:bg-red-800 active:bg-red-900"
+            (click)="deleteReport(report.reportID)">
+            <i class="inline-block mr-2 fa-solid fa-trash"></i>
+            <p class="inline-block font-bold">Delete Report</p>
           </div>
         </div>
+
+        <p class="text-xs font-semibold">{{ report.dateCreated | date : 'MM/dd/yyyy h:mm a' }}</p>
       </div>
     </div>
   </div>

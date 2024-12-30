@@ -6,11 +6,12 @@ import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { AuthStateService } from '../../../store/auth-state/auth-state.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
 import { VenueInfoFormComponent } from '../../forms/venue-info-form/venue-info-form.component';
+import { PageHeaderComponent } from '../../shared-ui/page-header/page-header.component';
 
 @Component({
   selector: 'app-edit-venue',
   standalone: true,
-  imports: [VenueInfoFormComponent, CommonModule],
+  imports: [VenueInfoFormComponent, CommonModule, PageHeaderComponent],
   templateUrl: './edit-venue.component.html',
   styleUrl: './edit-venue.component.css'
 })

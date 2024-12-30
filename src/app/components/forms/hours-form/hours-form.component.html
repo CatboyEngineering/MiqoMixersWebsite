@@ -1,6 +1,6 @@
 <form [formGroup]="hoursForm" #form="ngForm" (ngSubmit)="submit()" class="p-3 rounded-md w-fit border border-mmRust">
   <div>
-    <h2 class="text-2xl text-mmRust font-FFXIV uppercase">Add Times</h2>
+    <h2 class="text-2xl text-mmRust dark:text-mmSand font-FFXIV uppercase">Add Times</h2>
     <p class="text-sm">Use the form below to add the times this venue is open.</p>
     <hr class="my-2 border-mmRust" />
   </div>
@@ -12,7 +12,7 @@
       formControlName="isConstant"
       [value]="true"
       (change)="prepareIsConstant()"
-      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1" />
+      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1" />
     <label for="radioconstant" class="inline-block mx-1">Constant</label>
   </div>
   <div class="inline-block mx-1">
@@ -22,7 +22,7 @@
       formControlName="isConstant"
       [value]="false"
       (change)="prepareIsVariable()"
-      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1" />
+      class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1" />
     <label for="radiovariable" class="inline-block mx-1">Variable</label>
   </div>
 
@@ -30,11 +30,11 @@
     <div class="my-3">
       <ui-form-field-error [form]="form" [errorFor]="'day'" [errorType]="'required'">Please select a day</ui-form-field-error>
       <div class="flex my-1">
-        <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust"></i>
+        <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Day:</p>
         <select
           formControlName="day"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <option disabled [value]="null">Select Day...</option>
           <option>Sunday</option>
           <option>Monday</option>
@@ -49,11 +49,11 @@
       <ui-form-field-error [form]="form" [errorFor]="'openHour'" [errorType]="'required'">Please enter an opening time</ui-form-field-error>
       <ui-form-field-error [form]="form" [errorFor]="'openHour'" [errorType]="'pattern'">Invalid format</ui-form-field-error>
       <div class="flex my-3">
-        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
+        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Open:</p>
         <select
           formControlName="openHour"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <option disabled [value]="null">Hour</option>
           <option value="0">12 AM</option>
           <option value="1">1 AM</option>
@@ -83,7 +83,7 @@
         <p>:</p>
         <select
           formControlName="openMinute"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <option disabled [value]="null">Min</option>
           <option value="0">00</option>
           <option value="15">15</option>
@@ -95,11 +95,11 @@
       <ui-form-field-error [form]="form" [errorFor]="'closeHour'" [errorType]="'required'">Please enter a closing time</ui-form-field-error>
       <ui-form-field-error [form]="form" [errorFor]="'closeHour'" [errorType]="'pattern'">Invalid format</ui-form-field-error>
       <div class="flex my-3">
-        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
+        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Close:</p>
         <select
           formControlName="closeHour"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <option disabled [value]="null">Hour</option>
           <option value="0">12 AM</option>
           <option value="1">1 AM</option>
@@ -129,7 +129,7 @@
         <p>:</p>
         <select
           formControlName="closeMinute"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <option disabled [value]="null">Min</option>
           <option value="0">00</option>
           <option value="15">15</option>
@@ -140,11 +140,11 @@
 
       <ui-form-field-error [form]="form" [errorFor]="'timezoneID'" [errorType]="'required'">Please choose a Timezone</ui-form-field-error>
       <div class="flex my-3">
-        <i class="flex-initial self-center text-2xl fa-solid fa-earth-americas w-8 text-mmRust"></i>
+        <i class="flex-initial self-center text-2xl fa-solid fa-earth-americas w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Timezone:</p>
         <select
           formControlName="timezoneID"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <option disabled [value]="null">Timezone...</option>
           <option value="Pacific/Honolulu">Hawaii</option>
           <option value="America/Anchorage">Alaska</option>
@@ -162,31 +162,31 @@
         Please specify the days this is open
       </ui-form-field-error>
       <div class="flex my-3">
-        <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust"></i>
+        <i class="flex-initial self-center text-2xl fa-regular fa-calendar w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Days:</p>
         <input
           type="string"
           placeholder="M - F"
           formControlName="variableDay"
-          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
       </div>
 
       <ui-form-field-error [form]="form" [errorFor]="'variableTimes'" [errorType]="'required'">
         Please specify the times this is open
       </ui-form-field-error>
       <div class="flex my-3">
-        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust"></i>
+        <i class="flex-initial self-center text-2xl fa-regular fa-clock w-8 text-mmRust dark:text-mmSand"></i>
         <p class="self-center">Times:</p>
         <input
           type="string"
           placeholder="8PM - 10PM ET"
           formControlName="variableTimes"
-          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+          class="flex-auto self-center max-w-44 border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
       </div>
     </div>
   </ng-template>
   <button
-    class="px-2 py-1 rounded-md w-full outline-none focus:outline-mmRust focus:outline-1 bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
+    class="px-2 py-1 rounded-md w-full outline-none focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue text-mmSand">
     <i class="fa-solid fa-plus"></i>
     Add
   </button>

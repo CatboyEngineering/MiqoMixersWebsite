@@ -8,23 +8,23 @@
       Names can only include letters, numbers, _, -, and '
     </ui-form-field-error>
     <div class="inline-block mx-2 my-2">
-      <i class="inline-block mx-1 text-2xl align-middle fa-solid fa-user-large w-8 text-mmRust"></i>
+      <i class="inline-block mx-1 text-2xl align-middle fa-solid fa-user-large w-8 text-mmRust dark:text-mmSand"></i>
       <input
         data-1p-ignore
         type="text"
         placeholder="Character Name"
         formControlName="characterName"
-        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
     </div>
   </div>
   <div>
     <ui-form-field-error [form]="form" [errorFor]="'characterServer'" [errorType]="'required'">This field is required</ui-form-field-error>
     <div class="inline-block mx-2 my-2">
-      <i class="inline-block mx-1 text-2xl align-middle fa-solid fa-globe w-8 text-mmRust"></i>
+      <i class="inline-block mx-1 text-2xl align-middle fa-solid fa-globe w-8 text-mmRust dark:text-mmSand"></i>
 
       <select
         formControlName="characterServer"
-        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+        class="border-b border-gray-800 dark:border-gray-500 inline-block align-middle px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
         <optgroup label="Aether">
           <option>Adamantoise</option>
           <option>Cactuar</option>

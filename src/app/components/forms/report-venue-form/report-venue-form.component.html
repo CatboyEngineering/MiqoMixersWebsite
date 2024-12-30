@@ -4,11 +4,11 @@
   <ui-form-field-error [form]="form" [errorFor]="'reportReason'" [errorType]="'required'">Please select a report reason</ui-form-field-error>
 
   <div class="mx-2 my-2 flex">
-    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-circle-exclamation w-8 text-mmRust"></i>
+    <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-circle-exclamation w-8 text-mmRust dark:text-mmSand"></i>
 
     <select
       formControlName="reportReason"
-      class="flex-initial w-full self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust">
+      class="flex-initial w-full self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
       <option disabled [value]="''">Report reason...</option>
       <option>The Venue is inactive or closed</option>
       <option>The Venue details are incorrect</option>
@@ -24,13 +24,13 @@
 
   <ui-form-field-error [form]="form" [errorFor]="'details'" [errorType]="'required'">Please provide details about the report</ui-form-field-error>
   <div class="mx-2 my-2 flex">
-    <i class="flex-initial mx-1 text-2xl self-center fa-solid fa-circle-info w-8 text-mmRust"></i>
+    <i class="flex-initial mx-1 text-2xl self-center fa-solid fa-circle-info w-8 text-mmRust dark:text-mmSand"></i>
     <textarea
       placeholder="Add any relevant details here..."
       maxlength="500"
       formControlName="details"
       rows="3"
-      class="flex-auto border-b border-gray-800 dark:border-gray-500 self-center px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust"></textarea>
+      class="flex-auto border-b border-gray-800 dark:border-gray-500 self-center px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand"></textarea>
   </div>
 
   <br />
@@ -38,7 +38,7 @@
   <div class="text-center">
     <button
       [disabled]="isLoading$ | async"
-      class="bg-mmBlue font-bold text-gray-100 rounded-md outline-none focus:outline-mmRust focus:outline-1 px-3 py-2 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
+      class="bg-mmBlue font-bold text-gray-100 rounded-md outline-none focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 px-3 py-2 hover:bg-mmDarkBlue active:bg-mmDarkerBlue disabled:bg-slate-500"
       type="submit">
       Submit Report
     </button>
