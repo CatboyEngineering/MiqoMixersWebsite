@@ -1,14 +1,14 @@
-<h1 class="text-5xl text-mmRust my-2 font-FFXIV uppercase text-center">Venue List</h1>
+<h1 class="text-5xl text-mmRust dark:text-mmClubLavender my-2 font-FFXIV uppercase text-center">Venue List</h1>
 
 <div class="mx-2 my-4 right-0 flex">
   <div class="flex-auto hidden md:inline-block"></div>
-  <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust"></i>
+  <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust dark:text-mmClubLavender"></i>
   <input
     [(ngModel)]="tagFilter"
     data-1p-ignore
     type="text"
     placeholder="Filter by tags"
-    class="flex-auto md:flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 placeholder:text-gray-500 text-mmRust" />
+    class="flex-auto md:flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-gray-900 shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmClubLavender placeholder:text-gray-500 text-mmRust dark:text-mmClubLavender" />
 </div>
 
 <ui-form-error [formName]="FormName.VENUE_LIST"></ui-form-error>

@@ -14,7 +14,7 @@
     </div>
     <!-- Venue info -->
     <div
-      class="p-3 rounded-tl-md rounded-tr-md {{ !expanded ? 'rounded-md' : '' }} bg-gray-50 dark:bg-gray-600 hover:cursor-pointer flex"
+      class="p-3 rounded-tl-md rounded-tr-md {{ !expanded ? 'rounded-md' : '' }} bg-gray-50 dark:bg-mmClubLavender hover:cursor-pointer flex"
       style="{{ borderColor }}"
       (click)="toggleExpand()">
       <div>
@@ -44,10 +44,14 @@
     </div>
 
     <!-- Collapsed Details -->
-    <div class="p-3 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-gray-700" *ngIf="expanded">
+    <div class="p-3 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-mmClubSpace" *ngIf="expanded">
       <div class="md:flex">
-        <div class="text-center w-full {{ !!venue.venue.syncShellID ? 'md:mr-3' : '' }} px-3 py-2 bg-gray-300 dark:bg-gray-800 rounded-md shadow-sm">
-          <div class="mb-2 text-mmRust flex w-fit mx-auto">
+        <!-- About -->
+        <div
+          class="text-center w-full {{
+            !!venue.venue.syncShellID ? 'md:mr-3' : ''
+          }} px-3 py-2 bg-gray-300 dark:bg-mmClubDeepSpace rounded-md shadow-sm">
+          <div class="mb-2 text-mmRust dark:text-mmCyan flex w-fit mx-auto">
             <i class="self-center text-2xl mx-2 fa-solid fa-meteor"></i>
             <h2 class="self-center text-2xl font-lilitaOne uppercase">About</h2>
           </div>
@@ -55,8 +59,8 @@
           <p class="text-sm">{{ venue.venue.about }}</p>
         </div>
 
-        <div *ngIf="venue.venue.syncShellID" class="my-3 md:my-0 px-3 py-2 min-w-60 bg-gray-300 dark:bg-gray-800 rounded-md shadow-sm">
-          <div class="mb-2 text-mmRust flex w-fit mx-auto">
+        <div *ngIf="venue.venue.syncShellID" class="my-3 md:my-0 px-3 py-2 min-w-60 bg-gray-300 dark:bg-mmClubDeepSpace rounded-md shadow-sm">
+          <div class="mb-2 text-mmDarkBlue dark:text-mmCyan flex w-fit mx-auto">
             <i class="self-center text-2xl mx-2 fa-solid fa-person-rays"></i>
             <h2 class="self-center text-2xl font-lilitaOne uppercase">Mare</h2>
           </div>
@@ -98,8 +102,10 @@
           </p>
         </div>
 
+        <!-- Spacer -->
         <div class="flex-auto"></div>
 
+        <!-- Times -->
         <div class="flex-initial flex self-center">
           <i class="fa-regular fa-clock self-center text-xl"></i>
           <div class="mx-2 text-xs md:text-sm">

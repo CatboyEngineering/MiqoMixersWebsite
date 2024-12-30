@@ -1,4 +1,4 @@
-<nav class="w-full p-3 md:px-5 bg-mmRust dark:bg-mmDarkRust text-mmSand font-semibold shadow-md">
+<nav class="w-full p-3 md:px-5 bg-mmRust dark:bg-mmClubPurple text-mmSand font-semibold shadow-md">
   <div class="flex flex-wrap">
     <div class="flex-initial self-center">
       <img
@@ -20,7 +20,7 @@
         <ul class="text-center md:text-inherit border-t md:border-none py-2 md:py-0">
           <ng-container *ngIf="isLoggedIn$ | async; else guestUser">
             <li
-              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
               [routerLink]="['/admin']"
               (click)="expanded = false"
               *ngIf="isAdmin$ | async">
@@ -29,7 +29,7 @@
             </li>
 
             <li
-              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
               [routerLink]="['/add-venue']"
               (click)="expanded = false">
               <i class="fa-solid fa-circle-plus mx-1.5"></i>
@@ -37,7 +37,7 @@
             </li>
 
             <li
-              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
               [routerLink]="['/my-venues']"
               (click)="expanded = false">
               <i class="fa-solid fa-list-ul mx-1.5"></i>
@@ -45,7 +45,7 @@
             </li>
 
             <li
-              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
               [routerLink]="['/account']"
               (click)="expanded = false">
               <i class="fa-solid fa-user-pen mx-1.5"></i>
@@ -53,7 +53,7 @@
             </li>
 
             <li
-              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              class="inline-block mx-2 my-1 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
               (click)="logOut()"
               (click)="expanded = false">
               <i class="fa-solid fa-arrow-right-from-bracket mx-1.5"></i>
@@ -62,14 +62,14 @@
           </ng-container>
           <ng-template #guestUser>
             <li
-              class="inline-block mx-2 my-1 py-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              class="inline-block mx-2 my-1 py-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
               [routerLink]="['/register']"
               (click)="expanded = false">
               <i class="fa-solid fa-plus mx-1.5"></i>
               <p class="inline-block">Register</p>
             </li>
             <li
-              class="inline-block mx-2 my-1 py-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue"
+              class="inline-block mx-2 my-1 py-2 hover:text-mmOrange hover:cursor-pointer active:text-mmBlue dark:hover:text-mmClubLavender dark:active:text-mmClubBlue"
               [routerLink]="['/login']"
               (click)="expanded = false">
               <i class="fa-solid fa-arrow-right-to-bracket mx-1.5"></i>
