@@ -25,7 +25,7 @@ export class HomeComponent {
 
   FormName = FormName;
 
-  itemLoadStep = 3;
+  itemLoadStep = 7;
   itemsLoaded = this.itemLoadStep;
   tagFilter: string = '';
 
