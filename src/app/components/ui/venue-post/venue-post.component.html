@@ -59,22 +59,27 @@
           <p class="text-sm">{{ venue.venue.about }}</p>
         </div>
 
+        <!-- Mare -->
         <div *ngIf="venue.venue.syncShellID" class="my-3 md:my-0 px-3 py-2 min-w-60 bg-gray-300 dark:bg-mmClubDeepSpace rounded-md shadow-sm">
-          <div class="mb-2 text-mmDarkBlue dark:text-mmCyan flex w-fit mx-auto">
+          <div class="mb-2 text-mmRust dark:text-mmCyan flex w-fit mx-auto">
             <i class="self-center text-2xl mx-2 fa-solid fa-person-rays"></i>
             <h2 class="self-center text-2xl font-lilitaOne uppercase">Mare</h2>
           </div>
 
           <div class="flex">
             <i class="self-center w-5 fa-solid fa-wifi"></i>
-            <p class="self-center mx-1 px-1 rounded-md bg-gray-400 dark:bg-gray-700">{{ venue.venue.syncShellID }}</p>
+            <p class="self-center mx-1 px-2 py-0.5 rounded-md bg-mmRust text-mmSand font-bold dark:bg-mmClubLavender dark:text-gray-50">
+              {{ venue.venue.syncShellID }}
+            </p>
 
             <app-copy-button [copyText]="venue.venue.syncShellID"></app-copy-button>
           </div>
 
           <div class="flex mt-1">
             <i class="self-center w-5 fa-solid fa-lock"></i>
-            <p class="self-center mx-1 px-1 rounded-md bg-gray-400 dark:bg-gray-700">{{ venue.venue.syncShellPass }}</p>
+            <p class="self-center mx-1 px-2 py-0.5 rounded-md bg-mmRust text-mmSand font-bold dark:bg-mmClubLavender dark:text-gray-50">
+              {{ venue.venue.syncShellPass }}
+            </p>
 
             <app-copy-button [copyText]="venue.venue.syncShellPass"></app-copy-button>
           </div>
