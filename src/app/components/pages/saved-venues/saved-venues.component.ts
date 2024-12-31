@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { map, Observable, withLatestFrom } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { SavedStateService } from '../../../store/saved-state/saved-state.service';
 import { VenueStateService } from '../../../store/venue-state/venue-state.service';
@@ -18,8 +18,7 @@ export class SavedVenuesComponent {
   savedVenues$: Observable<CombinedVenue[]>;
 
   constructor(private venueStateService: VenueStateService, private savedStateService: SavedStateService) {
-    this.savedVenues$ = savedStateService.savedVenues$.pipe(
-      withLatestFrom(venueStateService.venues$),
+    this.savedVenues$ = combineLatest([savedStateService.savedVenues$, venueStateService.venues$]).pipe(
       map(([savedVenues, venues]) => venues.filter(venue => savedVenues.find(sv => sv === venue.venue.venueID)))
     );
   }
