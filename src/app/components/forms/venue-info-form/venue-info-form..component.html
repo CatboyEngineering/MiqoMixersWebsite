@@ -74,7 +74,8 @@
         <select
           #dataCenter
           formControlName="datacenter"
-          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
+          class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand"
+          (change)="mintIsSassy()">
           <option>Aether</option>
           <option>Crystal</option>
           <option>Dynamis</option>
@@ -86,6 +87,7 @@
         <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-globe w-8 text-mmRust dark:text-mmSand"></i>
 
         <select
+          #venueWorld
           formControlName="world"
           class="flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none hover:cursor-pointer outline-none focus:rounded-md focus:outline-mmRust dark:focus:outline-mmSand focus:outline-1 placeholder:text-gray-500 text-mmRust dark:text-mmSand">
           <optgroup *ngIf="dataCenter.value === 'Aether'" label="Aether">
@@ -205,6 +207,7 @@
 
   <!-- Times -->
   <h2 class="text-3xl text-mmRust dark:text-mmSand my-2 mt-5 font-FFXIV uppercase">Times</h2>
+  <ui-form-field-error [form]="form" [errorFor]="'hours'" [errorType]="'required'">Venue times are required</ui-form-field-error>
   <div class="border border-mmDarkRust p-3 rounded-md">
     <div class="flex mb-4 mx-2 text-gray-700 dark:text-gray-400">
       <i class="text-lg self-center flex-initial fa-solid fa-circle-info"></i>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { VenueChangeRequest } from '../../../models/API/request/venue-change-request.interface';
@@ -30,6 +30,7 @@ import { HoursFormComponent } from '../hours-form/hours-form.component';
   styleUrl: './venue-info-form.component.css'
 })
 export class VenueInfoFormComponent implements OnInit {
+  @ViewChild('venueWorld') venueWorld: ElementRef;
   @Input() venue?: CombinedVenue;
 
   venueInfoForm: FormGroup<VenueInfoForm>;
@@ -90,6 +91,14 @@ export class VenueInfoFormComponent implements OnInit {
         this.venueInfoForm.controls.world.patchValue(this.venue!.venue.world);
       }, 50);
     }
+  }
+
+  mintIsSassy() {
+    setTimeout(() => {
+      var ele = this.venueWorld.nativeElement.options;
+
+      this.venueInfoForm.controls.world.patchValue(ele[0].value);
+    }, 50);
   }
 
   onHoursAdded(hours: any) {

@@ -21,6 +21,8 @@ export class EditVenueComponent implements OnInit {
   constructor(private route: ActivatedRoute, private authStateService: AuthStateService, private venueStateService: VenueStateService) {}
 
   ngOnInit(): void {
+    this.authStateService.onHeartbeat();
+
     this.venue$ = this.route.queryParamMap.pipe(
       filter(params => !!params.get('id')),
       withLatestFrom(this.venueStateService.venues$, this.authStateService.accountID$, this.authStateService.isAdmin$),
