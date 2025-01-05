@@ -24,11 +24,11 @@ import { UiFormErrorComponent } from '../ui-form-error/ui-form-error.component';
 })
 export class VenuePostComponent implements OnInit {
   @Input() venue: CombinedVenue;
-  @Input() isEditing: boolean = false;
   @Input() expanded: boolean = false;
 
   isLoggedIn$: Observable<boolean>;
   isSaved$: Observable<boolean>;
+  canEdit$: Observable<boolean>;
 
   venueHoursStatus: VenueHoursStatus;
   borderColor: string;
@@ -48,6 +48,13 @@ export class VenuePostComponent implements OnInit {
     this.isLoggedIn$ = this.authStateService.authToken$.pipe(
       withLatestFrom(this.authStateService.isCharacterVerified$),
       map(([token, isVerified]) => !!token && !!isVerified)
+    );
+
+    this.canEdit$ = this.authStateService.accountID$.pipe(
+      withLatestFrom(this.authStateService.isAdmin$),
+      map(([accountID, isAdmin]) => {
+        return isAdmin || this.venue.venue.userID === accountID;
+      })
     );
 
     this.isSaved$ = this.savedStateService.savedVenues$.pipe(map(saved => !!saved.find(v => v === this.venue.venue.venueID)));

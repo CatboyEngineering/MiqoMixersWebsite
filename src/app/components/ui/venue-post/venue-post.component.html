@@ -60,32 +60,54 @@
 
     <!-- Collapsed Details -->
     <div class="p-3 rounded-bl-md rounded-br-md bg-gray-200 text-sm dark:bg-mmClubSpace" *ngIf="expanded">
-      <ng-container *ngIf="isSaved$ | async; else notSaved">
-        <button (click)="unsave()">
-          <div
-            class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mb-3 mr-1">
-            <i class="inline-block fa-solid fa-bookmark mx-1 text-red-900 dark:text-red-500"></i>
-            <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Unsave</p>
-          </div>
-        </button>
-      </ng-container>
-      <ng-template #notSaved>
-        <button (click)="save()">
-          <div
-            class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mb-3 mr-1">
-            <i class="inline-block fa-solid fa-bookmark mx-1 text-mmSand"></i>
-            <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Save</p>
-          </div>
-        </button>
-      </ng-template>
+      <!-- Buttons! -->
+      <div class="md:flex mb-3">
+        <ng-container *ngIf="isSaved$ | async; else notSaved">
+          <button (click)="unsave()">
+            <div
+              class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mt-1 md:mt-0 mr-1">
+              <i class="inline-block fa-solid fa-bookmark mr-1 text-red-900 dark:text-red-500"></i>
+              <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Unsave</p>
+            </div>
+          </button>
+        </ng-container>
+        <ng-template #notSaved>
+          <button (click)="save()">
+            <div
+              class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mt-1 md:mt-0 mr-1">
+              <i class="inline-block fa-solid fa-bookmark mr-1 text-mmSand"></i>
+              <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Save</p>
+            </div>
+          </button>
+        </ng-template>
 
-      <button *ngIf="isLoggedIn$ | async" (click)="star()">
-        <div
-          class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mb-3">
-          <i class="inline-block fa-solid fa-star mx-1 text-amber-500"></i>
-          <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Give Commendation</p>
+        <button *ngIf="isLoggedIn$ | async" (click)="star()">
+          <div
+            class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mt-1 md:mt-0 mr-1">
+            <i class="inline-block fa-solid fa-star mr-1 text-amber-500"></i>
+            <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Give Commendation</p>
+          </div>
+        </button>
+
+        <div class="flex-auto"></div>
+
+        <div class="inline-block" *ngIf="canEdit$ | async">
+          <button [routerLink]="['/edit-venue']" [queryParams]="{ id: venue.venue.venueID }">
+            <div
+              class="bg-mmRust hover:bg-mmDarkRust active:bg-mmClubLavender dark:bg-mmBlue dark:hover:bg-mmDarkBlue dark:active:bg-mmDarkerBlue px-2 py-1 rounded-md mt-1 md:mt-0 mr-1">
+              <i class="inline-block fa-solid fa-pencil mr-1 text-mmSand"></i>
+              <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Edit</p>
+            </div>
+          </button>
+
+          <button (click)="toggleDelete()">
+            <div class="bg-mmRed hover:bg-mmDarkRed active:bg-mmClubBlack px-2 py-1 rounded-md mt-1 md:mt-0 mr-1">
+              <i class="inline-block fa-solid fa-trash mr-1 text-mmSand"></i>
+              <p class="inline-block text-mmSand dark:text-gray-50 font-bold">Delete</p>
+            </div>
+          </button>
         </div>
-      </button>
+      </div>
 
       <div class="md:flex">
         <!-- About -->
@@ -180,25 +202,9 @@
         <a [routerLink]="['/report-venue']" [queryParams]="{ id: venue.venue.venueID }" class="flex-initial underline">Report</a>
       </div>
     </div>
-
-    <!-- Owner Controls -->
-    <div *ngIf="isEditing">
-      <div
-        class="p-2 my-1 rounded-md bg-gray-100 hover:bg-gray-200 active:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-800 dark:active:bg-gray-900 w-fit hover:cursor-pointer inline-block"
-        [routerLink]="['/edit-venue']"
-        [queryParams]="{ id: venue.venue.venueID }">
-        <i class="fa-solid fa-pen-to-square inline-block"></i>
-        <p class="inline-block mx-1">Edit Venue</p>
-      </div>
-
-      <div
-        class="p-2 my-1 mx-2 rounded-md text-gray-50 bg-red-500 hover:bg-red-600 active:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800 dark:active:bg-red-900 w-fit hover:cursor-pointer inline-block"
-        (click)="toggleDelete()">
-        <i class="fa-solid fa-trash inline-block"></i>
-        <p class="inline-block mx-1">Delete Venue</p>
-      </div>
-    </div>
   </div>
+
+  <!-- Replace the tile for deletion -->
   <ng-template #readyToDelete>
     <div class="text-center py-5 rounded-md bg-red-800 text-white">
       <ui-form-error [formName]="FormName.DELETE_VENUE"></ui-form-error>

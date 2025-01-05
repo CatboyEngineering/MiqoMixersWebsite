@@ -19,7 +19,9 @@ module.exports = {
         mmClubDeepSpace: '#2B2934',
         mmClubBlack: '#1D1E20',
         mmClubBlue: '#1E2B48',
-        mmCyan: '#18848e'
+        mmCyan: '#18848e',
+        mmRed: '#C2403B',
+        mmDarkRed: '#9C3430'
       },
       fontFamily: {
         lilitaOne: ['Lilita One', 'sans-serif'],
