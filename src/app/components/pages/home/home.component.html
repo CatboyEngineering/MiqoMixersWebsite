@@ -1,14 +1,25 @@
 <app-page-header>Venue List</app-page-header>
 
-<div class="mx-2 my-4 right-0 flex">
-  <div class="flex-auto hidden md:inline-block"></div>
-  <i class="flex-initial self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust dark:text-mmSand"></i>
-  <input
-    [(ngModel)]="tagFilter"
-    data-1p-ignore
-    type="text"
-    placeholder="Filter by tags"
-    class="flex-auto md:flex-initial self-center border-b border-gray-800 dark:border-gray-500 px-2 py-1 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmSand placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
+<div class="my-4 w-full inline-block md:flex">
+  <div class="md:flex-initial md:self-center flex">
+    <i class="self-center mx-1 text-2xl fa-solid fa-magnifying-glass w-8 text-mmRust dark:text-mmSand"></i>
+    <input
+      [(ngModel)]="nameFilter"
+      data-1p-ignore
+      type="text"
+      placeholder="Search by Name"
+      class="self-center border-b border-gray-800 dark:border-gray-500 w-full px-2 py-1 my-2 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmSand placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
+  </div>
+  <div class="md:flex-auto hidden md:inline-block"></div>
+  <div class="md:flex-initial md:self-center flex">
+    <i class="self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust dark:text-mmSand"></i>
+    <input
+      [(ngModel)]="tagFilter"
+      data-1p-ignore
+      type="text"
+      placeholder='RP, Cozy, "SFW"'
+      class="self-center border-b border-gray-800 dark:border-gray-500 w-full px-2 py-1 my-2 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmSand placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
+  </div>
 </div>
 
 <ui-form-error [formName]="FormName.VENUE_LIST"></ui-form-error>
@@ -16,13 +27,13 @@
   <i class="flex-initial fa-solid fa-spinner animate-spin text-2xl mx-2"></i>
   <p class="flex-initial">Retrieving venues...</p>
 </div>
-<div *ngIf="venues$ | async | venueFilter : split(tagFilter) | venueSort as venues">
+<div *ngIf="venues$ | async | venueFilter : split(tagFilter) | venueFilterName : nameFilter | venueSort as venues">
   <app-venue-post *ngFor="let venue of venues | loadThrottle : itemsLoaded" [venue]="venue"></app-venue-post>
 
   <button
     *ngIf="venues.length > itemsLoaded"
     (click)="loadMore()"
-    class="w-full px-2 py-1 rounded-md text-gray-50 font-bold bg-mmRust hover:bg-mmDarkRust dark:bg-gray-800 dark:hover:bg-mmClubLavender">
+    class="w-full px-2 py-1 rounded-md text-gray-50 font-bold bg-mmRust hover:bg-mmDarkRust active:bg-mmDarkerBlue dark:bg-mmClubLavender dark:hover:bg-mmClubPurple dark:active:bg-mmClubBlack">
     Load More
   </button>
 </div>

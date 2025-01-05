@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { CombinedVenue } from '../../../models/combined-venue.interface';
 import { FormName } from '../../../models/enum/form-name.enum';
 import { LoadThrottlePipe } from '../../../pipes/load-throttle/load-throttle.pipe';
+import { VenueFilterNamePipe } from '../../../pipes/venue-filter-name-pipe/venue-filter-name.pipe';
 import { VenueFilterPipe } from '../../../pipes/venue-filter-pipe/venue-filter.pipe';
 import { VenueSortPipe } from '../../../pipes/venue-sort-pipe/venue-sort.pipe';
 import { LoadingService } from '../../../services/loading-service/loading.service';
@@ -20,6 +21,7 @@ import { VenuePostComponent } from '../../ui/venue-post/venue-post.component';
     CommonModule,
     FormsModule,
     VenueFilterPipe,
+    VenueFilterNamePipe,
     VenueSortPipe,
     VenuePostComponent,
     UiFormErrorComponent,
@@ -38,6 +40,7 @@ export class HomeComponent {
   itemLoadStep = 7;
   itemsLoaded = this.itemLoadStep;
   tagFilter: string = '';
+  nameFilter: string = '';
 
   constructor(private venueStateService: VenueStateService, private loadingService: LoadingService) {
     this.venues$ = venueStateService.venues$;
