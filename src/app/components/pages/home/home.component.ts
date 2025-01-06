@@ -41,6 +41,7 @@ export class HomeComponent {
   itemsLoaded = this.itemLoadStep;
   tagFilter: string = '';
   nameFilter: string = '';
+  filterOpen: boolean = false;
 
   constructor(private venueStateService: VenueStateService, private loadingService: LoadingService) {
     this.venues$ = venueStateService.venues$;
@@ -49,6 +50,10 @@ export class HomeComponent {
 
   loadMore() {
     this.itemsLoaded += this.itemLoadStep;
+  }
+
+  toggleFilter() {
+    this.filterOpen = !this.filterOpen;
   }
 
   split(value: string): string[] {

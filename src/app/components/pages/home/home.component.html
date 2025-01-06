@@ -1,26 +1,42 @@
-<app-page-header>Venue List</app-page-header>
+<app-page-header>
+  <i class="mx-1 align-baseline fa-solid fa-tree-city"></i>
+  Venue List
+</app-page-header>
+<p class="text-center text-sm">Welcome! Below is our current list of FFXIV venues. Use the Filter button to narrow down your search!</p>
 
-<div class="my-4 w-full inline-block md:flex">
-  <div class="md:flex-initial md:self-center flex">
-    <i class="self-center mx-1 text-2xl fa-solid fa-magnifying-glass w-8 text-mmRust dark:text-mmSand"></i>
-    <input
-      [(ngModel)]="nameFilter"
-      data-1p-ignore
-      type="text"
-      placeholder="Search by Name"
-      class="self-center border-b border-gray-800 dark:border-gray-500 w-full px-2 py-1 my-2 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmSand placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
-  </div>
-  <div class="md:flex-auto hidden md:inline-block"></div>
-  <div class="md:flex-initial md:self-center flex">
-    <i class="self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust dark:text-mmSand"></i>
-    <input
-      [(ngModel)]="tagFilter"
-      data-1p-ignore
-      type="text"
-      placeholder='RP, Cozy, "SFW"'
-      class="self-center border-b border-gray-800 dark:border-gray-500 w-full px-2 py-1 my-2 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmSand placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
-  </div>
+<div
+  (click)="toggleFilter()"
+  class="flex mt-3 text-mmRust hover:text-mmDarkRust active:text-mmDarkerBlue dark:text-mmSand dark:hover:text-mmDarkSand dark:active:text-mmDarkerSand hover:cursor-pointer">
+  <div class="flex-auto"></div>
+  <button class="flex-initial flex">
+    <i class="self-center mx-1 fa-solid fa-filter"></i>
+    <p class="self-center font-semibold">Filter</p>
+  </button>
 </div>
+
+<ng-container *ngIf="filterOpen">
+  <div class="w-full inline-block md:flex">
+    <div class="md:flex-initial md:self-center flex">
+      <i class="self-center mx-1 text-2xl fa-solid fa-magnifying-glass w-8 text-mmRust dark:text-mmSand"></i>
+      <input
+        [(ngModel)]="nameFilter"
+        data-1p-ignore
+        type="text"
+        placeholder="Search by Name"
+        class="self-center border-b border-gray-800 dark:border-gray-500 w-full px-2 py-1 my-2 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmSand placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
+    </div>
+    <div class="md:flex-auto hidden md:inline-block"></div>
+    <div class="md:flex-initial md:self-center flex">
+      <i class="self-center mx-1 text-2xl fa-solid fa-tags w-8 text-mmRust dark:text-mmSand"></i>
+      <input
+        [(ngModel)]="tagFilter"
+        data-1p-ignore
+        type="text"
+        placeholder='RP, Cozy, "SFW"'
+        class="self-center border-b border-gray-800 dark:border-gray-500 w-full px-2 py-1 my-2 bg-mmDarkSand dark:bg-mmClubBlue shadow-none outline-none focus:rounded-md focus:outline-mmRust focus:outline-1 dark:focus:outline-mmSand placeholder:text-gray-500 text-mmRust dark:text-mmSand" />
+    </div>
+  </div>
+</ng-container>
 
 <ui-form-error [formName]="FormName.VENUE_LIST"></ui-form-error>
 <div *ngIf="isLoading$ | async" class="flex w-fit mx-auto my-5">
