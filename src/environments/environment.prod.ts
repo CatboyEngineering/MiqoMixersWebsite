@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_base: 'https://api.catboy.engineering/miqomixers/v1/'
+  api_base: 'https://api2.galsim.io/miqomixers/v1/'
 };
